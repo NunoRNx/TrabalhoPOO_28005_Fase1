@@ -1,0 +1,9 @@
+
+/RPG/.vs
+/RPG/ActionsTest/bin
+/RPG/ActionsTest/obj
+/RPG/Classes/obj
+/RPG/Classes/obj
+/RPG/Classes
+RPG/Classes/obj/Classes.csproj.nuget.dgspec.json
+*.cache

@@ -1,10 +1,12 @@
-﻿namespace RPG
+﻿using System.Runtime.InteropServices;
+
+namespace RPG
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            
         }
     }
 }

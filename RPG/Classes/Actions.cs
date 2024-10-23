@@ -76,13 +76,15 @@
         }
         public static int crit(int damage)
         {
+            int critDamege = damage;
             //critical hit multiplier
-            return 0;
+            return critDamege;
         }
         public static int resistence(int damage)
         {
+            int resistenceDamege = damage;
             //block multiplier
-            return 0;
+            return resistenceDamege;
         }
 
         public static void inflict(int damage, Class enemy)
@@ -114,95 +116,6 @@
                 team[i].defense = team[i].originalDefense;
             }
         }
-
-        /*public static void displayTeam(Class[] team)
-        {
-            for (int i = 0; i < team.Length; i++) 
-            {
-                Console.Write("\t"+team[i].name + "\t");
-            }
-            for (int i = 0; i < team.Length; i++) 
-            {
-                if (i == 0)
-                {
-                    Console.Write("Health:    ");
-                }
-                if (team[i].alive)
-                {
-                    Console.Write(team[i].hp + "\t");
-                }
-            }
-            for (int i = 0; i < team.Length; i++) 
-            {
-                if (i == 0)
-                {
-                    Console.Write("Defense:   ");
-                }
-                if (team[i].alive)
-                {
-                    Console.Write(team[i].defense + "\t");
-                }
-            }
-            for (int i = 0; i < team.Length; i++) 
-            {
-                if (i == 0)
-                {
-                    Console.Write("Streght:   ");
-                }
-                if (team[i].alive)
-                {
-                    Console.Write(team[i].streght + "\t");
-                }
-            }
-            for (int i = 0; i < team.Length; i++) 
-            {
-                if (i == 0)
-                {
-                    Console.Write("Dexterity: ");
-                }
-                if (team[i].alive)
-                {
-                    Console.Write(team[i].dexterity + "\t");
-                }
-            }
-            for (int i = 0; i < team.Length; i++) 
-            {
-                if (i == 0)
-                {
-                    Console.Write("Stamina:   ");
-                }
-                if (team[i].alive)
-                {
-                    Console.Write(team[i].stamina + "\t");
-                }
-            }
-            for (int i = 0; i < team.Length; i++) 
-            {
-                if (i == 0)
-                {
-                    Console.Write("Magic:     ");
-                }
-                if (team[i].alive)
-                {
-                    Console.Write(team[i].magic + "\t");
-                }
-            }
-            for (int i = 0; i < team.Length; i++) 
-            {
-                if (i == 0)
-                {
-                    Console.Write("Status:    ");
-                }
-                if (team[i].alive)
-                {
-                    Console.Write("alive\t");
-                }
-                else
-                {
-                    Console.Write("dead\t");
-                }
-            }
-        }*/
 
         public static void displayTeam(Class[] team)
         {
