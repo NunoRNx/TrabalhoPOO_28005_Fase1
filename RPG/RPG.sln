@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RPG", "RPG\RPG.csproj", "{E5A8568B-5FE7-4B81-B60B-C2C8FE03CE99}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Classes", "Classes\Classes.csproj", "{29A403DA-85CB-42C8-884B-5DEBBBE7F27B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E5A8568B-5FE7-4B81-B60B-C2C8FE03CE99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5A8568B-5FE7-4B81-B60B-C2C8FE03CE99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5A8568B-5FE7-4B81-B60B-C2C8FE03CE99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5A8568B-5FE7-4B81-B60B-C2C8FE03CE99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29A403DA-85CB-42C8-884B-5DEBBBE7F27B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29A403DA-85CB-42C8-884B-5DEBBBE7F27B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29A403DA-85CB-42C8-884B-5DEBBBE7F27B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29A403DA-85CB-42C8-884B-5DEBBBE7F27B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {663D4703-7C07-4DFD-8201-662D1B984241}
+	EndGlobalSection
+EndGlobal
