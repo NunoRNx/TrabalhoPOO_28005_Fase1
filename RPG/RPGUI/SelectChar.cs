@@ -2,9 +2,9 @@ using System.Runtime.InteropServices;
 using RPG;
 namespace RPGUI
 {
-    public partial class Form1 : Form
+    public partial class SelectChar : Form
     {
-        public Form1()
+        public SelectChar()
         {
             InitializeComponent();
         }
@@ -17,19 +17,14 @@ namespace RPGUI
             Controls.Add(pictureBox); // Add the PictureBox to the form
         }
 
-        private void pictureBox1_Click_1(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void textBox13_TextChanged(object sender, EventArgs e)
         {
 
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e, Class charecter)
-        {
-            
         }
     }
 }
