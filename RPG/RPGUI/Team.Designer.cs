@@ -1,6 +1,6 @@
 ﻿namespace RPGUI
 {
-    partial class ChooseTeam
+    partial class Team
     {
         /// <summary>
         /// Required designer variable.
@@ -213,15 +213,17 @@
             // 
             textBox4.BackColor = Color.White;
             textBox4.BorderStyle = BorderStyle.FixedSingle;
+            textBox4.Enabled = false;
             textBox4.Location = new Point(658, 178);
             textBox4.Multiline = true;
             textBox4.Name = "textBox4";
+            textBox4.ReadOnly = true;
             textBox4.Size = new Size(121, 47);
             textBox4.TabIndex = 16;
             textBox4.Text = "Choose 3 \r\ncharacters";
             textBox4.TextAlign = HorizontalAlignment.Center;
             // 
-            // ChooseTeam
+            // Team
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -243,7 +245,7 @@
             Controls.Add(checkBox1);
             Controls.Add(pictureBox1);
             Controls.Add(button1);
-            Name = "ChooseTeam";
+            Name = "Team";
             Text = "Form2";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();

@@ -7,7 +7,6 @@ C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\RPGUI\bin\D
 C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\RPGUI\bin\Debug\net8.0-windows\Classes.dll
 C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\RPGUI\bin\Debug\net8.0-windows\Classes.pdb
 C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\RPGUI\obj\Debug\net8.0-windows\RPGUI.csproj.AssemblyReference.cache
-C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\RPGUI\obj\Debug\net8.0-windows\RPGUI.ChooseTeam.resources
 C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\RPGUI\obj\Debug\net8.0-windows\RPGUI.Form1.resources
 C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\RPGUI\obj\Debug\net8.0-windows\RPGUI.Properties.Resources.resources
 C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\RPGUI\obj\Debug\net8.0-windows\RPGUI.csproj.GenerateResource.cache
@@ -22,3 +21,4 @@ C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\RPGUI\obj\D
 C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\RPGUI\obj\Debug\net8.0-windows\RPGUI.pdb
 C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\RPGUI\obj\Debug\net8.0-windows\RPGUI.genruntimeconfig.cache
 C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\RPGUI\obj\Debug\net8.0-windows\ref\RPGUI.dll
+C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\RPGUI\obj\Debug\net8.0-windows\RPGUI.Team.resources

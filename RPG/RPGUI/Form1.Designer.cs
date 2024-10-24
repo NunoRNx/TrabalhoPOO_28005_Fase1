@@ -30,7 +30,6 @@ namespace RPGUI
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
@@ -78,7 +77,6 @@ namespace RPGUI
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(141, 235);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(204, 198);
@@ -93,6 +91,7 @@ namespace RPGUI
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(125, 27);
             textBox1.TabIndex = 5;
+            textBox1.Text = "player.name";
             textBox1.TextAlign = HorizontalAlignment.Center;
             // 
             // Form1

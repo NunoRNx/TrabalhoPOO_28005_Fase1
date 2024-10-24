@@ -4,11 +4,18 @@ using RPG;
 
 namespace RPGUI
 {
-    public partial class ChooseTeam : Form
+    public partial class Team : Form
     {
         private const int MaxTeamSize = 3; // Constant for maximum team size
+        private Class[] team { get; set; }
+        private bool FullTeam = false;
 
-        public ChooseTeam()
+        public Class[] SelectedTeam
+        {
+            get { return this.team; }
+        }
+
+        public Team()
         {
             InitializeComponent();
 
@@ -53,16 +60,18 @@ namespace RPGUI
 
         private void ButtonSelect_Click(object sender, EventArgs e)
         {
-            Class[] team = buttonSelect(); // Get the team selection
+            this.team = buttonSelect(); // Get the team selection
 
             // Perform any further actions with the selected team
-            if (team.Length > 0)
+            if (team.Length == MaxTeamSize)
             {
                 MessageBox.Show("Team selected successfully!");
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
             else
             {
-                MessageBox.Show("No characters selected.");
+                MessageBox.Show("You must select 3 characters to start.");
             }
         }
 
