@@ -23,7 +23,7 @@ namespace Utils
             Assert.AreEqual(0, value);
         }
         [Test]
-        public void inflictDamage()
+        public void InflictDamage()
         {
             Actions.inflict(10, enemy);
             Console.WriteLine("enemy hp: "+enemy.hp);

@@ -36,10 +36,10 @@
         {
             private int Holy { get; set; }
 
-            public Paladin(int hp, int defense, int streght, int dexterity, int stamina, int magic, int rage)
+            public Paladin(int hp, int defense, int streght, int dexterity, int stamina, int magic, int holy)
                 :base("Holy Knight", "Shield", hp, defense, streght, dexterity, stamina, magic, 10)
             {
-                this.Holy = rage;
+                this.Holy = holy;
             }
 
             public int holy
@@ -65,10 +65,10 @@
         {
             private int Focus { get; set; }
 
-            public Swordsman(int hp, int defense, int streght, int dexterity, int stamina, int magic, int rage)
+            public Swordsman(int hp, int defense, int streght, int dexterity, int stamina, int magic, int focus)
                 :base("Sword Master", "Vanguard", hp, defense, streght, dexterity, stamina, magic, 10)
             {
-                this.Focus = rage;
+                this.Focus = focus;
             }
 
             public int focus
@@ -91,10 +91,10 @@
         {
             private int Stealth { get; set; }
 
-            public Assassin(int hp, int defense, int streght, int dexterity, int stamina, int magic, int rage)
+            public Assassin(int hp, int defense, int streght, int dexterity, int stamina, int magic, int stealth)
                 :base("Assassin", "Vanguard", hp, defense, streght, dexterity, stamina, magic, 10)
             {
-                this.Stealth = rage;
+                this.Stealth = stealth;
             }
 
             public int stealth
@@ -120,10 +120,10 @@
         {
             private int Arrows { get; set; }
 
-            public Archer(int hp, int defense, int streght, int dexterity, int stamina, int magic, int rage)
+            public Archer(int hp, int defense, int streght, int dexterity, int stamina, int magic, int arrows)
                 : base("The Green Arrow", "Ofensive", hp, defense, streght, dexterity, stamina, magic, 10)
             {
-                this.Arrows = rage;
+                this.Arrows = arrows;
             }
 
             public int arrows
@@ -146,10 +146,10 @@
         {
             private int Mana { get; set; }
 
-            public Mage(int hp, int defense, int streght, int dexterity, int stamina, int magic, int rage)
+            public Mage(int hp, int defense, int streght, int dexterity, int stamina, int magic, int mana)
                 : base("The Sage", "Ofensive", hp, defense, streght, dexterity, stamina, magic, 10)
             {
-                this.Mana = rage;
+                this.Mana = mana;
             }
 
             public int mana
