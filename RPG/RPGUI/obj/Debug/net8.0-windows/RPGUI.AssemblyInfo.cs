@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RPGUI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d62604e3fa15365ae2b12168e78b912219988c57")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+20c0210103366a313e3db016c1659adb0bca38c2")]
 [assembly: System.Reflection.AssemblyProductAttribute("RPGUI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RPGUI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

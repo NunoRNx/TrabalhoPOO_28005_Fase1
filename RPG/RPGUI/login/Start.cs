@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RPGUI.login;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,54 +8,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace RPGUI
 {
     public partial class Start : Form
     {
-        private void InitializeComponent()
+        public Start()
         {
-            pictureBox1 = new PictureBox();
-            button1 = new Button();
-            button2 = new Button();
-            ((ISupportInitialize)pictureBox1).BeginInit();
-            SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Location = new Point(12, 12);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(286, 322);
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(96, 376);
-            button1.Name = "button1";
-            button1.Size = new Size(102, 48);
-            button1.TabIndex = 1;
-            button1.Text = "Login";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(96, 460);
-            button2.Name = "button2";
-            button2.Size = new Size(102, 48);
-            button2.TabIndex = 2;
-            button2.Text = "Create Account";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // MainMenu
-            // 
-            ClientSize = new Size(310, 551);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(pictureBox1);
-            Name = "MainMenu";
-            ((ISupportInitialize)pictureBox1).EndInit();
-            ResumeLayout(false);
+            InitializeComponent();
+
+            // Wire up the button click event
+            button1.Click += login;
+            button2.Click += signUp;
+        }
+
+        private void login(object sender, EventArgs e)
+        {
+            Login login = new Login();
+            login.ShowDialog();
+        }
+        private void signUp(object sender, EventArgs e)
+        {
+            SignUp sign = new SignUp();
+            sign.ShowDialog();
         }
     }
 }

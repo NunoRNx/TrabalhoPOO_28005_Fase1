@@ -11,15 +11,21 @@ namespace RPGUI
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Edit edit = new Edit();
+            
             /*// Create and get the Team
             Class[] player1 = get_team(1);
             Class[] player2 = get_team(2);
             //battle(player1, player2);
             */
         }
+        private static void start()
+        {
+            Start start = new Start();
+            start.ShowDialog();
+            
+        }
 
-        private static Class[] get_team(int i)
+            private static Class[] get_team(int i)
         {
             Team chooseTeam = new Team();
             chooseTeam.ShowDialog();

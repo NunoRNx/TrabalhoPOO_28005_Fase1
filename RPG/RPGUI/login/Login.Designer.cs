@@ -1,4 +1,4 @@
-﻿namespace RPGUI.login
+﻿namespace RPGUI
 {
     partial class Login
     {
@@ -47,11 +47,11 @@
             // 
             // textBox2
             // 
+            textBox2.Enabled = false;
             textBox2.Location = new Point(62, 215);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(234, 27);
             textBox2.TabIndex = 1;
-            textBox2.TextChanged += this.textBox2_TextChanged;
             // 
             // textBox3
             // 
@@ -64,14 +64,15 @@
             // 
             // textBox4
             // 
+            textBox4.Enabled = false;
             textBox4.Location = new Point(62, 281);
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(234, 27);
             textBox4.TabIndex = 3;
-            textBox4.TextChanged += this.textBox4_TextChanged;
             // 
             // textBox5
             // 
+            textBox5.Enabled = false;
             textBox5.Location = new Point(71, 314);
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(208, 27);
@@ -100,7 +101,6 @@
             Controls.Add(textBox1);
             Name = "Login";
             Text = "Form1";
-            Load += this.Login_Load;
             ResumeLayout(false);
             PerformLayout();
         }
