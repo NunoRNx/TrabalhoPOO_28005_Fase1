@@ -1,6 +1,6 @@
 ﻿namespace RPGUI
 {
-    partial class Form1
+    partial class oneVSone
     {
         /// <summary>
         /// Required designer variable.

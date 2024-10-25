@@ -1,4 +1,5 @@
 using RPG;
+using RPGUI.menu;
 namespace RPGUI
 {
     internal static class Program
@@ -10,12 +11,12 @@ namespace RPGUI
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-
-            // Create and get the Team
+            Edit edit = new Edit();
+            /*// Create and get the Team
             Class[] player1 = get_team(1);
             Class[] player2 = get_team(2);
             //battle(player1, player2);
-            
+            */
         }
 
         private static Class[] get_team(int i)

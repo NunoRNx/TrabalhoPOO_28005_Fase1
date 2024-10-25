@@ -8,7 +8,6 @@ namespace RPGUI
     {
         private const int MaxTeamSize = 3; // Constant for maximum team size
         private Class[] team { get; set; }
-        private bool FullTeam = false;
 
         public Class[] SelectedTeam
         {
