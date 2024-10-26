@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RPG;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Data.SqlClient;
+
 
 namespace RPGUI
 {
@@ -18,29 +21,82 @@ namespace RPGUI
             InitializeComponent();
 
             // Wire up the button click event
-            string username=textBox1.Text;
-            string passwd=textBox2.Text;
+            button1.Click += login;
+
+        }
+        private void login(object sender, EventArgs e)
+        {
             try
             {
-                button1.Click += (sender, e) => login(sender, e, username, passwd);
+                string? username = textBox2.Text;
+                string? passwd = textBox4.Text;
+                if (string.IsNullOrEmpty(username))
+                {
+                    //textBox1.Focus(); // Focus back on the username textbox if empty
+                    throw new Exception("Make sure to fill the username.");
+                }
+                else if (string.IsNullOrEmpty(passwd))
+                {
+                    //textBox2.Focus(); // Focus back on the password textbox if empty
+                    throw new Exception("Make sure to fill the password.");
+                }
+                else if (CheckLogin(username, passwd))
+                {
+                    // Login successful - proceed to the next step
+                    Close();
+                    return;
+                }
+                else
+                {
+                    //textBox1.Focus(); // Focus back on username for re-entry
+                    throw new Exception("Password or Username incorrect.");
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                textBox5.Text = ex.Message;
+                textBox5.Visible = true;
             }
-            
         }
-        private void login(object sender, EventArgs e, string username, string passwd)
+        public bool CheckLogin(string inputUsername, string inputPassword)
         {
-            if(username is null || passwd is null)
-            {
-                throw new ArgumentNullException("Make sure to fill the username and password.");
-            }
-            else
-            {
+            // Define your connection string (update with your server details)
+            string connectionString = "Server=DESKTOP-2J6JLCD\\SQLEXPRESS;Database=RPG;User Id=rpg_admin;Password=1234;Encrypt=True;TrustServerCertificate=True;";
 
+            // Query to fetch the password for the given username
+            string query = "SELECT passwd FROM user_info WHERE username = @username";
+
+            // Use a SQL connection
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Use a command with parameterized query to prevent SQL injection
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Define the parameter and add it to the command
+                    command.Parameters.AddWithValue("@username", inputUsername);
+
+                    // Execute the query and get the result
+                    object result = command.ExecuteScalar();
+
+                    // Check if a matching username was found
+                    if (result != null)
+                    {
+                        string storedPassword = result.ToString();
+
+                        // Compare the input password with the stored password
+                        return inputPassword == storedPassword;
+                    }
+                    else
+                    {
+                        // Username not found
+                        return false;
+                    }
+                }
             }
         }
+
     }
-    
+
 }

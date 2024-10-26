@@ -22,7 +22,7 @@ namespace RPG
         public string username
         {
             get { return this.Username; }
-            set 
+            set
             {
                 if (this.Username == value)
                 {
@@ -32,6 +32,37 @@ namespace RPG
                 {
                     throw new NullReferenceException("No username inserted");
                 }
+                this.Username = value;
             }
+        }
+        public string passwd
+        {
+            get { return this.Passwd; }
+            set 
+            {
+                if (this.Passwd == value)
+                {
+                    throw new ArgumentException("Same password");
+                }
+                else
+                {
+                    if (this.Passwd == null)
+                    {
+                        throw new Exception("No password written");
+                    }
+                }
+                this.Passwd = value; 
+            }
+        }
+        public int wins
+        {
+            get { return this.Wins; }
+            set { this.Wins = value; }
+        }
+        public int matchs
+        {
+            get { return this.Matchs; }
+            set { this.Matchs = value; }
+        }
     }
 }

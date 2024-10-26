@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\epere\\OneDrive\\Documentos\\GitHub\\TrabalhoPOO_28005_Fase1\\RPG\\Classes\\Classes.csproj": {}
+    "C:\\Users\\Nuno\\OneDrive\\Documentos\\GitHub\\TrabalhoPOO_28005_Fase1\\RPG\\Classes\\Classes.csproj": {}
   },
   "projects": {
-    "C:\\Users\\epere\\OneDrive\\Documentos\\GitHub\\TrabalhoPOO_28005_Fase1\\RPG\\Classes\\Classes.csproj": {
+    "C:\\Users\\Nuno\\OneDrive\\Documentos\\GitHub\\TrabalhoPOO_28005_Fase1\\RPG\\Classes\\Classes.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\epere\\OneDrive\\Documentos\\GitHub\\TrabalhoPOO_28005_Fase1\\RPG\\Classes\\Classes.csproj",
+        "projectUniqueName": "C:\\Users\\Nuno\\OneDrive\\Documentos\\GitHub\\TrabalhoPOO_28005_Fase1\\RPG\\Classes\\Classes.csproj",
         "projectName": "Classes",
-        "projectPath": "C:\\Users\\epere\\OneDrive\\Documentos\\GitHub\\TrabalhoPOO_28005_Fase1\\RPG\\Classes\\Classes.csproj",
-        "packagesPath": "C:\\Users\\epere\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\epere\\OneDrive\\Documentos\\GitHub\\TrabalhoPOO_28005_Fase1\\RPG\\Classes\\obj\\",
+        "projectPath": "C:\\Users\\Nuno\\OneDrive\\Documentos\\GitHub\\TrabalhoPOO_28005_Fase1\\RPG\\Classes\\Classes.csproj",
+        "packagesPath": "C:\\Users\\Nuno\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Nuno\\OneDrive\\Documentos\\GitHub\\TrabalhoPOO_28005_Fase1\\RPG\\Classes\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\epere\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Nuno\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -49,6 +49,12 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.Bcl.AsyncInterfaces": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

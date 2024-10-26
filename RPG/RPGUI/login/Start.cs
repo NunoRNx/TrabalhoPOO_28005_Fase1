@@ -27,11 +27,13 @@ namespace RPGUI
         {
             Login login = new Login();
             login.ShowDialog();
+            Close();
         }
         private void signUp(object sender, EventArgs e)
         {
             SignUp sign = new SignUp();
             sign.ShowDialog();
+            Close();
         }
     }
 }
