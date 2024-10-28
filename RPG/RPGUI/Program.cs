@@ -11,8 +11,8 @@ namespace RPGUI
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            /*start();
-            menu();*/
+            start();
+            menu();
             /*// Create and get the Team
             Class[] player1 = get_team(1);
             Class[] player2 = get_team(2);

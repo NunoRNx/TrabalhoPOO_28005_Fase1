@@ -15,7 +15,7 @@ namespace RPGUI
 {
     public partial class Login : Form
     {
-        private User user {  get; set; }
+        private User user { get; set; }
         public Login()
         {
             InitializeComponent();
@@ -96,7 +96,6 @@ namespace RPGUI
                 }
             }
         }
-
     }
 
 }
