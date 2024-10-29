@@ -16,7 +16,7 @@ namespace RPGUI
 {
     public partial class Login : Form
     {
-        private string username { get; set; }
+        private string Username { get; set; }
         public Login()
         {
             InitializeComponent();
@@ -25,6 +25,11 @@ namespace RPGUI
             button1.Click += login;
             button2.Click += sign;
 
+        }
+        public string username
+        {
+            get { return this.Username; }
+            set { this.Username = value; }
         }
         private void sign(object sender, EventArgs e)
         {

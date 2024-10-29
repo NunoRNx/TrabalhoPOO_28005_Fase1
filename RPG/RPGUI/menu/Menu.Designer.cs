@@ -53,6 +53,7 @@ namespace RPGUI
             listBox1.Name = "listBox1";
             listBox1.Size = new Size(150, 104);
             listBox1.TabIndex = 1;
+            listBox1.Visible = false;
             // 
             // listBox2
             // 
@@ -61,6 +62,7 @@ namespace RPGUI
             listBox2.Name = "listBox2";
             listBox2.Size = new Size(150, 104);
             listBox2.TabIndex = 2;
+            listBox2.Visible = false;
             // 
             // listBox3
             // 
@@ -69,6 +71,7 @@ namespace RPGUI
             listBox3.Name = "listBox3";
             listBox3.Size = new Size(150, 104);
             listBox3.TabIndex = 3;
+            listBox3.Visible = false;
             // 
             // listBox4
             // 
@@ -77,6 +80,7 @@ namespace RPGUI
             listBox4.Name = "listBox4";
             listBox4.Size = new Size(150, 104);
             listBox4.TabIndex = 6;
+            listBox4.Visible = false;
             // 
             // listBox5
             // 
@@ -85,6 +89,7 @@ namespace RPGUI
             listBox5.Name = "listBox5";
             listBox5.Size = new Size(150, 104);
             listBox5.TabIndex = 5;
+            listBox5.Visible = false;
             // 
             // listBox6
             // 
@@ -93,24 +98,29 @@ namespace RPGUI
             listBox6.Name = "listBox6";
             listBox6.Size = new Size(150, 104);
             listBox6.TabIndex = 4;
+            listBox6.Visible = false;
             // 
             // textBox1
             // 
+            textBox1.Enabled = false;
             textBox1.Location = new Point(65, 87);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(125, 27);
             textBox1.TabIndex = 7;
             textBox1.Text = "Username";
             textBox1.TextAlign = HorizontalAlignment.Center;
+            textBox1.Visible = false;
             // 
             // textBox2
             // 
+            textBox2.Enabled = false;
             textBox2.Location = new Point(785, 87);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(125, 27);
             textBox2.TabIndex = 8;
             textBox2.Text = "Username";
             textBox2.TextAlign = HorizontalAlignment.Center;
+            textBox2.Visible = false;
             // 
             // button1
             // 
@@ -118,7 +128,7 @@ namespace RPGUI
             button1.Name = "button1";
             button1.Size = new Size(125, 47);
             button1.TabIndex = 9;
-            button1.Text = "Login/Logout";
+            button1.Text = "Login";
             button1.UseVisualStyleBackColor = true;
             // 
             // button3
@@ -129,6 +139,7 @@ namespace RPGUI
             button3.TabIndex = 11;
             button3.Text = "Edit Presets";
             button3.UseVisualStyleBackColor = true;
+            button3.Visible = false;
             // 
             // button4
             // 
@@ -138,6 +149,7 @@ namespace RPGUI
             button4.TabIndex = 12;
             button4.Text = "Edit Presets";
             button4.UseVisualStyleBackColor = true;
+            button4.Visible = false;
             // 
             // button5
             // 
@@ -147,6 +159,7 @@ namespace RPGUI
             button5.TabIndex = 14;
             button5.Text = "Start";
             button5.UseVisualStyleBackColor = true;
+            button5.Visible = false;
             // 
             // button6
             // 
@@ -163,7 +176,7 @@ namespace RPGUI
             button2.Name = "button2";
             button2.Size = new Size(125, 47);
             button2.TabIndex = 10;
-            button2.Text = "Login/Logout";
+            button2.Text = "Login";
             button2.UseVisualStyleBackColor = true;
             // 
             // checkBox1
@@ -174,6 +187,7 @@ namespace RPGUI
             checkBox1.Size = new Size(18, 17);
             checkBox1.TabIndex = 15;
             checkBox1.UseVisualStyleBackColor = true;
+            checkBox1.Visible = false;
             // 
             // checkBox2
             // 
@@ -183,6 +197,7 @@ namespace RPGUI
             checkBox2.Size = new Size(18, 17);
             checkBox2.TabIndex = 16;
             checkBox2.UseVisualStyleBackColor = true;
+            checkBox2.Visible = false;
             // 
             // checkBox3
             // 
@@ -192,6 +207,7 @@ namespace RPGUI
             checkBox3.Size = new Size(18, 17);
             checkBox3.TabIndex = 17;
             checkBox3.UseVisualStyleBackColor = true;
+            checkBox3.Visible = false;
             // 
             // checkBox4
             // 
@@ -202,6 +218,7 @@ namespace RPGUI
             checkBox4.Size = new Size(18, 17);
             checkBox4.TabIndex = 20;
             checkBox4.UseVisualStyleBackColor = true;
+            checkBox4.Visible = false;
             // 
             // checkBox5
             // 
@@ -212,6 +229,7 @@ namespace RPGUI
             checkBox5.Size = new Size(18, 17);
             checkBox5.TabIndex = 19;
             checkBox5.UseVisualStyleBackColor = true;
+            checkBox5.Visible = false;
             // 
             // checkBox6
             // 
@@ -222,6 +240,7 @@ namespace RPGUI
             checkBox6.Size = new Size(18, 17);
             checkBox6.TabIndex = 18;
             checkBox6.UseVisualStyleBackColor = true;
+            checkBox6.Visible = false;
             // 
             // Menu
             // 

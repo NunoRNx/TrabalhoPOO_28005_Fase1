@@ -16,7 +16,7 @@ namespace RPG
         public User(string username, int wins, int matchs)
         {
             this.Username = username;
-            this.LogedIn = false;
+            this.LogedIn = true;
             this.Wins = wins;
             this.Matchs = matchs;
         }
@@ -41,7 +41,7 @@ namespace RPG
                 this.Username = value;
             }
         }
-        public bool logedIn
+        public bool loggedIn
         {
             get { return this.LogedIn; }
             set { this.LogedIn = value; }
