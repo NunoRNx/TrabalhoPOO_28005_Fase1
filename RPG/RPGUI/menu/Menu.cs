@@ -14,10 +14,14 @@ namespace RPGUI
 {
     public partial class Menu : Form
     {
-        private Class[][] player1 {  get; set; }
-        private Class[][] player2 {  get; set; }
+        private User user1 {  get; set; }
+        private User user2 {  get; set; }
+        private Class[][] player1 { get; set; }
+        private Class[][] player2 { get; set; }
         public Menu()
         {
+            //get data sql login.username
+
             InitializeComponent();
 
             //WRITE CONTENT INTO TEXTBOXES NUNOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
@@ -31,8 +35,22 @@ namespace RPGUI
             checkBox6.CheckedChanged += CheckBox_CheckedChanged;
 
             // Wire up the button click event
+            button1.Click += LogInOut;
+            /*button1.Click += LogInOut;
             button1.Click += Edit_Button;
+            button1.Click += Edit_Button;*/
         }
+        private static void LogInOut(object sender, EventArgs e)
+        {
+            Login login = new Login();
+            login.ShowDialog();
+
+        }
+        /*private static User getUser(string username)
+        {
+            User user = new User();
+            return;
+        }*/
         private void CheckBox_CheckedChanged(object sender, EventArgs e)
         {
             // Get the currently checked checkbox count
@@ -42,6 +60,13 @@ namespace RPGUI
             CheckBox[] checkboxes2 = { checkBox4, checkBox5, checkBox6 };
 
             foreach (var checkbox in checkboxes1)
+            {
+                if (checkbox.Checked)
+                {
+                    checkedCount1++;
+                }
+            }
+            foreach (var checkbox in checkboxes2)
             {
                 if (checkbox.Checked)
                 {

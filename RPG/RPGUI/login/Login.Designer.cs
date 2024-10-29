@@ -35,6 +35,7 @@
             textBox5 = new TextBox();
             button1 = new Button();
             checkBox1 = new CheckBox();
+            button2 = new Button();
             SuspendLayout();
             // 
             // textBox1
@@ -100,11 +101,21 @@
             checkBox1.Text = "show";
             checkBox1.UseVisualStyleBackColor = true;
             // 
+            // button2
+            // 
+            button2.Location = new Point(104, 454);
+            button2.Name = "button2";
+            button2.Size = new Size(138, 30);
+            button2.TabIndex = 7;
+            button2.Text = "Create Account";
+            button2.UseVisualStyleBackColor = true;
+            // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(366, 509);
+            Controls.Add(button2);
             Controls.Add(checkBox1);
             Controls.Add(button1);
             Controls.Add(textBox5);
@@ -127,5 +138,6 @@
         private TextBox textBox5;
         private Button button1;
         private CheckBox checkBox1;
+        private Button button2;
     }
 }

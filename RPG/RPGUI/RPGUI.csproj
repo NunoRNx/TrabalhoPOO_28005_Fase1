@@ -24,9 +24,6 @@
     <Compile Update="menu\Menu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="login\Start.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

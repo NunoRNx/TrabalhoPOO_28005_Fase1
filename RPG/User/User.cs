@@ -8,16 +8,22 @@ namespace RPG
 {
     public class User
     {
+        private int UserID {  get; set; }
         private string Username { get; set; }
-        private string Passwd { get; set; }
+        private bool LogedIn { get; set; }
         private int Wins { get; set; }
         private int Matchs { get; set; }
-        public User(string username, string passwd, int wins, int matchs)
+        public User(string username, int wins, int matchs)
         {
             this.Username = username;
-            this.Passwd = passwd;
+            this.LogedIn = false;
             this.Wins = wins;
             this.Matchs = matchs;
+        }
+        public int userID
+        {
+            get { return this.UserID; }
+            set { this.userID = value; }
         }
         public string username
         {
@@ -35,24 +41,10 @@ namespace RPG
                 this.Username = value;
             }
         }
-        public string passwd
+        public bool logedIn
         {
-            get { return this.Passwd; }
-            set 
-            {
-                if (this.Passwd == value)
-                {
-                    throw new ArgumentException("Same password");
-                }
-                else
-                {
-                    if (this.Passwd == null)
-                    {
-                        throw new Exception("No password written");
-                    }
-                }
-                this.Passwd = value; 
-            }
+            get { return this.LogedIn; }
+            set { this.LogedIn = value; }
         }
         public int wins
         {

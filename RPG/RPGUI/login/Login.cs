@@ -9,20 +9,27 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
+using RPGUI;
 
 
 namespace RPGUI
 {
     public partial class Login : Form
     {
-        private User user { get; set; }
+        private string username { get; set; }
         public Login()
         {
             InitializeComponent();
 
             // Wire up the button click event
             button1.Click += login;
+            button2.Click += sign;
 
+        }
+        private void sign(object sender, EventArgs e)
+        {
+            SignUp signUp = new SignUp();
+            signUp.ShowDialog();
         }
         private void login(object sender, EventArgs e)
         {
@@ -43,6 +50,7 @@ namespace RPGUI
                 else if (CheckLogin(username, passwd))
                 {
                     // Login successful - proceed to the next step
+                    this.username = username;
                     Close();
                     return;
                 }
@@ -64,7 +72,7 @@ namespace RPGUI
             string connectionString = "Server=DESKTOP-2J6JLCD\\SQLEXPRESS;Database=RPG;User Id=rpg_admin;Password=1234;Encrypt=True;TrustServerCertificate=True;";
 
             // Query to fetch the password for the given username
-            string query = "SELECT passwd FROM user_info WHERE username = @username";
+            string query = "SELECT password FROM user_info WHERE username = @username";
 
             // Use a SQL connection
             using (SqlConnection connection = new SqlConnection(connectionString))
