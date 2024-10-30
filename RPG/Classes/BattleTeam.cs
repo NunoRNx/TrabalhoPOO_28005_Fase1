@@ -8,16 +8,38 @@ namespace RPG
 {
     public class BattleTeams
     {
-        private List<Class> team { get; set; }
+        private int TeamID { get; set; }
+        private Class C1 { get; set; }
+        private Class C2 { get; set; }
+        private Class C3 { get; set; }
+        /*private List<Class> team { get; set; }*/
 
-        public BattleTeams(Class c1, Class c2, Class c3)
+        public BattleTeams(int id, Class c1, Class c2, Class c3)
         {
-            team = new List<Class>()
-            {
-                c1, c2, c3
-            };
+            this.TeamID = id;
+            this.C1 = c1;
+            this.C2 = c2;
+            this.C3 = c3;
+            /*this.team = new List<Class>() { c1, c2, c3};*/
         }
-        public List<Class> GetTeam()
+        public Class c1
+        {
+            get { return this.C1; }
+            set { this.C1 = value; }
+        }
+        public Class c2
+        {
+            get { return this.C2; }
+            set { this.C2 = value; }
+        }
+        public Class c3
+        {
+            get { return this.C3; }
+            set { this.C3 = value; }
+        }
+
+
+        /*public List<Class> GetTeam()
         {
             return team;
         }
@@ -25,6 +47,6 @@ namespace RPG
         {
             team.Remove(old);
             team.Add(now);
-        }
+        }*/
     }
 }

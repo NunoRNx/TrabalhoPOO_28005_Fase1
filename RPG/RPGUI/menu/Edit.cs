@@ -9,12 +9,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace RPGUI.menu
+namespace RPGUI
 {
     public partial class Edit : Form
     {
-        Class[][] preset {  get; set; }
-        public Edit(Class[][] presets)
+        private BattleTeams preset {  get; set; }
+        public Edit(BattleTeams presets)
         {
             preset = presets;
             InitializeComponent();
@@ -27,10 +27,9 @@ namespace RPGUI.menu
             Team chooseTeam = new Team();
             chooseTeam.ShowDialog();
             Class[] player = chooseTeam.SelectedTeam;
-            for (int i = 0; i < player.Length; i++)
-            {
-                this.preset[i][j]= player[i];
-            }
+            this.preset.c1 = player[0];
+            this.preset.c2 = player[1];
+            this.preset.c3 = player[2];
         }
     }
 }

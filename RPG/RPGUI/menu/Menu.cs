@@ -1,5 +1,5 @@
-﻿using RPG;
-using RPGUI.menu;
+﻿using Microsoft.IdentityModel.Tokens;
+using RPG;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,15 +9,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Data.SqlClient;
 
 namespace RPGUI
 {
     public partial class Menu : Form
     {
-        private User user1 {  get; set; }
-        private User user2 {  get; set; }
-        private Class[][] player1 { get; set; }
-        private Class[][] player2 { get; set; }
+        private User user1 { get; set; }
+        private User user2 { get; set; }
+        private BattleTeams team1 { get; set; }
+        private BattleTeams team2 { get; set; }
         public Menu()
         {
             //get data sql login.username
@@ -48,17 +49,18 @@ namespace RPGUI
                 {
                     Login login = new Login();
                     login.ShowDialog();
-                    if (login.username != "")
+                    if (!login.username.IsNullOrEmpty())
                     {
                         user1 = new User(login.username, 0, 0);
                         user1.loggedIn = true; // Ensure loggedIn is set to true when logging in
 
                         // Show UI elements for player 1
+                        textBox1.Text = login.username;
                         textBox1.Visible = true;
-                        listBox1.Visible = true;
+                        /*listBox1.Visible = true;
                         listBox2.Visible = true;
                         listBox3.Visible = true;
-                        button3.Visible = true;
+                        button3.Visible = true;*/
                         button1.Text = "Logout";
                     }
                 }
@@ -82,17 +84,17 @@ namespace RPGUI
                 {
                     Login login = new Login();
                     login.ShowDialog();
-                    if (login.username != "")
+                    if (!login.username.IsNullOrEmpty())
                     {
                         user2 = new User(login.username, 0, 0);
                         user2.loggedIn = true; // Ensure loggedIn is set to true when logging in
 
                         // Show UI elements for player 2
                         textBox2.Visible = true;
-                        listBox4.Visible = true;
+                        /*listBox4.Visible = true;
                         listBox5.Visible = true;
                         listBox6.Visible = true;
-                        button4.Visible = true;
+                        button4.Visible = true;*/
                         button2.Text = "Logout";
                     }
                 }
@@ -113,6 +115,39 @@ namespace RPGUI
 
             // Check if both users are logged in
             buttonStart();
+        }
+        private void teamLists(string username)
+        {
+            BattleTeams teamList = null;
+            string connectionString = "Server=DESKTOP-2J6JLCD\\SQLEXPRESS;Database=RPG;User Id=rpg_admin;Password=1234;Encrypt=True;TrustServerCertificate=True;";
+
+            // Query to fetch the password for the given username
+            string query = "SELECT user_id FROM user_info WHERE username = @username";
+
+            // Use a SQL connection
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Use a command with parameterized query to prevent SQL injection
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Define the parameter and add it to the command
+                    command.Parameters.AddWithValue("@username", username);
+
+                    // Execute the query and get the result
+                    int id = Convert.ToInt32(command.ExecuteScalar());
+                    this.user1.userID = id;
+                    query = "SELECT team_id, character1, character2, character3 FROM team_presets WHERE user_id = " + id;
+                    using (SqlCommand team = new SqlCommand(query, connection))
+                    {
+                        // Define the parameter and add it to the command
+                        object preset = team.ExecuteNonQuery();
+                        //teamList = new BattleTeams();
+                    }
+                }
+            }
+            this.team1 = teamList;
         }
         private void buttonStart()
         {
@@ -166,15 +201,21 @@ namespace RPGUI
             if (i == 1)
             {
                 // Pass player1 data to the Edit form
-                Edit editForm = new Edit(player1);
+                Edit editForm = new Edit(team1);
                 editForm.ShowDialog(); // Or use Show() depending on your need
             }
             if (i == 2)
             {
                 // Pass player1 data to the Edit form
-                Edit editForm = new Edit(player2);
+                Edit editForm = new Edit(team2);
                 editForm.ShowDialog(); // Or use Show() depending on your need
             }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Scoreboard scoreboard = new Scoreboard();
+            scoreboard.ShowDialog();
         }
     }
 }

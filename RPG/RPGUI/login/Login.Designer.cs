@@ -80,6 +80,7 @@
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(234, 27);
             textBox5.TabIndex = 4;
+            textBox5.Text = "error message";
             textBox5.Visible = false;
             // 
             // button1
@@ -100,6 +101,7 @@
             checkBox1.TabIndex = 6;
             checkBox1.Text = "show";
             checkBox1.UseVisualStyleBackColor = true;
+            checkBox1.CheckedChanged += checkBox1_CheckedChanged;
             // 
             // button2
             // 

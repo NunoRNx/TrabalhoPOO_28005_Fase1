@@ -1,4 +1,4 @@
-﻿namespace RPGUI.menu
+﻿namespace RPGUI
 {
     partial class Edit
     {

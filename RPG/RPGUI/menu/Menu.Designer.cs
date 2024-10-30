@@ -169,6 +169,7 @@ namespace RPGUI
             button6.TabIndex = 13;
             button6.Text = "Scoreboard";
             button6.UseVisualStyleBackColor = true;
+            button6.Click += button6_Click;
             // 
             // button2
             // 

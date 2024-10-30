@@ -47,7 +47,6 @@ C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\RPGUI\obj\D
 C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\RPGUI\obj\Debug\net8.0-windows\RPGUI.SelectChar.resources
 C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\RPGUI\obj\Debug\net8.0-windows\RPGUI.Login.resources
 C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\RPGUI\obj\Debug\net8.0-windows\RPGUI.SignUp.resources
-C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\RPGUI\obj\Debug\net8.0-windows\RPGUI.menu.Edit.resources
 C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\RPGUI\obj\Debug\net8.0-windows\RPGUI.Menu.resources
 C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\RPGUI\obj\Debug\net8.0-windows\RPGUI.Team.resources
 C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\RPGUI\obj\Debug\net8.0-windows\RPGUI.Properties.Resources.resources
@@ -63,3 +62,5 @@ C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\RPGUI\obj\D
 C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\RPGUI\obj\Debug\net8.0-windows\RPGUI.pdb
 C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\RPGUI\obj\Debug\net8.0-windows\RPGUI.genruntimeconfig.cache
 C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\RPGUI\obj\Debug\net8.0-windows\ref\RPGUI.dll
+C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\RPGUI\obj\Debug\net8.0-windows\RPGUI.Edit.resources
+C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\RPGUI\obj\Debug\net8.0-windows\RPGUI.Scoreboard.resources

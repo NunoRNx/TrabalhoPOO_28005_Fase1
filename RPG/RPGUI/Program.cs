@@ -1,5 +1,4 @@
 using RPG;
-using RPGUI.menu;
 namespace RPGUI
 {
     internal static class Program
