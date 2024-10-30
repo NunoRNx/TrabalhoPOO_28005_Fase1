@@ -18,26 +18,32 @@ namespace RPGUI
         {
             components = new Container();
             contextMenuStrip1 = new ContextMenuStrip(components);
-            listBox1 = new ListBox();
-            listBox2 = new ListBox();
-            listBox3 = new ListBox();
-            listBox4 = new ListBox();
-            listBox5 = new ListBox();
-            listBox6 = new ListBox();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            textBoxUser1 = new TextBox();
             button1 = new Button();
             button3 = new Button();
-            button4 = new Button();
             button5 = new Button();
-            button6 = new Button();
+            buttonScoreboard = new Button();
             button2 = new Button();
-            checkBox1 = new CheckBox();
-            checkBox2 = new CheckBox();
-            checkBox3 = new CheckBox();
-            checkBox4 = new CheckBox();
-            checkBox5 = new CheckBox();
-            checkBox6 = new CheckBox();
+            pictureBox1 = new PictureBox();
+            textBox1 = new TextBox();
+            textBox4 = new TextBox();
+            pictureBox2 = new PictureBox();
+            textBox5 = new TextBox();
+            pictureBox3 = new PictureBox();
+            textBox2 = new TextBox();
+            pictureBox4 = new PictureBox();
+            textBox6 = new TextBox();
+            pictureBox5 = new PictureBox();
+            textBox3 = new TextBox();
+            pictureBox6 = new PictureBox();
+            button4 = new Button();
+            textBoxUser2 = new TextBox();
+            ((ISupportInitialize)pictureBox1).BeginInit();
+            ((ISupportInitialize)pictureBox2).BeginInit();
+            ((ISupportInitialize)pictureBox3).BeginInit();
+            ((ISupportInitialize)pictureBox4).BeginInit();
+            ((ISupportInitialize)pictureBox5).BeginInit();
+            ((ISupportInitialize)pictureBox6).BeginInit();
             SuspendLayout();
             // 
             // contextMenuStrip1
@@ -46,85 +52,20 @@ namespace RPGUI
             contextMenuStrip1.Name = "contextMenuStrip1";
             contextMenuStrip1.Size = new Size(61, 4);
             // 
-            // listBox1
+            // textBoxUser1
             // 
-            listBox1.FormattingEnabled = true;
-            listBox1.Location = new Point(53, 120);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(150, 104);
-            listBox1.TabIndex = 1;
-            listBox1.Visible = false;
-            // 
-            // listBox2
-            // 
-            listBox2.FormattingEnabled = true;
-            listBox2.Location = new Point(53, 249);
-            listBox2.Name = "listBox2";
-            listBox2.Size = new Size(150, 104);
-            listBox2.TabIndex = 2;
-            listBox2.Visible = false;
-            // 
-            // listBox3
-            // 
-            listBox3.FormattingEnabled = true;
-            listBox3.Location = new Point(53, 391);
-            listBox3.Name = "listBox3";
-            listBox3.Size = new Size(150, 104);
-            listBox3.TabIndex = 3;
-            listBox3.Visible = false;
-            // 
-            // listBox4
-            // 
-            listBox4.FormattingEnabled = true;
-            listBox4.Location = new Point(775, 120);
-            listBox4.Name = "listBox4";
-            listBox4.Size = new Size(150, 104);
-            listBox4.TabIndex = 6;
-            listBox4.Visible = false;
-            // 
-            // listBox5
-            // 
-            listBox5.FormattingEnabled = true;
-            listBox5.Location = new Point(775, 249);
-            listBox5.Name = "listBox5";
-            listBox5.Size = new Size(150, 104);
-            listBox5.TabIndex = 5;
-            listBox5.Visible = false;
-            // 
-            // listBox6
-            // 
-            listBox6.FormattingEnabled = true;
-            listBox6.Location = new Point(775, 391);
-            listBox6.Name = "listBox6";
-            listBox6.Size = new Size(150, 104);
-            listBox6.TabIndex = 4;
-            listBox6.Visible = false;
-            // 
-            // textBox1
-            // 
-            textBox1.Enabled = false;
-            textBox1.Location = new Point(65, 87);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 7;
-            textBox1.Text = "Username";
-            textBox1.TextAlign = HorizontalAlignment.Center;
-            textBox1.Visible = false;
-            // 
-            // textBox2
-            // 
-            textBox2.Enabled = false;
-            textBox2.Location = new Point(785, 87);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(125, 27);
-            textBox2.TabIndex = 8;
-            textBox2.Text = "Username";
-            textBox2.TextAlign = HorizontalAlignment.Center;
-            textBox2.Visible = false;
+            textBoxUser1.Enabled = false;
+            textBoxUser1.Location = new Point(43, 284);
+            textBoxUser1.Name = "textBoxUser1";
+            textBoxUser1.Size = new Size(120, 27);
+            textBoxUser1.TabIndex = 7;
+            textBoxUser1.Text = "Username";
+            textBoxUser1.TextAlign = HorizontalAlignment.Center;
+            textBoxUser1.Visible = false;
             // 
             // button1
             // 
-            button1.Location = new Point(65, 25);
+            button1.Location = new Point(38, 343);
             button1.Name = "button1";
             button1.Size = new Size(125, 47);
             button1.TabIndex = 9;
@@ -133,27 +74,17 @@ namespace RPGUI
             // 
             // button3
             // 
-            button3.Location = new Point(65, 501);
+            button3.Location = new Point(206, 512);
             button3.Name = "button3";
-            button3.Size = new Size(125, 43);
+            button3.Size = new Size(120, 43);
             button3.TabIndex = 11;
-            button3.Text = "Edit Presets";
+            button3.Text = "Edit Team";
             button3.UseVisualStyleBackColor = true;
             button3.Visible = false;
             // 
-            // button4
-            // 
-            button4.Location = new Point(785, 501);
-            button4.Name = "button4";
-            button4.Size = new Size(125, 43);
-            button4.TabIndex = 12;
-            button4.Text = "Edit Presets";
-            button4.UseVisualStyleBackColor = true;
-            button4.Visible = false;
-            // 
             // button5
             // 
-            button5.Location = new Point(427, 348);
+            button5.Location = new Point(429, 364);
             button5.Name = "button5";
             button5.Size = new Size(120, 60);
             button5.TabIndex = 14;
@@ -161,135 +92,200 @@ namespace RPGUI
             button5.UseVisualStyleBackColor = true;
             button5.Visible = false;
             // 
-            // button6
+            // buttonScoreboard
             // 
-            button6.Location = new Point(427, 435);
-            button6.Name = "button6";
-            button6.Size = new Size(120, 60);
-            button6.TabIndex = 13;
-            button6.Text = "Scoreboard";
-            button6.UseVisualStyleBackColor = true;
-            button6.Click += button6_Click;
+            buttonScoreboard.Location = new Point(429, 451);
+            buttonScoreboard.Name = "buttonScoreboard";
+            buttonScoreboard.Size = new Size(120, 60);
+            buttonScoreboard.TabIndex = 13;
+            buttonScoreboard.Text = "Scoreboard";
+            buttonScoreboard.UseVisualStyleBackColor = true;
+            buttonScoreboard.Click += buttonScoreboard_Click;
             // 
             // button2
             // 
-            button2.Location = new Point(785, 25);
+            button2.Location = new Point(821, 343);
             button2.Name = "button2";
             button2.Size = new Size(125, 47);
             button2.TabIndex = 10;
             button2.Text = "Login";
             button2.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // pictureBox1
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(209, 162);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(18, 17);
-            checkBox1.TabIndex = 15;
-            checkBox1.UseVisualStyleBackColor = true;
-            checkBox1.Visible = false;
+            pictureBox1.Location = new Point(215, 60);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(100, 100);
+            pictureBox1.TabIndex = 15;
+            pictureBox1.TabStop = false;
             // 
-            // checkBox2
+            // textBox1
             // 
-            checkBox2.AutoSize = true;
-            checkBox2.Location = new Point(209, 290);
-            checkBox2.Name = "checkBox2";
-            checkBox2.Size = new Size(18, 17);
-            checkBox2.TabIndex = 16;
-            checkBox2.UseVisualStyleBackColor = true;
-            checkBox2.Visible = false;
+            textBox1.Location = new Point(206, 166);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(120, 27);
+            textBox1.TabIndex = 18;
+            textBox1.Visible = false;
             // 
-            // checkBox3
+            // textBox4
             // 
-            checkBox3.AutoSize = true;
-            checkBox3.Location = new Point(209, 435);
-            checkBox3.Name = "checkBox3";
-            checkBox3.Size = new Size(18, 17);
-            checkBox3.TabIndex = 17;
-            checkBox3.UseVisualStyleBackColor = true;
-            checkBox3.Visible = false;
+            textBox4.Location = new Point(658, 166);
+            textBox4.Name = "textBox4";
+            textBox4.Size = new Size(120, 27);
+            textBox4.TabIndex = 20;
+            textBox4.Visible = false;
             // 
-            // checkBox4
+            // pictureBox2
             // 
-            checkBox4.AutoSize = true;
-            checkBox4.Location = new Point(751, 162);
-            checkBox4.Name = "checkBox4";
-            checkBox4.RightToLeft = RightToLeft.Yes;
-            checkBox4.Size = new Size(18, 17);
-            checkBox4.TabIndex = 20;
-            checkBox4.UseVisualStyleBackColor = true;
-            checkBox4.Visible = false;
+            pictureBox2.Location = new Point(215, 211);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(100, 100);
+            pictureBox2.TabIndex = 19;
+            pictureBox2.TabStop = false;
             // 
-            // checkBox5
+            // textBox5
             // 
-            checkBox5.AutoSize = true;
-            checkBox5.Location = new Point(751, 290);
-            checkBox5.Name = "checkBox5";
-            checkBox5.RightToLeft = RightToLeft.Yes;
-            checkBox5.Size = new Size(18, 17);
-            checkBox5.TabIndex = 19;
-            checkBox5.UseVisualStyleBackColor = true;
-            checkBox5.Visible = false;
+            textBox5.Location = new Point(658, 317);
+            textBox5.Name = "textBox5";
+            textBox5.Size = new Size(120, 27);
+            textBox5.TabIndex = 22;
+            textBox5.Visible = false;
             // 
-            // checkBox6
+            // pictureBox3
             // 
-            checkBox6.AutoSize = true;
-            checkBox6.Location = new Point(751, 435);
-            checkBox6.Name = "checkBox6";
-            checkBox6.RightToLeft = RightToLeft.Yes;
-            checkBox6.Size = new Size(18, 17);
-            checkBox6.TabIndex = 18;
-            checkBox6.UseVisualStyleBackColor = true;
-            checkBox6.Visible = false;
+            pictureBox3.Location = new Point(215, 364);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(100, 100);
+            pictureBox3.TabIndex = 21;
+            pictureBox3.TabStop = false;
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(206, 316);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(120, 27);
+            textBox2.TabIndex = 30;
+            textBox2.Visible = false;
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.Location = new Point(667, 60);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(100, 100);
+            pictureBox4.TabIndex = 29;
+            pictureBox4.TabStop = false;
+            pictureBox4.Visible = false;
+            // 
+            // textBox6
+            // 
+            textBox6.Location = new Point(658, 470);
+            textBox6.Name = "textBox6";
+            textBox6.Size = new Size(120, 27);
+            textBox6.TabIndex = 28;
+            textBox6.Visible = false;
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.Location = new Point(667, 211);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(100, 100);
+            pictureBox5.TabIndex = 27;
+            pictureBox5.TabStop = false;
+            pictureBox5.Visible = false;
+            // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(206, 469);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(120, 27);
+            textBox3.TabIndex = 26;
+            textBox3.Visible = false;
+            // 
+            // pictureBox6
+            // 
+            pictureBox6.Image = Properties.Resources.archer;
+            pictureBox6.Location = new Point(667, 364);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(100, 100);
+            pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox6.TabIndex = 25;
+            pictureBox6.TabStop = false;
+            pictureBox6.Visible = false;
+            // 
+            // button4
+            // 
+            button4.Location = new Point(658, 513);
+            button4.Name = "button4";
+            button4.Size = new Size(120, 43);
+            button4.TabIndex = 24;
+            button4.Text = "Edit Team";
+            button4.UseVisualStyleBackColor = true;
+            button4.Visible = false;
+            // 
+            // textBoxUser2
+            // 
+            textBoxUser2.Enabled = false;
+            textBoxUser2.Location = new Point(819, 284);
+            textBoxUser2.Name = "textBoxUser2";
+            textBoxUser2.Size = new Size(120, 27);
+            textBoxUser2.TabIndex = 23;
+            textBoxUser2.Text = "Username";
+            textBoxUser2.TextAlign = HorizontalAlignment.Center;
+            textBoxUser2.Visible = false;
             // 
             // Menu
             // 
             ClientSize = new Size(980, 610);
-            Controls.Add(checkBox4);
-            Controls.Add(checkBox5);
-            Controls.Add(checkBox6);
-            Controls.Add(checkBox3);
-            Controls.Add(checkBox2);
-            Controls.Add(checkBox1);
-            Controls.Add(button5);
-            Controls.Add(button6);
+            Controls.Add(textBox2);
+            Controls.Add(pictureBox4);
+            Controls.Add(textBox6);
+            Controls.Add(pictureBox5);
+            Controls.Add(textBox3);
+            Controls.Add(pictureBox6);
             Controls.Add(button4);
+            Controls.Add(textBoxUser2);
+            Controls.Add(textBox5);
+            Controls.Add(pictureBox3);
+            Controls.Add(textBox4);
+            Controls.Add(pictureBox2);
+            Controls.Add(textBox1);
+            Controls.Add(pictureBox1);
+            Controls.Add(button5);
+            Controls.Add(buttonScoreboard);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
-            Controls.Add(listBox4);
-            Controls.Add(listBox5);
-            Controls.Add(listBox6);
-            Controls.Add(listBox3);
-            Controls.Add(listBox2);
-            Controls.Add(listBox1);
+            Controls.Add(textBoxUser1);
             Name = "Menu";
+            ((ISupportInitialize)pictureBox1).EndInit();
+            ((ISupportInitialize)pictureBox2).EndInit();
+            ((ISupportInitialize)pictureBox3).EndInit();
+            ((ISupportInitialize)pictureBox4).EndInit();
+            ((ISupportInitialize)pictureBox5).EndInit();
+            ((ISupportInitialize)pictureBox6).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
-        private ListBox listBox1;
-        private ListBox listBox2;
-        private ListBox listBox3;
-        private ListBox listBox4;
-        private ListBox listBox5;
-        private ListBox listBox6;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private TextBox textBoxUser1;
         private Button button1;
         private Button button3;
-        private Button button4;
         private Button button5;
-        private Button button6;
+        private Button buttonScoreboard;
         private Button button2;
-        private CheckBox checkBox1;
-        private CheckBox checkBox2;
-        private CheckBox checkBox3;
-        private CheckBox checkBox4;
-        private CheckBox checkBox5;
-        private CheckBox checkBox6;
+        private PictureBox pictureBox1;
+        private TextBox textBox1;
+        private TextBox textBox4;
+        private PictureBox pictureBox2;
+        private TextBox textBox5;
+        private PictureBox pictureBox3;
+        private TextBox textBox2;
+        private PictureBox pictureBox4;
+        private TextBox textBox6;
+        private PictureBox pictureBox5;
+        private TextBox textBox3;
+        private PictureBox pictureBox6;
+        private Button button4;
+        private TextBox textBoxUser2;
     }
 }

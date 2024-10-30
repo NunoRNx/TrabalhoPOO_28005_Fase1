@@ -8,7 +8,6 @@ namespace RPG
 {
     public class User
     {
-        private int UserID {  get; set; }
         private string Username { get; set; }
         private bool LogedIn { get; set; }
         private int Wins { get; set; }
@@ -19,11 +18,6 @@ namespace RPG
             this.LogedIn = true;
             this.Wins = wins;
             this.Matchs = matchs;
-        }
-        public int userID
-        {
-            get { return this.UserID; }
-            set { this.userID = value; }
         }
         public string username
         {

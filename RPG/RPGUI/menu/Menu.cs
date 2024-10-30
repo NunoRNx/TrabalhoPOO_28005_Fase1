@@ -28,16 +28,18 @@ namespace RPGUI
             //WRITE CONTENT INTO TEXTBOXES NUNOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 
             // Subscribe to the CheckedChanged event for each checkbox
-            checkBox1.CheckedChanged += CheckBox_CheckedChanged;
+            /*checkBox1.CheckedChanged += CheckBox_CheckedChanged;
             checkBox2.CheckedChanged += CheckBox_CheckedChanged;
             checkBox3.CheckedChanged += CheckBox_CheckedChanged;
             checkBox4.CheckedChanged += CheckBox_CheckedChanged;
             checkBox5.CheckedChanged += CheckBox_CheckedChanged;
-            checkBox6.CheckedChanged += CheckBox_CheckedChanged;
+            checkBox6.CheckedChanged += CheckBox_CheckedChanged;*/
 
             // Wire up the button click event
+            //loggin / logout
             button1.Click += (sender, e) => LogInOut(sender, e, 1);
             button2.Click += (sender, e) => LogInOut(sender, e, 2);
+            //edit teams
             button3.Click += (sender, e) => Edit_Button(sender, e, 1);
             button4.Click += (sender, e) => Edit_Button(sender, e, 2);
         }
@@ -55,12 +57,16 @@ namespace RPGUI
                         user1.loggedIn = true; // Ensure loggedIn is set to true when logging in
 
                         // Show UI elements for player 1
-                        textBox1.Text = login.username;
+                        textBoxUser1.Text = login.username;
+                        textBoxUser1.Visible = true;
+                        //fetch team and display it
+                        TeamLoad(login.username);
                         textBox1.Visible = true;
-                        /*listBox1.Visible = true;
-                        listBox2.Visible = true;
-                        listBox3.Visible = true;
-                        button3.Visible = true;*/
+                        textBox2.Visible = true;
+                        textBox3.Visible = true;
+                        pictureBox1.Visible = true;
+                        pictureBox2.Visible = true;
+                        pictureBox3.Visible = true;
                         button1.Text = "Logout";
                     }
                 }
@@ -70,10 +76,13 @@ namespace RPGUI
                     user1 = null;
 
                     // Hide UI elements for player 1
+                    textBoxUser1.Visible = false;
                     textBox1.Visible = false;
-                    listBox1.Visible = false;
-                    listBox2.Visible = false;
-                    listBox3.Visible = false;
+                    textBox2.Visible = false;
+                    textBox3.Visible = false;
+                    pictureBox1.Visible = false;
+                    pictureBox2.Visible = false;
+                    pictureBox3.Visible = false;
                     button3.Visible = false;
                     button1.Text = "Login";
                 }
@@ -105,9 +114,9 @@ namespace RPGUI
 
                     // Hide UI elements for player 2
                     textBox2.Visible = false;
-                    listBox4.Visible = false;
-                    listBox5.Visible = false;
-                    listBox6.Visible = false;
+                    textBox4.Visible = false;
+                    textBox5.Visible = false;
+                    textBox6.Visible = false;
                     button4.Visible = false;
                     button2.Text = "Login";
                 }
@@ -116,12 +125,48 @@ namespace RPGUI
             // Check if both users are logged in
             buttonStart();
         }
-        private void teamLists(string username)
+        private PictureBox BoxImage(Class character, PictureBox pic)
+        {
+            if(character is Warrior)
+            {
+                pic.Image = Properties.Resources.Warrior;
+                return pic;
+            }
+            if(character is Paladin)
+            {
+                pic.Image = Properties.Resources.paladin;
+                return pic;
+            }
+            if(character is Swordsman)
+            {
+                pic.Image = Properties.Resources.sword;
+                return pic;
+            }
+            if(character is Assassin)
+            {
+                pic.Image = Properties.Resources.assassin;
+                return pic;
+            }
+            if(character is Archer)
+            {
+                pic.Image = Properties.Resources.archer;
+                return pic;
+            }
+            if(character is Mage)
+            {
+                pic.Image = Properties.Resources.sage;
+                return pic;
+            }
+            return pic;
+        }
+        private BattleTeams TeamLoad(string username)
         {
             BattleTeams teamList = null;
+            int[] characters = new int[3]; // Array to store character IDs
+
             string connectionString = "Server=DESKTOP-2J6JLCD\\SQLEXPRESS;Database=RPG;User Id=rpg_admin;Password=1234;Encrypt=True;TrustServerCertificate=True;";
 
-            // Query to fetch the password for the given username
+            // Query to fetch the user_id for the given username
             string query = "SELECT user_id FROM user_info WHERE username = @username";
 
             // Use a SQL connection
@@ -135,19 +180,55 @@ namespace RPGUI
                     // Define the parameter and add it to the command
                     command.Parameters.AddWithValue("@username", username);
 
-                    // Execute the query and get the result
-                    int id = Convert.ToInt32(command.ExecuteScalar());
-                    this.user1.userID = id;
-                    query = "SELECT team_id, character1, character2, character3 FROM team_presets WHERE user_id = " + id;
-                    using (SqlCommand team = new SqlCommand(query, connection))
+                    // Execute the query and get the user ID
+                    int userId = Convert.ToInt32(command.ExecuteScalar());
+
+                    // Now fetch the team preset for this user ID
+                    string teamQuery = "SELECT character1, character2, character3 FROM team_presets WHERE user_id = @userId";
+                    using (SqlCommand teamCommand = new SqlCommand(teamQuery, connection))
                     {
-                        // Define the parameter and add it to the command
-                        object preset = team.ExecuteNonQuery();
-                        //teamList = new BattleTeams();
+                        // Use parameterized query
+                        teamCommand.Parameters.AddWithValue("@userId", userId);
+
+                        // Execute reader to get the characters
+                        using (SqlDataReader reader = teamCommand.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // Read each character column into the array
+                                characters[0] = reader.GetInt32(0); // character1
+                                characters[1] = reader.GetInt32(1); // character2
+                                characters[2] = reader.GetInt32(2); // character3
+                            }
+                        }
                     }
                 }
             }
-            this.team1 = teamList;
+            for (int i = 0; i < characters.Length; i++)
+            {
+                switch (characters[i])
+                {
+                    case 1:
+                        //create warrior
+                        break;
+                    case 2:
+                        //create paladin
+                        break;
+                    case 3:
+                        //create swordsman
+                        break;
+                    case 4:
+                        //create Assassin
+                        break;
+                    case 5:
+                        //create archer
+                        break;
+                    case 6:
+                        //create mage
+                        break;
+                }
+            }
+            return teamList;
         }
         private void buttonStart()
         {
@@ -161,41 +242,7 @@ namespace RPGUI
                 button5.Visible = false;
             }
         }
-        private void CheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            // Get the currently checked checkbox count
-            int checkedCount1 = 0;
-            int checkedCount2 = 0;
-            CheckBox[] checkboxes1 = { checkBox1, checkBox2, checkBox3 };
-            CheckBox[] checkboxes2 = { checkBox4, checkBox5, checkBox6 };
-
-            foreach (var checkbox in checkboxes1)
-            {
-                if (checkbox.Checked)
-                {
-                    checkedCount1++;
-                }
-            }
-            foreach (var checkbox in checkboxes2)
-            {
-                if (checkbox.Checked)
-                {
-                    checkedCount1++;
-                }
-            }
-
-            // If more than MaxTeamSize checkboxes are checked, uncheck the last one
-            if (checkedCount1 > 1 || checkedCount2 > 1)
-            {
-                // Uncheck the checkbox that triggered the event if the limit is exceeded
-                CheckBox currentCheckbox = sender as CheckBox;
-                if (currentCheckbox != null)
-                {
-                    currentCheckbox.Checked = false;
-                    MessageBox.Show($"You can only select one team for battle.");
-                }
-            }
-        }
+        
         private void Edit_Button(object sender, EventArgs e, int i)
         {
             if (i == 1)
@@ -212,7 +259,7 @@ namespace RPGUI
             }
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void buttonScoreboard_Click(object sender, EventArgs e)
         {
             Scoreboard scoreboard = new Scoreboard();
             scoreboard.ShowDialog();

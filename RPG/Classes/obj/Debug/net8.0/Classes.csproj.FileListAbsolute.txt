@@ -22,16 +22,3 @@ C:\Users\epere\OneDrive\Documentos\GitHub\Learning-CS\RPG\Classes\obj\Debug\net8
 C:\Users\epere\OneDrive\Documentos\GitHub\Learning-CS\RPG\Classes\obj\Debug\net8.0\refint\Classes.dll
 C:\Users\epere\OneDrive\Documentos\GitHub\Learning-CS\RPG\Classes\obj\Debug\net8.0\Classes.pdb
 C:\Users\epere\OneDrive\Documentos\GitHub\Learning-CS\RPG\Classes\obj\Debug\net8.0\ref\Classes.dll
-C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\Classes\bin\Debug\net8.0\Classes.deps.json
-C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\Classes\bin\Debug\net8.0\Classes.dll
-C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\Classes\bin\Debug\net8.0\Classes.pdb
-C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\Classes\obj\Debug\net8.0\Classes.csproj.AssemblyReference.cache
-C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\Classes\obj\Debug\net8.0\Classes.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\Classes\obj\Debug\net8.0\Classes.AssemblyInfoInputs.cache
-C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\Classes\obj\Debug\net8.0\Classes.AssemblyInfo.cs
-C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\Classes\obj\Debug\net8.0\Classes.csproj.CoreCompileInputs.cache
-C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\Classes\obj\Debug\net8.0\Classes.sourcelink.json
-C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\Classes\obj\Debug\net8.0\Classes.dll
-C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\Classes\obj\Debug\net8.0\refint\Classes.dll
-C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\Classes\obj\Debug\net8.0\Classes.pdb
-C:\Users\Nuno\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\Classes\obj\Debug\net8.0\ref\Classes.dll

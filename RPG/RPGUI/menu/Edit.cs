@@ -13,10 +13,10 @@ namespace RPGUI
 {
     public partial class Edit : Form
     {
-        private BattleTeams preset {  get; set; }
-        public Edit(BattleTeams presets)
+        private BattleTeams team {  get; set; }
+        public Edit(BattleTeams team)
         {
-            preset = presets;
+            this.team = team;
             InitializeComponent();
             button1.Click += (sender, e) => ChangeTeam(sender,e,0);
             button2.Click += (sender, e) => ChangeTeam(sender,e,1);
@@ -27,9 +27,7 @@ namespace RPGUI
             Team chooseTeam = new Team();
             chooseTeam.ShowDialog();
             Class[] player = chooseTeam.SelectedTeam;
-            this.preset.c1 = player[0];
-            this.preset.c2 = player[1];
-            this.preset.c3 = player[2];
+            //team.add()
         }
     }
 }
