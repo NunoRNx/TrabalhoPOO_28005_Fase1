@@ -203,7 +203,6 @@ namespace RPGUI
             // 
             // pictureBox6
             // 
-            pictureBox6.Image = Properties.Resources.archer;
             pictureBox6.Location = new Point(667, 364);
             pictureBox6.Name = "pictureBox6";
             pictureBox6.Size = new Size(100, 100);

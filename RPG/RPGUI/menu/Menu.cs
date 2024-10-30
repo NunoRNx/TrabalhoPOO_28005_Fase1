@@ -60,14 +60,25 @@ namespace RPGUI
                         textBoxUser1.Text = login.username;
                         textBoxUser1.Visible = true;
                         //fetch team and display it
-                        TeamLoad(login.username);
-                        textBox1.Visible = true;
-                        textBox2.Visible = true;
-                        textBox3.Visible = true;
-                        pictureBox1.Visible = true;
-                        pictureBox2.Visible = true;
-                        pictureBox3.Visible = true;
-                        button1.Text = "Logout";
+                        if(TeamLoad(login.username, i))
+                        {
+                            //write in boxes the characters names
+                            textBox1.Text = this.team1.team[0].name;
+                            textBox2.Text = this.team1.team[1].name;
+                            textBox3.Text = this.team1.team[2].name;
+                            //insert characters img to the picturebox
+                            pictureBox1 = BoxImage(this.team1.team[0], pictureBox1);
+                            pictureBox2 = BoxImage(this.team1.team[1], pictureBox2);
+                            pictureBox3 = BoxImage(this.team1.team[2], pictureBox3);
+                            pictureBox1.Visible = true;
+                            pictureBox2.Visible = true;
+                            pictureBox3.Visible = true;
+                            button1.Text = "Logout";
+                        }
+                        else
+                        {
+                            //no team preset, insert into sql and save
+                        }
                     }
                 }
                 else
@@ -98,13 +109,29 @@ namespace RPGUI
                         user2 = new User(login.username, 0, 0);
                         user2.loggedIn = true; // Ensure loggedIn is set to true when logging in
 
-                        // Show UI elements for player 2
-                        textBox2.Visible = true;
-                        /*listBox4.Visible = true;
-                        listBox5.Visible = true;
-                        listBox6.Visible = true;
-                        button4.Visible = true;*/
-                        button2.Text = "Logout";
+                        // Show UI elements for player 1
+                        textBoxUser2.Text = login.username;
+                        textBoxUser2.Visible = true;
+                        //fetch team and display it
+                        if (TeamLoad(login.username, i))
+                        {
+                            //write in boxes the characters names
+                            textBox4.Text = this.team1.team[0].name;
+                            textBox5.Text = this.team1.team[1].name;
+                            textBox6.Text = this.team1.team[2].name;
+                            //insert characters img to the picturebox
+                            pictureBox4 = BoxImage(this.team1.team[0], pictureBox1);
+                            pictureBox5 = BoxImage(this.team1.team[1], pictureBox2);
+                            pictureBox6 = BoxImage(this.team1.team[2], pictureBox3);
+                            pictureBox4.Visible = true;
+                            pictureBox5.Visible = true;
+                            pictureBox6.Visible = true;
+                            button2.Text = "Logout";
+                        }
+                        else
+                        {
+                            //no team preset, insert into sql and save
+                        }
                     }
                 }
                 else
@@ -159,9 +186,8 @@ namespace RPGUI
             }
             return pic;
         }
-        private BattleTeams TeamLoad(string username)
+        private bool TeamLoad(string username, int j)
         {
-            BattleTeams teamList = null;
             int[] characters = new int[3]; // Array to store character IDs
 
             string connectionString = "Server=DESKTOP-2J6JLCD\\SQLEXPRESS;Database=RPG;User Id=rpg_admin;Password=1234;Encrypt=True;TrustServerCertificate=True;";
@@ -200,35 +226,92 @@ namespace RPGUI
                                 characters[1] = reader.GetInt32(1); // character2
                                 characters[2] = reader.GetInt32(2); // character3
                             }
+                            else
+                            {
+                                return false;
+                            }
                         }
                     }
                 }
             }
-            for (int i = 0; i < characters.Length; i++)
+            for (int i = 0; i < 3; i++)
             {
                 switch (characters[i])
                 {
                     case 1:
                         //create warrior
+                        Warrior war = new Warrior(10, 10, 10, 10, 10, 10, 10);
+                        if (j == 1)
+                        {
+                            this.team1.add(war);
+                        }else if (j == 2)
+                        {
+                            this.team2.add(war);
+                        }
                         break;
                     case 2:
                         //create paladin
+                        Paladin paladin = new Paladin(10, 10, 10, 10, 10, 10, 10);
+                        if (j == 1)
+                        {
+                            this.team1.add(paladin);
+                        }
+                        else if (j == 2)
+                        {
+                            this.team2.add(paladin);
+                        }
                         break;
                     case 3:
                         //create swordsman
+                        Swordsman sword= new Swordsman(10, 10, 10, 10, 10, 10, 10);
+                        if (j == 1)
+                        {
+                            this.team1.add(sword);
+                        }
+                        else if (j == 2)
+                        {
+                            this.team2.add(sword);
+                        }
                         break;
                     case 4:
                         //create Assassin
+                        Assassin assassin= new Assassin(10, 10, 10, 10, 10, 10, 10);
+                        if (j == 1)
+                        {
+                            this.team1.add(assassin);
+                        }
+                        else if (j == 2)
+                        {
+                            this.team2.add(assassin);
+                        }
                         break;
                     case 5:
                         //create archer
+                        Archer archer = new Archer(10, 10, 10, 10, 10, 10, 10);
+                        if (j == 1)
+                        {
+                            this.team1.add(archer);
+                        }
+                        else if (j == 2)
+                        {
+                            this.team2.add(archer);
+                        }
                         break;
                     case 6:
                         //create mage
+                        Mage mage = new Mage(10, 10, 10, 10, 10, 10, 10);
+                        if (j == 1)
+                        {
+                            this.team1.add(mage);
+                        }
+                        else if (j == 2)
+                        {
+                            this.team2.add(mage);
+                        }
                         break;
                 }
             }
-            return teamList;
+            return true;
         }
         private void buttonStart()
         {
@@ -250,12 +333,14 @@ namespace RPGUI
                 // Pass player1 data to the Edit form
                 Edit editForm = new Edit(team1);
                 editForm.ShowDialog(); // Or use Show() depending on your need
+                this.team1 = editForm.getTeam;
             }
             if (i == 2)
             {
                 // Pass player1 data to the Edit form
                 Edit editForm = new Edit(team2);
                 editForm.ShowDialog(); // Or use Show() depending on your need
+                this.team2 = editForm.getTeam;
             }
         }
 

@@ -121,6 +121,11 @@ namespace RPGUI
                 textBox4.PasswordChar = '*'; // Hide password
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }

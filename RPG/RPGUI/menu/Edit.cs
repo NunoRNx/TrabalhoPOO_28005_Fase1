@@ -13,20 +13,25 @@ namespace RPGUI
 {
     public partial class Edit : Form
     {
-        private BattleTeams team {  get; set; }
+        private BattleTeams team { get; set; }
         public Edit(BattleTeams team)
         {
             this.team = team;
             InitializeComponent();
-            button1.Click += (sender, e) => ChangeTeam(sender,e,0);
-            button2.Click += (sender, e) => ChangeTeam(sender,e,1);
-            button3.Click += (sender, e) => ChangeTeam(sender,e,2);
+            button1.Click += (sender, e) => ChangeTeam(sender, e, 0);
+            button2.Click += (sender, e) => ChangeTeam(sender, e, 1);
+            button3.Click += (sender, e) => ChangeTeam(sender, e, 2);
         }
+        public BattleTeams getTeam
+        {
+            get { return this.team; }
+        }
+            
         private void ChangeTeam(object sender, EventArgs e, int j)
         {
             Team chooseTeam = new Team();
             chooseTeam.ShowDialog();
-            Class[] player = chooseTeam.SelectedTeam;
+            this.team = chooseTeam.SelectedTeam;
             //team.add()
         }
     }

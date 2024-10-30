@@ -91,6 +91,7 @@
             button1.TabIndex = 5;
             button1.Text = "login";
             button1.UseVisualStyleBackColor = true;
+            this.AcceptButton=button1;
             // 
             // checkBox1
             // 

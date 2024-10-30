@@ -7,9 +7,9 @@ namespace RPGUI
     public partial class Team : Form
     {
         private const int MaxTeamSize = 3; // Constant for maximum team size
-        private Class[] team { get; set; }
+        private BattleTeams team { get; set; }
 
-        public Class[] SelectedTeam
+        public BattleTeams SelectedTeam
         {
             get { return this.team; }
         }
@@ -59,10 +59,10 @@ namespace RPGUI
 
         private void ButtonSelect_Click(object sender, EventArgs e)
         {
-            this.team = buttonSelect(); // Get the team selection
+            buttonSelect(); // Get the team selection
 
             // Perform any further actions with the selected team
-            if (team.Length == MaxTeamSize)
+            if (this.team.team.Count == MaxTeamSize)
             {
                 MessageBox.Show("Team selected successfully!");
                 this.DialogResult = DialogResult.OK;
@@ -74,44 +74,46 @@ namespace RPGUI
             }
         }
 
-        private Class[] buttonSelect()
+        private void buttonSelect()
         {
-            Class[] team = new Class[MaxTeamSize];
             int i = 0;
 
             // Check each checkbox and create objects accordingly
             if (checkBox1.Checked && i < MaxTeamSize)
             {
-                team[i++] = new Warrior(10, 10, 10, 10, 10, 10, 10);
+                Warrior charc = new Warrior(10, 10, 10, 10, 10, 10, 10);
+                this.team.add(charc);
             }
 
             if (checkBox2.Checked && i < MaxTeamSize)
             {
-                team[i++] = new Paladin(10, 10, 10, 10, 10, 10, 10);
+                Paladin charc = new Paladin(10, 10, 10, 10, 10, 10, 10);
+                this.team.add(charc);
             }
 
             if (checkBox3.Checked && i < MaxTeamSize)
             {
-                team[i++] = new Swordsman(10, 10, 10, 10, 10, 10, 10);
+                Swordsman charc = new Swordsman(10, 10, 10, 10, 10, 10, 10);
+                this.team.add(charc);
             }
 
             if (checkBox4.Checked && i < MaxTeamSize)
             {
-                team[i++] = new Assassin(10, 10, 10, 10, 10, 10, 10);
+                Assassin charc = new Assassin(10, 10, 10, 10, 10, 10, 10);
+                this.team.add(charc);
             }
 
             if (checkBox5.Checked && i < MaxTeamSize)
             {
-                team[i++] = new Archer(10, 10, 10, 10, 10, 10, 10);
+                Archer charc = new Archer(10, 10, 10, 10, 10, 10, 10);
+                this.team.add(charc);
             }
 
             if (checkBox6.Checked && i < MaxTeamSize)
             {
-                team[i++] = new Mage(10, 10, 10, 10, 10, 10, 10);
+                Mage charc = new Mage(10, 10, 10, 10, 10, 10, 10);
+                this.team.add(charc);
             }
-
-            // Return only the populated part of the array
-            return team.Take(i).ToArray();
         }
     }
 }

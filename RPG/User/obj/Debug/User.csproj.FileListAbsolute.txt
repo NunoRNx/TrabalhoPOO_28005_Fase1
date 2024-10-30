@@ -1,0 +1,13 @@
+C:\Users\epere\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\User\bin\Debug\User.dll
+C:\Users\epere\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\User\bin\Debug\User.pdb
+C:\Users\epere\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\User\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\epere\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\User\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\epere\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\User\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\epere\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\User\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\epere\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\User\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\epere\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\User\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\epere\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\User\obj\Debug\User.csproj.AssemblyReference.cache
+C:\Users\epere\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\User\obj\Debug\User.csproj.CoreCompileInputs.cache
+C:\Users\epere\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\User\obj\Debug\User.csproj.Up2Date
+C:\Users\epere\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\User\obj\Debug\User.dll
+C:\Users\epere\OneDrive\Documentos\GitHub\TrabalhoPOO_28005_Fase1\RPG\User\obj\Debug\User.pdb
