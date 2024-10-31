@@ -24,12 +24,12 @@ namespace RPGUI
             
         }
 
-        private static Class[] get_team(int i)
+        private static BattleTeams get_team(int i)
         {
             Team chooseTeam = new Team();
             chooseTeam.ShowDialog();
-            Class[] player = chooseTeam.SelectedTeam;
-            MessageBox.Show($"Player {i} selected:\n{player[0].name}\n{player[1].name}\n{player[2].name}");
+            BattleTeams player = chooseTeam.SelectedTeam;
+            MessageBox.Show($"Player {i} selected:\n{player.team[0].name}\n{player.team[1].name}\n{player.team[2].name}");
             return player;
         }
     }

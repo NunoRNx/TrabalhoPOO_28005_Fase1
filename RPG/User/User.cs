@@ -11,13 +11,13 @@ namespace RPG
         private string Username { get; set; }
         private bool LogedIn { get; set; }
         private int Wins { get; set; }
-        private int Matchs { get; set; }
-        public User(string username, int wins, int matchs)
+        private int Matches { get; set; }
+        public User(string username, int wins, int matches)
         {
             this.Username = username;
             this.LogedIn = true;
             this.Wins = wins;
-            this.Matchs = matchs;
+            this.Matches = matches;
         }
         public string username
         {
@@ -45,10 +45,10 @@ namespace RPG
             get { return this.Wins; }
             set { this.Wins = value; }
         }
-        public int matchs
+        public int matches
         {
-            get { return this.Matchs; }
-            set { this.Matchs = value; }
+            get { return this.Matches; }
+            set { this.Matches = value; }
         }
     }
 }

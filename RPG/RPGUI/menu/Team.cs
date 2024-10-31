@@ -77,7 +77,7 @@ namespace RPGUI
         private void buttonSelect()
         {
             int i = 0;
-
+            team=new BattleTeams();
             // Check each checkbox and create objects accordingly
             if (checkBox1.Checked && i < MaxTeamSize)
             {

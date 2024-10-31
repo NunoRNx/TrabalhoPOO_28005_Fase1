@@ -55,9 +55,9 @@ namespace RPGUI
             // textBoxUser1
             // 
             textBoxUser1.Enabled = false;
-            textBoxUser1.Location = new Point(43, 284);
+            textBoxUser1.Location = new Point(39, 237);
             textBoxUser1.Name = "textBoxUser1";
-            textBoxUser1.Size = new Size(120, 27);
+            textBoxUser1.Size = new Size(125, 27);
             textBoxUser1.TabIndex = 7;
             textBoxUser1.Text = "Username";
             textBoxUser1.TextAlign = HorizontalAlignment.Center;
@@ -65,7 +65,7 @@ namespace RPGUI
             // 
             // button1
             // 
-            button1.Location = new Point(38, 343);
+            button1.Location = new Point(39, 296);
             button1.Name = "button1";
             button1.Size = new Size(125, 47);
             button1.TabIndex = 9;
@@ -104,7 +104,7 @@ namespace RPGUI
             // 
             // button2
             // 
-            button2.Location = new Point(821, 343);
+            button2.Location = new Point(816, 297);
             button2.Name = "button2";
             button2.Size = new Size(125, 47);
             button2.TabIndex = 10;
@@ -116,23 +116,29 @@ namespace RPGUI
             pictureBox1.Location = new Point(215, 60);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(100, 100);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 15;
             pictureBox1.TabStop = false;
+            pictureBox1.Visible = false;
             // 
             // textBox1
             // 
+            textBox1.Enabled = false;
             textBox1.Location = new Point(206, 166);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(120, 27);
             textBox1.TabIndex = 18;
+            textBox1.TextAlign = HorizontalAlignment.Center;
             textBox1.Visible = false;
             // 
             // textBox4
             // 
+            textBox4.Enabled = false;
             textBox4.Location = new Point(658, 166);
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(120, 27);
             textBox4.TabIndex = 20;
+            textBox4.TextAlign = HorizontalAlignment.Center;
             textBox4.Visible = false;
             // 
             // pictureBox2
@@ -140,15 +146,19 @@ namespace RPGUI
             pictureBox2.Location = new Point(215, 211);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(100, 100);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 19;
             pictureBox2.TabStop = false;
+            pictureBox2.Visible = false;
             // 
             // textBox5
             // 
+            textBox5.Enabled = false;
             textBox5.Location = new Point(658, 317);
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(120, 27);
             textBox5.TabIndex = 22;
+            textBox5.TextAlign = HorizontalAlignment.Center;
             textBox5.Visible = false;
             // 
             // pictureBox3
@@ -156,15 +166,19 @@ namespace RPGUI
             pictureBox3.Location = new Point(215, 364);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(100, 100);
+            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox3.TabIndex = 21;
             pictureBox3.TabStop = false;
+            pictureBox3.Visible = false;
             // 
             // textBox2
             // 
+            textBox2.Enabled = false;
             textBox2.Location = new Point(206, 316);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(120, 27);
             textBox2.TabIndex = 30;
+            textBox2.TextAlign = HorizontalAlignment.Center;
             textBox2.Visible = false;
             // 
             // pictureBox4
@@ -172,16 +186,19 @@ namespace RPGUI
             pictureBox4.Location = new Point(667, 60);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(100, 100);
+            pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox4.TabIndex = 29;
             pictureBox4.TabStop = false;
             pictureBox4.Visible = false;
             // 
             // textBox6
             // 
+            textBox6.Enabled = false;
             textBox6.Location = new Point(658, 470);
             textBox6.Name = "textBox6";
             textBox6.Size = new Size(120, 27);
             textBox6.TabIndex = 28;
+            textBox6.TextAlign = HorizontalAlignment.Center;
             textBox6.Visible = false;
             // 
             // pictureBox5
@@ -189,16 +206,19 @@ namespace RPGUI
             pictureBox5.Location = new Point(667, 211);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new Size(100, 100);
+            pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox5.TabIndex = 27;
             pictureBox5.TabStop = false;
             pictureBox5.Visible = false;
             // 
             // textBox3
             // 
+            textBox3.Enabled = false;
             textBox3.Location = new Point(206, 469);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(120, 27);
             textBox3.TabIndex = 26;
+            textBox3.TextAlign = HorizontalAlignment.Center;
             textBox3.Visible = false;
             // 
             // pictureBox6
@@ -224,9 +244,9 @@ namespace RPGUI
             // textBoxUser2
             // 
             textBoxUser2.Enabled = false;
-            textBoxUser2.Location = new Point(819, 284);
+            textBoxUser2.Location = new Point(814, 238);
             textBoxUser2.Name = "textBoxUser2";
-            textBoxUser2.Size = new Size(120, 27);
+            textBoxUser2.Size = new Size(127, 27);
             textBoxUser2.TabIndex = 23;
             textBoxUser2.Text = "Username";
             textBoxUser2.TextAlign = HorizontalAlignment.Center;

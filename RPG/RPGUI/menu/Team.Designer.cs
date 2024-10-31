@@ -64,7 +64,7 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources.Warrior;
+            pictureBox1.Image = Properties.Resources.assassin;
             pictureBox1.Location = new Point(118, 67);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(152, 138);

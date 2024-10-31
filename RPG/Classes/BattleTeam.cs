@@ -11,10 +11,10 @@ namespace RPG
         private bool FullTeam { get; set; }
         private List<Class> Team { get; set; }
 
-        public BattleTeams(int id, Class c1, Class c2, Class c3)
+        public BattleTeams()
         {
             this.FullTeam = true;
-            this.Team = new List<Class>() { c1, c2, c3};
+            this.Team = new List<Class>();
         }
         public List<Class> team { get { return this.Team; } }
         public List<Class> add(Class charc)
