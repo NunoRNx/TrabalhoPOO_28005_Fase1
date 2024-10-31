@@ -90,9 +90,9 @@
             // textBoxUser
             // 
             textBoxUser.BorderStyle = BorderStyle.None;
-            textBoxUser.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBoxUser.Font = new Font("Sylfaen", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBoxUser.ForeColor = Color.Gray;
-            textBoxUser.Location = new Point(34, 3);
+            textBoxUser.Location = new Point(34, 5);
             textBoxUser.Name = "textBoxUser";
             textBoxUser.Size = new Size(214, 27);
             textBoxUser.TabIndex = 14;
@@ -134,9 +134,9 @@
             // textBoxPass
             // 
             textBoxPass.BorderStyle = BorderStyle.None;
-            textBoxPass.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBoxPass.Font = new Font("Sylfaen", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBoxPass.ForeColor = Color.Gray;
-            textBoxPass.Location = new Point(32, 2);
+            textBoxPass.Location = new Point(32, 5);
             textBoxPass.Name = "textBoxPass";
             textBoxPass.Size = new Size(214, 27);
             textBoxPass.TabIndex = 15;
@@ -147,7 +147,7 @@
             pictureBox2.BackColor = SystemColors.Window;
             pictureBox2.Cursor = Cursors.Hand;
             pictureBox2.Image = Properties.Resources.locked;
-            pictureBox2.Location = new Point(3, 7);
+            pictureBox2.Location = new Point(3, 8);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(25, 24);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -168,9 +168,9 @@
             // textBoxConfirm
             // 
             textBoxConfirm.BorderStyle = BorderStyle.None;
-            textBoxConfirm.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBoxConfirm.Font = new Font("Sylfaen", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBoxConfirm.ForeColor = Color.Gray;
-            textBoxConfirm.Location = new Point(32, 2);
+            textBoxConfirm.Location = new Point(32, 5);
             textBoxConfirm.Name = "textBoxConfirm";
             textBoxConfirm.Size = new Size(214, 27);
             textBoxConfirm.TabIndex = 15;

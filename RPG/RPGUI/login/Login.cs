@@ -22,6 +22,14 @@ namespace RPGUI
             this.User = null;
             this.User = null;
             InitializeComponent();
+            SetText(textBoxUser, "username");
+            SetPass(textBoxPass, "password");
+            //username textbox
+            textBoxUser.Enter += (sender, e) => RemoveText(textBoxUser, "username");
+            textBoxUser.Leave += (sender, e) => SetText(textBoxUser, "username");
+            //password textbox
+            textBoxPass.Enter += (sender, e) => RemovePass(textBoxPass, "password");
+            textBoxPass.Leave += (sender, e) => SetPass(textBoxPass, "password");
 
             // Wire up the button click event
             button1.Click += login;
@@ -159,6 +167,41 @@ namespace RPGUI
                 pictureBox2.Image = Properties.Resources.locked;
                 textBoxPass.PasswordChar = '*'; // Hide password
                 Click = true;
+            }
+        }
+        private void SetText(TextBox textBox, string placeholder)
+        {
+            if (string.IsNullOrWhiteSpace(textBox.Text))
+            {
+                textBox.Text = placeholder;
+                textBox.ForeColor = Color.Gray; // Set the placeholder text color to gray
+            }
+        }
+
+        private void RemoveText(TextBox textBox, string placeholder)
+        {
+            if (textBox.Text == placeholder)
+            {
+                textBox.Text = ""; // Clear the placeholder text
+                textBox.ForeColor = Color.Black; // Change text color to default
+            }
+        }
+        private void SetPass(TextBox textBox, string placeholder)
+        {
+            if (string.IsNullOrWhiteSpace(textBox.Text))
+            {
+                textBox.Text = placeholder;
+                textBox.ForeColor = Color.Gray;
+                textBox.PasswordChar = '\0'; // Show text instead of hiding characters
+            }
+        }
+        private void RemovePass(TextBox textBox, string placeholder)
+        {
+            if (textBox.Text == placeholder)
+            {
+                textBox.Text = "";
+                textBox.ForeColor = Color.Black;
+                textBox.PasswordChar = '*'; // Mask the password with '*'
             }
         }
     }
