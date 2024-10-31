@@ -38,12 +38,16 @@ namespace RPGUI
             pictureBox6 = new PictureBox();
             button4 = new Button();
             textBoxUser2 = new TextBox();
+            pictureBox7 = new PictureBox();
+            pictureBox8 = new PictureBox();
             ((ISupportInitialize)pictureBox1).BeginInit();
             ((ISupportInitialize)pictureBox2).BeginInit();
             ((ISupportInitialize)pictureBox3).BeginInit();
             ((ISupportInitialize)pictureBox4).BeginInit();
             ((ISupportInitialize)pictureBox5).BeginInit();
             ((ISupportInitialize)pictureBox6).BeginInit();
+            ((ISupportInitialize)pictureBox7).BeginInit();
+            ((ISupportInitialize)pictureBox8).BeginInit();
             SuspendLayout();
             // 
             // contextMenuStrip1
@@ -252,9 +256,35 @@ namespace RPGUI
             textBoxUser2.TextAlign = HorizontalAlignment.Center;
             textBoxUser2.Visible = false;
             // 
+            // pictureBox7
+            // 
+            pictureBox7.BackColor = Color.Transparent;
+            pictureBox7.Enabled = false;
+            pictureBox7.Image = Properties.Resources.title;
+            pictureBox7.Location = new Point(382, 60);
+            pictureBox7.Name = "pictureBox7";
+            pictureBox7.Size = new Size(209, 48);
+            pictureBox7.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox7.TabIndex = 32;
+            pictureBox7.TabStop = false;
+            // 
+            // pictureBox8
+            // 
+            pictureBox8.Enabled = false;
+            pictureBox8.Image = Properties.Resources.game;
+            pictureBox8.Location = new Point(410, 88);
+            pictureBox8.Name = "pictureBox8";
+            pictureBox8.Size = new Size(150, 150);
+            pictureBox8.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox8.TabIndex = 31;
+            pictureBox8.TabStop = false;
+            // 
             // Menu
             // 
+            BackColor = Color.Gray;
             ClientSize = new Size(980, 610);
+            Controls.Add(pictureBox7);
+            Controls.Add(pictureBox8);
             Controls.Add(textBox2);
             Controls.Add(pictureBox4);
             Controls.Add(textBox6);
@@ -282,6 +312,8 @@ namespace RPGUI
             ((ISupportInitialize)pictureBox4).EndInit();
             ((ISupportInitialize)pictureBox5).EndInit();
             ((ISupportInitialize)pictureBox6).EndInit();
+            ((ISupportInitialize)pictureBox7).EndInit();
+            ((ISupportInitialize)pictureBox8).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -306,5 +338,7 @@ namespace RPGUI
         private PictureBox pictureBox6;
         private Button button4;
         private TextBox textBoxUser2;
+        private PictureBox pictureBox7;
+        private PictureBox pictureBox8;
     }
 }

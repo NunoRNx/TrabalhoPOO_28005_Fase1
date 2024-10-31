@@ -9,3 +9,8 @@ RPG/RPGUI/obj/Debug/net8.0-windows/RPGUI.AssemblyInfo.cs
 *.json
 *.props
 *.json
+RPG/Classes/obj/Classes.csproj.nuget.g.props
+RPG/Classes/obj/Debug/net8.0/Classes.csproj.FileListAbsolute.txt
+RPG/Classes/obj/project.assets.json
+*.json
+*.props
