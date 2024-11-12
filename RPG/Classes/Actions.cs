@@ -27,7 +27,7 @@
                     do
                     {
                         Console.WriteLine("Enemy Team:");
-                        displayTeam(enemyTeam);
+                        //displayTeam(enemyTeam);
                         i = select(enemyTeam);
                         if (i == -1)
                         {
@@ -35,7 +35,7 @@
                         }
                     } while (i != -1);
 
-                    int damage = player.attack();
+                    int damage = player.Attack();
                     inflict(damage, enemyTeam[i]);
                     break;
                 case 2:
@@ -117,7 +117,7 @@
             }
         }
 
-        public static void displayTeam(Class[] team)
+        /*public static void displayTeam(Class[] team)
         {
             for (int i = 0; i < team.Length; i++)
             {
@@ -162,6 +162,6 @@
                     Console.WriteLine("Status: dead");
                 }
             }
-        }
+        }*/
     }
 }

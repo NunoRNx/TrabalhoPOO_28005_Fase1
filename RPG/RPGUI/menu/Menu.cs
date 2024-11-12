@@ -266,7 +266,7 @@ namespace RPGUI
                 {
                     case 1:
                         //create warrior
-                        Warrior war = new Warrior(10, 10, 10, 10, 10, 10, 10);
+                        Warrior war = new Warrior(250, 50, 70, 50); // Health, Defense, Strength, Rage
                         if (j == 1)
                         {
                             this.team1.add(war);
@@ -277,7 +277,7 @@ namespace RPGUI
                         break;
                     case 2:
                         //create paladin
-                        Paladin paladin = new Paladin(10, 10, 10, 10, 10, 10, 10);
+                        Paladin paladin = new Paladin(220, 60, 50, 30); // Health, Defense, Strength, Holy
                         if (j == 1)
                         {
                             this.team1.add(paladin);
@@ -289,7 +289,7 @@ namespace RPGUI
                         break;
                     case 3:
                         //create swordsman
-                        Swordsman sword= new Swordsman(10, 10, 10, 10, 10, 10, 10);
+                        Swordsman sword= new Swordsman(210, 40, 80, 40); // Health, Defense, Strength, Focus
                         if (j == 1)
                         {
                             this.team1.add(sword);
@@ -301,7 +301,7 @@ namespace RPGUI
                         break;
                     case 4:
                         //create Assassin
-                        Assassin assassin= new Assassin(10, 10, 10, 10, 10, 10, 10);
+                        Assassin assassin= new Assassin(180, 30, 60, 90, 40); // Health, Defense, Strength, Dexterity, Stealth
                         if (j == 1)
                         {
                             this.team1.add(assassin);
@@ -313,7 +313,7 @@ namespace RPGUI
                         break;
                     case 5:
                         //create archer
-                        Archer archer = new Archer(10, 10, 10, 10, 10, 10, 10);
+                        Archer archer = new Archer(190, 35, 50, 100, 30); // Health, Defense, Strength, Dexterity, Arrows
                         if (j == 1)
                         {
                             this.team1.add(archer);
@@ -325,7 +325,7 @@ namespace RPGUI
                         break;
                     case 6:
                         //create mage
-                        Mage mage = new Mage(10, 10, 10, 10, 10, 10, 10);
+                        Mage mage = new Mage(160, 20, 40, 90, 50); // Health, Defense, Strength, Magic, Mana
                         if (j == 1)
                         {
                             this.team1.add(mage);

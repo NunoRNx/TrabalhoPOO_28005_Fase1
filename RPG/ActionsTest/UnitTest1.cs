@@ -9,15 +9,15 @@ namespace Utils
         [SetUp]
         public void Setup()
         {
-            personagem = new Warrior(10,10,10,10,10,10,10);
-            enemy = new Swordsman(10,10,10,10,10,10,10);
+            /*personagem = new Warrior(10,10,10,10,10,10,10);
+            enemy = new Swordsman(10,10,10,10,10,10,10);*/
         }
 
         [Test]
         public void Attack()
         {
             //act
-            var value=personagem.attack();
+            var value=personagem.Attack();
 
             //assert
             Assert.AreEqual(0, value);

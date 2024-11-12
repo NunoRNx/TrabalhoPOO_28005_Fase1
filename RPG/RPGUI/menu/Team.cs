@@ -81,37 +81,37 @@ namespace RPGUI
             // Check each checkbox and create objects accordingly
             if (checkBox1.Checked && i < MaxTeamSize)
             {
-                Warrior charc = new Warrior(10, 10, 10, 10, 10, 10, 10);
+                Warrior charc = new Warrior(250, 50, 70, 50); // Health, Defense, Strength, Rage
                 this.team.add(charc);
             }
 
             if (checkBox2.Checked && i < MaxTeamSize)
             {
-                Paladin charc = new Paladin(10, 10, 10, 10, 10, 10, 10);
+                Paladin charc = new Paladin(220, 60, 50, 30); // Health, Defense, Strength, Holy
                 this.team.add(charc);
             }
 
             if (checkBox3.Checked && i < MaxTeamSize)
             {
-                Swordsman charc = new Swordsman(10, 10, 10, 10, 10, 10, 10);
+                Swordsman charc = new Swordsman(210, 40, 80, 40); // Health, Defense, Strength, Focus
                 this.team.add(charc);
             }
 
             if (checkBox4.Checked && i < MaxTeamSize)
             {
-                Assassin charc = new Assassin(10, 10, 10, 10, 10, 10, 10);
+                Assassin charc = new Assassin(180, 30, 60, 90, 40); // Health, Defense, Strength, Dexterity, Stealth
                 this.team.add(charc);
             }
 
             if (checkBox5.Checked && i < MaxTeamSize)
             {
-                Archer charc = new Archer(10, 10, 10, 10, 10, 10, 10);
+                Archer charc = new Archer(190, 35, 50, 100, 30); // Health, Defense, Strength, Dexterity, Arrows
                 this.team.add(charc);
             }
 
             if (checkBox6.Checked && i < MaxTeamSize)
             {
-                Mage charc = new Mage(10, 10, 10, 10, 10, 10, 10);
+                Mage charc = new Mage(160, 20, 40, 90, 50); // Health, Defense, Strength, Magic, Mana
                 this.team.add(charc);
             }
         }
