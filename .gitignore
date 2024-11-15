@@ -1,20 +1,10 @@
 
 /RPG/.vs
-/RPG/ActionsTest/bin
-/RPG/ActionsTest/obj
-/RPG/Classes/obj
-*.json
 *.cache
-RPG/RPGUI/obj/Debug/net8.0-windows/RPGUI.AssemblyInfo.cs
 *.json
 *.props
-*.json
-RPG/Classes/obj/Classes.csproj.nuget.g.props
-RPG/Classes/obj/Debug/net8.0/Classes.csproj.FileListAbsolute.txt
-RPG/Classes/obj/project.assets.json
-*.json
-*.props
-RPG/Classes/obj/Debug/net8.0/Classes.csproj.FileListAbsolute.txt
-RPG/Classes/obj/Classes.csproj.nuget.g.props
-RPG/Classes/obj/project.assets.json
-RPG/RPGUI/obj/RPGUI.csproj.nuget.g.props
+# Ignorar pastas bin
+bin/
+obj/
+# Ignorar arquivos executáveis
+*.exe
