@@ -14,10 +14,6 @@ O objetivo principal é fornecer uma implementação modular e extensível para 
 - Gerenciamento de equipes através da classe `BattleTeams`.
 - Sistema de autenticação simples com a classe `User`.
 
-## Estrutura do Projeto
-A estrutura do projeto é organizada da seguinte forma:
-
-
 ## Tecnologias Utilizadas
 - **Linguagem**: C# (.NET Framework)
 - **IDE**: Visual Studio
