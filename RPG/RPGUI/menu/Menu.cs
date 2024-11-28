@@ -19,6 +19,7 @@ namespace RPGUI
         private User user2 { get; set; }
         private BattleTeams team1 { get; set; }
         private BattleTeams team2 { get; set; }
+        private SQL connection = SQL.Instance;
         public Menu()
         {
             InitializeComponent();
@@ -71,40 +72,12 @@ namespace RPGUI
                             chooseTeam.ShowDialog();
                             team1 = chooseTeam.SelectedTeam;
                         }
-
-                        //write in boxes the characters names
-                        textBox1.Text = this.team1.team[0].name;
-                        textBox2.Text = this.team1.team[1].name;
-                        textBox3.Text = this.team1.team[2].name;
-                        //insert characters img to the picturebox
-                        pictureBox1 = BoxImage(this.team1.team[0], pictureBox1);
-                        pictureBox2 = BoxImage(this.team1.team[1], pictureBox2);
-                        pictureBox3 = BoxImage(this.team1.team[2], pictureBox3);
-                        pictureBox1.Visible = true;
-                        pictureBox2.Visible = true;
-                        pictureBox3.Visible = true;
-                        //text visible
-                        textBox1.Visible = true;
-                        textBox2.Visible = true;
-                        textBox3.Visible = true;
-                        button1.Text = "Logout";
+                        logShow(1);
                     }
                 }
                 else
                 {
-                    // Log out user1
-                    user1 = null;
-
-                    // Hide UI elements for player 1
-                    textBoxUser1.Visible = false;
-                    textBox1.Visible = false;
-                    textBox2.Visible = false;
-                    textBox3.Visible = false;
-                    pictureBox1.Visible = false;
-                    pictureBox2.Visible = false;
-                    pictureBox3.Visible = false;
-                    button3.Visible = false;
-                    button1.Text = "Login";
+                    hide(1);
                 }
             }
             else if (i == 2)
@@ -133,27 +106,80 @@ namespace RPGUI
                             chooseTeam.ShowDialog();
                             team2 = chooseTeam.SelectedTeam;
                         }
-
-                        //write in boxes the characters names
-                        textBox4.Text = this.team2.team[0].name;
-                        textBox5.Text = this.team2.team[1].name;
-                        textBox6.Text = this.team2.team[2].name;
-                        //insert characters img to the picturebox
-                        pictureBox4 = BoxImage(this.team2.team[0], pictureBox4);
-                        pictureBox5 = BoxImage(this.team2.team[1], pictureBox5);
-                        pictureBox6 = BoxImage(this.team2.team[2], pictureBox6);
-                        pictureBox4.Visible = true;
-                        pictureBox5.Visible = true;
-                        pictureBox6.Visible = true;
-                        //text visible
-                        textBox4.Visible = true;
-                        textBox5.Visible = true;
-                        textBox6.Visible = true;
-                        button2.Text = "Logout";
+                        logShow(2);
                     }
                 }
                 else
                 {
+                    hide(2);
+                }
+            }
+
+            // Check if both users are logged in before showing a start game button
+            buttonStart();
+        }
+        private void logShow(int user)
+        {
+            switch (user)
+            {
+                case 1:
+                    //write in boxes the characters names
+                    textBox1.Text = this.team1.team[0].name;
+                    textBox2.Text = this.team1.team[1].name;
+                    textBox3.Text = this.team1.team[2].name;
+                    //insert characters img to the picturebox
+                    pictureBox1 = BoxImage(this.team1.team[0], pictureBox1);
+                    pictureBox2 = BoxImage(this.team1.team[1], pictureBox2);
+                    pictureBox3 = BoxImage(this.team1.team[2], pictureBox3);
+                    pictureBox1.Visible = true;
+                    pictureBox2.Visible = true;
+                    pictureBox3.Visible = true;
+                    //text visible
+                    textBox1.Visible = true;
+                    textBox2.Visible = true;
+                    textBox3.Visible = true;
+                    button1.Text = "Logout";
+                break;
+                case 2:
+                    //write in boxes the characters names
+                    textBox4.Text = this.team2.team[0].name;
+                    textBox5.Text = this.team2.team[1].name;
+                    textBox6.Text = this.team2.team[2].name;
+                    //insert characters img to the picturebox
+                    pictureBox4 = BoxImage(this.team2.team[0], pictureBox4);
+                    pictureBox5 = BoxImage(this.team2.team[1], pictureBox5);
+                    pictureBox6 = BoxImage(this.team2.team[2], pictureBox6);
+                    pictureBox4.Visible = true;
+                    pictureBox5.Visible = true;
+                    pictureBox6.Visible = true;
+                    //text visible
+                    textBox4.Visible = true;
+                    textBox5.Visible = true;
+                    textBox6.Visible = true;
+                    button2.Text = "Logout";
+                break;
+            }
+        }
+        private void hide(int user)
+        {
+            switch (user)
+            {
+                case 1:
+                    // Log out user1
+                    user1 = null;
+
+                    // Hide UI elements for player 1
+                    textBoxUser1.Visible = false;
+                    textBox1.Visible = false;
+                    textBox2.Visible = false;
+                    textBox3.Visible = false;
+                    pictureBox1.Visible = false;
+                    pictureBox2.Visible = false;
+                    pictureBox3.Visible = false;
+                    button3.Visible = false;
+                    button1.Text = "Login";
+                break;
+                case 2:
                     // Log out user2
                     user2 = null;
 
@@ -164,12 +190,15 @@ namespace RPGUI
                     textBox6.Visible = false;
                     button4.Visible = false;
                     button2.Text = "Login";
-                }
+                break;
             }
-
-            // Check if both users are logged in before showing a start game button
-            buttonStart();
         }
+        /// <summary>
+        /// Load  characther icons in the menu
+        /// </summary>
+        /// <param name="character"></param>
+        /// <param name="pic"></param>
+        /// <returns></returns>
         public PictureBox BoxImage(Class character, PictureBox pic)
         {
             if(character is Warrior)
@@ -204,136 +233,51 @@ namespace RPGUI
             }
             return pic;
         }
-        private bool TeamLoad(string username, int j)
+        
+        /// <summary>
+        /// Load team from database
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="j"></param>
+        /// <returns></returns>
+        public bool TeamLoad(string username, int j)
         {
-            int[] characters = new int[3]; // Array to store character IDs
-
-            string connectionString = "Server=DESKTOP-2J6JLCD\\SQLEXPRESS;Database=RPG;User Id=rpg_admin;Password=1234;Encrypt=True;TrustServerCertificate=True;";
-
-            // Query to fetch the user_id for the given username
-            string query = "SELECT user_id FROM user_info WHERE username = @username";
-
-            // Use a SQL connection
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            int[] characters;
+            if (!connection.GetTeamData(username, out characters))
             {
-                connection.Open();
-
-                // Use a command with parameterized query to prevent SQL injection
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    // Define the parameter and add it to the command
-                    command.Parameters.AddWithValue("@username", username);
-
-                    // Execute the query and get the user ID
-                    int userId = Convert.ToInt32(command.ExecuteScalar());
-
-                    // Now fetch the team preset for this user ID
-                    string teamQuery = "SELECT character_id_1, character_id_2, character_id_3 FROM team_presets WHERE user_id = @userId";
-                    using (SqlCommand teamCommand = new SqlCommand(teamQuery, connection))
-                    {
-                        // Use parameterized query
-                        teamCommand.Parameters.AddWithValue("@userId", userId);
-
-                        // Execute reader to get the characters
-                        using (SqlDataReader reader = teamCommand.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                // Read each character column into the array
-                                characters[0] = reader.GetInt32(0); // character1
-                                characters[1] = reader.GetInt32(1); // character2
-                                characters[2] = reader.GetInt32(2); // character3
-                            }
-                            else
-                            {
-                                return false;
-                            }
-                        }
-                    }
-                }
+                return false;
             }
+
             if (j == 1)
             {
-                team1=new BattleTeams();
+                team1 = new BattleTeams();
             }
             else if (j == 2)
             {
-                team2=new BattleTeams();
+                team2 = new BattleTeams();
             }
+
             for (int i = 0; i < 3; i++)
             {
                 switch (characters[i])
                 {
                     case 1:
-                        //create warrior
-                        Warrior war = new Warrior(250, 50, 70, 50); // Health, Defense, Strength, Rage
-                        if (j == 1)
-                        {
-                            this.team1.add(war);
-                        }else if (j == 2)
-                        {
-                            this.team2.add(war);
-                        }
+                        team1.add(new Warrior(250, 50, 70, 50));
                         break;
                     case 2:
-                        //create paladin
-                        Paladin paladin = new Paladin(220, 60, 50, 30); // Health, Defense, Strength, Holy
-                        if (j == 1)
-                        {
-                            this.team1.add(paladin);
-                        }
-                        else if (j == 2)
-                        {
-                            this.team2.add(paladin);
-                        }
+                        team1.add(new Paladin(220, 60, 50, 30));
                         break;
                     case 3:
-                        //create swordsman
-                        Swordsman sword= new Swordsman(210, 40, 80, 40); // Health, Defense, Strength, Focus
-                        if (j == 1)
-                        {
-                            this.team1.add(sword);
-                        }
-                        else if (j == 2)
-                        {
-                            this.team2.add(sword);
-                        }
+                        team1.add(new Swordsman(210, 40, 80, 40));
                         break;
                     case 4:
-                        //create Assassin
-                        Assassin assassin= new Assassin(180, 30, 60, 90, 40); // Health, Defense, Strength, Dexterity, Stealth
-                        if (j == 1)
-                        {
-                            this.team1.add(assassin);
-                        }
-                        else if (j == 2)
-                        {
-                            this.team2.add(assassin);
-                        }
+                        team1.add(new Assassin(180, 30, 60, 90, 40));
                         break;
                     case 5:
-                        //create archer
-                        Archer archer = new Archer(190, 35, 50, 100, 30); // Health, Defense, Strength, Dexterity, Arrows
-                        if (j == 1)
-                        {
-                            this.team1.add(archer);
-                        }
-                        else if (j == 2)
-                        {
-                            this.team2.add(archer);
-                        }
+                        team1.add(new Archer(190, 35, 50, 100, 30));
                         break;
                     case 6:
-                        //create mage
-                        Mage mage = new Mage(160, 20, 40, 90, 50); // Health, Defense, Strength, Magic, Mana
-                        if (j == 1)
-                        {
-                            this.team1.add(mage);
-                        }
-                        else if (j == 2)
-                        {
-                            this.team2.add(mage);
-                        }
+                        team1.add(new Mage(160, 20, 40, 90, 50));
                         break;
                 }
             }
@@ -342,7 +286,7 @@ namespace RPGUI
         private void buttonStart()
         {
             // Check if both users are logged in
-            if (user1?.loggedIn == true && user2?.loggedIn == true)
+            if (user1 != null && user2 != null)
             {
                 button5.Visible = true; // Show "Start Game" button
             }

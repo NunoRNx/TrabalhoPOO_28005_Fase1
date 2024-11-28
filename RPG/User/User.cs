@@ -50,5 +50,11 @@ namespace RPG
             get { return this.Matches; }
             set { this.Matches = value; }
         }
+        ~User()
+        {
+            // This is called when the object is being garbage collected
+            // Use this to release unmanaged resources if any were used.
+            // Optionally: you can add logic here to release any unmanaged resources
+        }
     }
 }

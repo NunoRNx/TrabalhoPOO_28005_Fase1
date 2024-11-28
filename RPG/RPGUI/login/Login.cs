@@ -11,25 +11,18 @@ using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
 using RPGUI;
 
-
 namespace RPGUI
 {
     public partial class Login : Form
     {
         private User User { get; set; }
+        SQL database = SQL.Instance;
         public Login()
         {
+
             this.User = null;
             this.User = null;
             InitializeComponent();
-            SetText(textBoxUser, "username");
-            SetPass(textBoxPass, "password");
-            //username textbox
-            textBoxUser.Enter += (sender, e) => RemoveText(textBoxUser, "username");
-            textBoxUser.Leave += (sender, e) => SetText(textBoxUser, "username");
-            //password textbox
-            textBoxPass.Enter += (sender, e) => RemovePass(textBoxPass, "password");
-            textBoxPass.Leave += (sender, e) => SetPass(textBoxPass, "password");
 
             // Wire up the button click event
             button1.Click += login;
@@ -56,15 +49,15 @@ namespace RPGUI
                     //textBox1.Focus(); // Focus back on the username textbox if empty
                     throw new Exception("Make sure to fill the username.");
                 }
-                else if (string.IsNullOrEmpty(passwd))
+                if (string.IsNullOrEmpty(passwd))
                 {
                     //textBox2.Focus(); // Focus back on the password textbox if empty
                     throw new Exception("Make sure to fill the password.");
                 }
-                else if (CheckLogin(username, passwd))
+                if (database.CheckLogin(username, passwd))
                 {
                     // Login successful - proceed to the next step
-                    int[] data = UserData(username);
+                    int[] data = database.UserData(username);
                     this.User = new User(username, data[0], data[1]);
                     Close();
                 }
@@ -78,80 +71,6 @@ namespace RPGUI
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-        public bool CheckLogin(string inputUsername, string inputPassword)
-        {
-            // Define your connection string (update with your server details)
-            string connectionString = "Server=DESKTOP-2J6JLCD\\SQLEXPRESS;Database=RPG;User Id=rpg_admin;Password=1234;Encrypt=True;TrustServerCertificate=True;";
-
-            // Query to fetch the password for the given username
-            string query = "SELECT password FROM user_info WHERE username = @username";
-
-            // Use a SQL connection
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-
-                // Use a command with parameterized query to prevent SQL injection
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    // Define the parameter and add it to the command
-                    command.Parameters.AddWithValue("@username", inputUsername);
-
-                    // Execute the query and get the result
-                    object result = command.ExecuteScalar();
-
-                    // Check if a matching username was found
-                    if (result != null)
-                    {
-                        string storedPassword = result.ToString();
-
-                        // Compare the input password with the stored password
-                        return inputPassword == storedPassword;
-                    }
-                    else
-                    {
-                        // Username not found
-                        return false;
-                    }
-                }
-            }
-        }
-        public int[] UserData(string inputUsername)
-        {
-            int[] scoreboard = new int[2];
-            // Define your connection string (update with your server details)
-            string connectionString = "Server=DESKTOP-2J6JLCD\\SQLEXPRESS;Database=RPG;User Id=rpg_admin;Password=1234;Encrypt=True;TrustServerCertificate=True;";
-
-            // Query to fetch the password for the given username
-            string query = "SELECT wins, matches FROM user_info WHERE username = @username";
-
-            // Use a SQL connection
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-
-                // Use a command with parameterized query to prevent SQL injection
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    // Define the parameter and add it to the command
-                    command.Parameters.AddWithValue("@username", inputUsername);
-
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())  // Checks if there’s at least one row in the result
-                        {
-                            scoreboard[0] = reader.GetInt32(0);  // Reads the 'wins' column
-                            scoreboard[1] = reader.GetInt32(1);  // Reads the 'matches' column
-                        }
-                        else
-                        {
-                            throw new Exception("No record of this user exists in the database");
-                        }
-                    }
-                }
-            }
-            return scoreboard;
         }
         private bool Click = true;
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -167,41 +86,6 @@ namespace RPGUI
                 pictureBox2.Image = Properties.Resources.locked;
                 textBoxPass.PasswordChar = '*'; // Hide password
                 Click = true;
-            }
-        }
-        private void SetText(TextBox textBox, string placeholder)
-        {
-            if (string.IsNullOrWhiteSpace(textBox.Text))
-            {
-                textBox.Text = placeholder;
-                textBox.ForeColor = Color.Gray; // Set the placeholder text color to gray
-            }
-        }
-
-        private void RemoveText(TextBox textBox, string placeholder)
-        {
-            if (textBox.Text == placeholder)
-            {
-                textBox.Text = ""; // Clear the placeholder text
-                textBox.ForeColor = Color.Black; // Change text color to default
-            }
-        }
-        private void SetPass(TextBox textBox, string placeholder)
-        {
-            if (string.IsNullOrWhiteSpace(textBox.Text))
-            {
-                textBox.Text = placeholder;
-                textBox.ForeColor = Color.Gray;
-                textBox.PasswordChar = '\0'; // Show text instead of hiding characters
-            }
-        }
-        private void RemovePass(TextBox textBox, string placeholder)
-        {
-            if (textBox.Text == placeholder)
-            {
-                textBox.Text = "";
-                textBox.ForeColor = Color.Black;
-                textBox.PasswordChar = '*'; // Mask the password with '*'
             }
         }
     }
