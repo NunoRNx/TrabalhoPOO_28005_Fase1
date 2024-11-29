@@ -19,7 +19,6 @@ namespace RPGUI
         SQL database = SQL.Instance;
         public Login()
         {
-
             this.User = null;
             this.User = null;
             InitializeComponent();
@@ -27,7 +26,6 @@ namespace RPGUI
             // Wire up the button click event
             button1.Click += login;
             linkLabel1.LinkClicked += sign;
-
         }
         public User user
         {
@@ -35,9 +33,22 @@ namespace RPGUI
         }
         private void sign(object sender, EventArgs e)
         {
-            SignUp signUp = new SignUp();
-            signUp.ShowDialog();
+            // Open the SignUp form
+            using (SignUp signUpForm = new SignUp())
+            {
+                this.Hide();
+                // Show the SignUp form as a dialog
+                signUpForm.ShowDialog();
+            }
+
+            // Reopen the Login form after SignUp completes
+            this.Show();
         }
+        /// <summary>
+        /// User login
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void login(object sender, EventArgs e)
         {
             try
@@ -72,7 +83,15 @@ namespace RPGUI
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        /// <summary>
+        /// Password showing state
+        /// </summary>
         private bool Click = true;
+        /// <summary>
+        /// Show Password method
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             if (Click)

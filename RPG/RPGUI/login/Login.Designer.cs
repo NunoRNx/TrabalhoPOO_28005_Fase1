@@ -74,7 +74,7 @@
             button1.FlatStyle = FlatStyle.Popup;
             button1.Font = new Font("Sitka Text", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.Black;
-            button1.Location = new Point(110, 404);
+            button1.Location = new Point(116, 404);
             button1.Name = "button1";
             button1.Size = new Size(150, 42);
             button1.TabIndex = 5;
@@ -86,7 +86,7 @@
             // 
             pictureBox1.Enabled = false;
             pictureBox1.Image = Properties.Resources.game;
-            pictureBox1.Location = new Point(110, 53);
+            pictureBox1.Location = new Point(115, 53);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(150, 150);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -123,7 +123,7 @@
             panel1.BackColor = SystemColors.Window;
             panel1.Controls.Add(textBoxUser);
             panel1.Controls.Add(pictureBox3);
-            panel1.Location = new Point(62, 259);
+            panel1.Location = new Point(67, 259);
             panel1.Name = "panel1";
             panel1.Size = new Size(249, 36);
             panel1.TabIndex = 11;
@@ -151,7 +151,7 @@
             // 
             linkLabel1.AutoSize = true;
             linkLabel1.LinkColor = Color.White;
-            linkLabel1.Location = new Point(121, 510);
+            linkLabel1.Location = new Point(127, 497);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new Size(128, 20);
             linkLabel1.TabIndex = 15;
@@ -163,7 +163,7 @@
             panel3.BackColor = SystemColors.Window;
             panel3.Controls.Add(textBoxPass);
             panel3.Controls.Add(pictureBox2);
-            panel3.Location = new Point(62, 343);
+            panel3.Location = new Point(67, 343);
             panel3.Name = "panel3";
             panel3.Size = new Size(249, 36);
             panel3.TabIndex = 15;
@@ -174,7 +174,7 @@
             textBox3.BorderStyle = BorderStyle.None;
             textBox3.Enabled = false;
             textBox3.ForeColor = Color.White;
-            textBox3.Location = new Point(128, 487);
+            textBox3.Location = new Point(134, 474);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(115, 20);
             textBox3.TabIndex = 16;
@@ -186,7 +186,7 @@
             pictureBox4.BackColor = Color.Transparent;
             pictureBox4.Enabled = false;
             pictureBox4.Image = Properties.Resources.title;
-            pictureBox4.Location = new Point(82, 25);
+            pictureBox4.Location = new Point(87, 25);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(209, 48);
             pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
@@ -195,7 +195,8 @@
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(62, 226);
+            textBox4.Enabled = false;
+            textBox4.Location = new Point(67, 226);
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(72, 27);
             textBox4.TabIndex = 18;
@@ -203,7 +204,8 @@
             // 
             // textBox5
             // 
-            textBox5.Location = new Point(62, 310);
+            textBox5.Enabled = false;
+            textBox5.Location = new Point(67, 310);
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(69, 27);
             textBox5.TabIndex = 19;
@@ -216,6 +218,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
             ClientSize = new Size(383, 540);
+            Controls.Add(button1);
             Controls.Add(textBox5);
             Controls.Add(textBox4);
             Controls.Add(pictureBox4);
@@ -223,7 +226,6 @@
             Controls.Add(linkLabel1);
             Controls.Add(panel1);
             Controls.Add(pictureBox1);
-            Controls.Add(button1);
             Controls.Add(panel3);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "Login";

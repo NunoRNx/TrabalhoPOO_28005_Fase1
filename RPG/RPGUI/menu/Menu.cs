@@ -40,21 +40,25 @@ namespace RPGUI
         /// <param name="i"> Player 1 or Player 2</param>
         private void LogInOut(object sender, EventArgs e, int i)
         {
+            this.Hide();
             if (i == 1)
             {
                 if (user1 == null || !user1.loggedIn) // Check if user1 is null or not logged in
                 {
+                    
                     Login login = new Login();
                     login.ShowDialog();
                     //if login page is closed
                     if(login.user is null)
                     {
+                        this.Show();
                         return;
                     }
                     // Check if user2 is logged in with the same username
                     if (user2 != null && user2.loggedIn && login.user.username == user2.username)
                     {
                         MessageBox.Show("This user is already logged in as Player 2.");
+                        this.Show();
                         return;
                     }
                     else if(!login.user.username.IsNullOrEmpty())
@@ -89,6 +93,7 @@ namespace RPGUI
                     if (user1 != null && user1.loggedIn && login.user.username == user1.username)
                     {
                         MessageBox.Show("This user is already logged in as Player 1.");
+                        this.Show();
                         return;
                     }
                     else if (login.user!=null && !login.user.username.IsNullOrEmpty())
@@ -114,7 +119,7 @@ namespace RPGUI
                     hide(2);
                 }
             }
-
+            this.Show();
             // Check if both users are logged in before showing a start game button
             buttonStart();
         }
