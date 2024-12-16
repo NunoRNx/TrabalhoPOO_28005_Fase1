@@ -20,7 +20,7 @@ namespace RPGUI
             contextMenuStrip1 = new ContextMenuStrip(components);
             textBoxUser1 = new TextBox();
             button1 = new Button();
-            button3 = new Button();
+            buttonEdit1 = new Button();
             button5 = new Button();
             buttonScoreboard = new Button();
             button2 = new Button();
@@ -36,7 +36,7 @@ namespace RPGUI
             pictureBox5 = new PictureBox();
             textBox3 = new TextBox();
             pictureBox6 = new PictureBox();
-            button4 = new Button();
+            buttonEdit2 = new Button();
             textBoxUser2 = new TextBox();
             pictureBox7 = new PictureBox();
             pictureBox8 = new PictureBox();
@@ -69,22 +69,22 @@ namespace RPGUI
             // 
             // button1
             // 
-            button1.Location = new Point(39, 296);
+            button1.Location = new Point(39, 297);
             button1.Name = "button1";
-            button1.Size = new Size(125, 47);
+            button1.Size = new Size(127, 47);
             button1.TabIndex = 9;
             button1.Text = "Login";
             button1.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // buttonEdit1
             // 
-            button3.Location = new Point(206, 512);
-            button3.Name = "button3";
-            button3.Size = new Size(120, 43);
-            button3.TabIndex = 11;
-            button3.Text = "Edit Team";
-            button3.UseVisualStyleBackColor = true;
-            button3.Visible = false;
+            buttonEdit1.Location = new Point(206, 512);
+            buttonEdit1.Name = "buttonEdit1";
+            buttonEdit1.Size = new Size(120, 43);
+            buttonEdit1.TabIndex = 11;
+            buttonEdit1.Text = "Edit Team";
+            buttonEdit1.UseVisualStyleBackColor = true;
+            buttonEdit1.Visible = false;
             // 
             // button5
             // 
@@ -108,9 +108,9 @@ namespace RPGUI
             // 
             // button2
             // 
-            button2.Location = new Point(816, 297);
+            button2.Location = new Point(814, 296);
             button2.Name = "button2";
-            button2.Size = new Size(125, 47);
+            button2.Size = new Size(127, 47);
             button2.TabIndex = 10;
             button2.Text = "Login";
             button2.UseVisualStyleBackColor = true;
@@ -235,15 +235,15 @@ namespace RPGUI
             pictureBox6.TabStop = false;
             pictureBox6.Visible = false;
             // 
-            // button4
+            // buttonEdit2
             // 
-            button4.Location = new Point(658, 513);
-            button4.Name = "button4";
-            button4.Size = new Size(120, 43);
-            button4.TabIndex = 24;
-            button4.Text = "Edit Team";
-            button4.UseVisualStyleBackColor = true;
-            button4.Visible = false;
+            buttonEdit2.Location = new Point(658, 513);
+            buttonEdit2.Name = "buttonEdit2";
+            buttonEdit2.Size = new Size(120, 43);
+            buttonEdit2.TabIndex = 24;
+            buttonEdit2.Text = "Edit Team";
+            buttonEdit2.UseVisualStyleBackColor = true;
+            buttonEdit2.Visible = false;
             // 
             // textBoxUser2
             // 
@@ -291,7 +291,7 @@ namespace RPGUI
             Controls.Add(pictureBox5);
             Controls.Add(textBox3);
             Controls.Add(pictureBox6);
-            Controls.Add(button4);
+            Controls.Add(buttonEdit2);
             Controls.Add(textBoxUser2);
             Controls.Add(textBox5);
             Controls.Add(pictureBox3);
@@ -301,7 +301,7 @@ namespace RPGUI
             Controls.Add(pictureBox1);
             Controls.Add(button5);
             Controls.Add(buttonScoreboard);
-            Controls.Add(button3);
+            Controls.Add(buttonEdit1);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(textBoxUser1);
@@ -320,7 +320,6 @@ namespace RPGUI
 
         private TextBox textBoxUser1;
         private Button button1;
-        private Button button3;
         private Button button5;
         private Button buttonScoreboard;
         private Button button2;
@@ -336,9 +335,10 @@ namespace RPGUI
         private PictureBox pictureBox5;
         private TextBox textBox3;
         private PictureBox pictureBox6;
-        private Button button4;
+        private Button buttonEdit2;
         private TextBox textBoxUser2;
         private PictureBox pictureBox7;
         private PictureBox pictureBox8;
+        private Button buttonEdit1;
     }
 }

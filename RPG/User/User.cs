@@ -19,6 +19,7 @@ namespace RPG
             this.Wins = wins;
             this.Matches = matches;
         }
+
         public string username
         {
             get { return this.Username; }

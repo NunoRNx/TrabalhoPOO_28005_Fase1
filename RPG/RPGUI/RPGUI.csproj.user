@@ -13,9 +13,6 @@
     <Compile Update="battle\SelectChar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="menu\Edit.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="menu\Scoreboard.cs">
       <SubType>Form</SubType>
     </Compile>

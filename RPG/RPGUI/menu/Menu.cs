@@ -28,8 +28,8 @@ namespace RPGUI
             button1.Click += (sender, e) => LogInOut(sender, e, 1);
             button2.Click += (sender, e) => LogInOut(sender, e, 2);
             //edit teams
-            button3.Click += (sender, e) => Edit_Button(sender, e, 1);
-            button4.Click += (sender, e) => Edit_Button(sender, e, 2);
+            buttonEdit1.Click += (sender, e) => Edit_Button(sender, e, 1);
+            buttonEdit2.Click += (sender, e) => Edit_Button(sender, e, 2);
         }
         /// <summary>
         /// Loggin & SignUp / Verify user is already logged in
@@ -45,11 +45,11 @@ namespace RPGUI
             {
                 if (user1 == null || !user1.loggedIn) // Check if user1 is null or not logged in
                 {
-                    
+
                     Login login = new Login();
                     login.ShowDialog();
                     //if login page is closed
-                    if(login.user is null)
+                    if (login.user is null)
                     {
                         this.Show();
                         return;
@@ -57,11 +57,11 @@ namespace RPGUI
                     // Check if user2 is logged in with the same username
                     if (user2 != null && user2.loggedIn && login.user.username == user2.username)
                     {
-                        MessageBox.Show("This user is already logged in as Player 2.");
+                        MessageBox.Show("This user is already logged in.");
                         this.Show();
                         return;
                     }
-                    else if(!login.user.username.IsNullOrEmpty())
+                    else if (!login.user.username.IsNullOrEmpty())
                     {
                         user1 = new User(login.user.username, 0, 0);
                         user1.loggedIn = true; // Ensure loggedIn is set to true when logging in
@@ -70,11 +70,17 @@ namespace RPGUI
                         textBoxUser1.Text = login.user.username;
                         textBoxUser1.Visible = true;
                         //fetch team and display it
-                        if(!TeamLoad(login.user.username, i))
+                        BattleTeams team = new BattleTeams();
+                        if (!TeamLoad(login.user.username, out team))
                         {
                             Team chooseTeam = new Team();
                             chooseTeam.ShowDialog();
                             team1 = chooseTeam.SelectedTeam;
+                            connection.InsertTeam(team1, user1.username);
+                        }
+                        else
+                        {
+                            team1 = team;
                         }
                         logShow(1);
                     }
@@ -92,11 +98,11 @@ namespace RPGUI
                     login.ShowDialog();
                     if (user1 != null && user1.loggedIn && login.user.username == user1.username)
                     {
-                        MessageBox.Show("This user is already logged in as Player 1.");
+                        MessageBox.Show("This user is already logged in.");
                         this.Show();
                         return;
                     }
-                    else if (login.user!=null && !login.user.username.IsNullOrEmpty())
+                    else if (login.user != null && !login.user.username.IsNullOrEmpty())
                     {
                         user2 = new User(login.user.username, 0, 0);
                         user2.loggedIn = true; // Ensure loggedIn is set to true when logging in
@@ -105,11 +111,17 @@ namespace RPGUI
                         textBoxUser2.Text = login.user.username;
                         textBoxUser2.Visible = true;
                         //fetch team and display it
-                        if (!TeamLoad(login.user.username, i))
+                        BattleTeams team = new BattleTeams();
+                        if (!TeamLoad(login.user.username, out team))
                         {
                             Team chooseTeam = new Team();
                             chooseTeam.ShowDialog();
                             team2 = chooseTeam.SelectedTeam;
+                            connection.InsertTeam(team2, user2.username);
+                        }
+                        else
+                        {
+                            team2 = team;
                         }
                         logShow(2);
                     }
@@ -144,7 +156,9 @@ namespace RPGUI
                     textBox2.Visible = true;
                     textBox3.Visible = true;
                     button1.Text = "Logout";
-                break;
+                    //enable edit team button
+                    buttonEdit1.Visible = true;
+                    break;
                 case 2:
                     //write in boxes the characters names
                     textBox4.Text = this.team2.team[0].name;
@@ -162,7 +176,9 @@ namespace RPGUI
                     textBox5.Visible = true;
                     textBox6.Visible = true;
                     button2.Text = "Logout";
-                break;
+                    //enable edit team button
+                    buttonEdit2.Visible = true;
+                    break;
             }
         }
         private void hide(int user)
@@ -181,21 +197,29 @@ namespace RPGUI
                     pictureBox1.Visible = false;
                     pictureBox2.Visible = false;
                     pictureBox3.Visible = false;
-                    button3.Visible = false;
+                    buttonEdit1.Visible = false;
                     button1.Text = "Login";
-                break;
+                    //hide edit team button
+                    buttonEdit1.Visible = false;
+                    break;
                 case 2:
                     // Log out user2
                     user2 = null;
 
                     // Hide UI elements for player 2
+                    textBoxUser2.Visible = false;
                     textBox2.Visible = false;
                     textBox4.Visible = false;
                     textBox5.Visible = false;
                     textBox6.Visible = false;
-                    button4.Visible = false;
+                    pictureBox4.Visible = false;
+                    pictureBox5.Visible = false;
+                    pictureBox6.Visible = false;
+                    buttonEdit2.Visible = false;
                     button2.Text = "Login";
-                break;
+                    //hide edit team button
+                    buttonEdit2.Visible = false;
+                    break;
             }
         }
         /// <summary>
@@ -206,60 +230,52 @@ namespace RPGUI
         /// <returns></returns>
         public PictureBox BoxImage(Class character, PictureBox pic)
         {
-            if(character is Warrior)
+            if (character is Warrior)
             {
                 pic.Image = Properties.Resources.Warrior;
                 return pic;
             }
-            if(character is Paladin)
+            if (character is Paladin)
             {
                 pic.Image = Properties.Resources.paladin;
                 return pic;
             }
-            if(character is Swordsman)
+            if (character is Swordsman)
             {
                 pic.Image = Properties.Resources.sword;
                 return pic;
             }
-            if(character is Assassin)
+            if (character is Assassin)
             {
                 pic.Image = Properties.Resources.assassin;
                 return pic;
             }
-            if(character is Archer)
+            if (character is Archer)
             {
                 pic.Image = Properties.Resources.archer;
                 return pic;
             }
-            if(character is Mage)
+            if (character is Mage)
             {
                 pic.Image = Properties.Resources.sage;
                 return pic;
             }
             return pic;
         }
-        
+
         /// <summary>
         /// Load team from database
         /// </summary>
         /// <param name="username"></param>
         /// <param name="j"></param>
         /// <returns></returns>
-        public bool TeamLoad(string username, int j)
+        public bool TeamLoad(string username, out BattleTeams team)
         {
+            team = new BattleTeams();
             int[] characters;
             if (!connection.GetTeamData(username, out characters))
             {
                 return false;
-            }
-
-            if (j == 1)
-            {
-                team1 = new BattleTeams();
-            }
-            else if (j == 2)
-            {
-                team2 = new BattleTeams();
             }
 
             for (int i = 0; i < 3; i++)
@@ -267,22 +283,22 @@ namespace RPGUI
                 switch (characters[i])
                 {
                     case 1:
-                        team1.add(new Warrior(250, 50, 70, 50));
+                        team.add(new Warrior(250, 50, 70, 50));
                         break;
                     case 2:
-                        team1.add(new Paladin(220, 60, 50, 30));
+                        team.add(new Paladin(220, 60, 50, 30));
                         break;
                     case 3:
-                        team1.add(new Swordsman(210, 40, 80, 40));
+                        team.add(new Swordsman(210, 40, 80, 40));
                         break;
                     case 4:
-                        team1.add(new Assassin(180, 30, 60, 90, 40));
+                        team.add(new Assassin(180, 30, 60, 90, 40));
                         break;
                     case 5:
-                        team1.add(new Archer(190, 35, 50, 100, 30));
+                        team.add(new Archer(190, 35, 50, 100, 30));
                         break;
                     case 6:
-                        team1.add(new Mage(160, 20, 40, 90, 50));
+                        team.add(new Mage(160, 20, 40, 90, 50));
                         break;
                 }
             }
@@ -302,19 +318,23 @@ namespace RPGUI
         }
         private void Edit_Button(object sender, EventArgs e, int i)
         {
-            if (i == 1)
+            Team chooseTeam = new Team();
+            chooseTeam.ShowDialog();
+            if (chooseTeam.status)
             {
-                // Pass player1 data to the Edit form
-                Edit editForm = new Edit(team1);
-                editForm.ShowDialog(); // Or use Show() depending on your need
-                this.team1 = editForm.getTeam;
-            }
-            if (i == 2)
-            {
-                // Pass player1 data to the Edit form
-                Edit editForm = new Edit(team2);
-                editForm.ShowDialog(); // Or use Show() depending on your need
-                this.team2 = editForm.getTeam;
+
+                if (i == 1)
+                {
+                    team1 = chooseTeam.SelectedTeam;
+                    connection.UpdateTeam(team1, user1.username);
+                    logShow(1);
+                }
+                if (i == 2)
+                {
+                    team2 = chooseTeam.SelectedTeam;
+                    connection.UpdateTeam(team2, user2.username);
+                    logShow(2);
+                }
             }
         }
         private void buttonScoreboard_Click(object sender, EventArgs e)

@@ -8,7 +8,7 @@ namespace RPGUI
     {
         private const int MaxTeamSize = 3; // Constant for maximum team size
         private BattleTeams team { get; set; }
-
+        public bool status=false;
         public BattleTeams SelectedTeam
         {
             get { return this.team; }
@@ -66,6 +66,8 @@ namespace RPGUI
             {
                 MessageBox.Show("Team selected successfully!");
                 this.DialogResult = DialogResult.OK;
+                //maybe insert update database here
+                status = true;
                 this.Close();
             }
             else

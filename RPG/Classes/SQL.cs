@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 
+using System.Data;
+
+
 namespace RPG
 {
     /// <summary>
@@ -13,7 +16,7 @@ namespace RPG
     public class SQL
     {
         private static SQL _instance;
-        public string connection {  get; private set; } 
+        private string connection {  get; set; } 
 
         private SQL()
         {
@@ -150,6 +153,91 @@ namespace RPG
                 }
             }
             return true;
+        }
+        /// <summary>
+        /// Load the scoreboard from SQL and return it to the windows forms to be displayed
+        /// </summary>
+        /// <returns></returns>
+        public DataTable GetScoreboard()
+        {
+
+            string query = "SELECT username, wins, matches FROM user_info ORDER BY wins DESC";
+            DataTable dataTable = new DataTable();
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(this.connection))
+                {
+                    connection.Open();
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection))
+                    {
+                        adapter.Fill(dataTable);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception or log it
+                //will be shown in the windows forms
+            }
+
+            return dataTable;
+        }
+        public void InsertTeam(BattleTeams team, string username)
+        {
+            int userId = GetUserId(username);
+            using (SqlConnection connection = new SqlConnection(this.connection))
+            {
+                connection.Open();
+                string query = "INSERT INTO team_presets (user_id, character_id_1, character_id_2, character_id_3) VALUES (@user_id, @character_id_1, @character_id_2, @character_id_3)";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@user_id", userId);
+                    command.Parameters.AddWithValue("@character_id_1", team.team[0].id);
+                    command.Parameters.AddWithValue("@character_id_2", team.team[1].id);
+                    command.Parameters.AddWithValue("@character_id_3", team.team[2].id);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+       
+        public void UpdateTeam(BattleTeams team, string username)
+        {
+            int userId = GetUserId(username);
+            using (SqlConnection connection = new SqlConnection(this.connection))
+            {
+                connection.Open();
+                string query = "UPDATE team_presets SET character_id_1 = @character_id_1, character_id_2 = @character_id_2, character_id_3 = @character_id_3 WHERE user_id = @user_id";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@user_id", userId);
+                    command.Parameters.AddWithValue("@character_id_1", team.team[0].id);
+                    command.Parameters.AddWithValue("@character_id_2", team.team[1].id);
+                    command.Parameters.AddWithValue("@character_id_3", team.team[2].id);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+        /// <summary>
+        /// Retrive user_id from database
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        private int GetUserId(string username)
+        {
+            using (SqlConnection connection = new SqlConnection(this.connection))
+            {
+                connection.Open();
+                string query = "SELECT user_id FROM user_info WHERE username = @username";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@username", username);
+                    return (int)command.ExecuteScalar();
+                }
+            }
         }
         #endregion
     }
