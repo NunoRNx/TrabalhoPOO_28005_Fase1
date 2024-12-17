@@ -37,6 +37,7 @@ namespace RPGUI
             using (SignUp signUpForm = new SignUp())
             {
                 this.Hide();
+                signUpForm.StartPosition = FormStartPosition.CenterScreen;
                 // Show the SignUp form as a dialog
                 signUpForm.ShowDialog();
             }

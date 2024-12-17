@@ -20,7 +20,11 @@ namespace RPG
 
         private SQL()
         {
+            //desktop
             this.connection = "Server=DESKTOP-2J6JLCD\\SQLEXPRESS;Database=RPG;User Id=rpg_admin;Password=1234;Encrypt=True;TrustServerCertificate=True;";
+
+            //laptop
+            //this.connection = "Server=...\\SQLEXPRESS02;Database=RPG;User Id=rpg_admin;Password=1234;Encrypt=True;TrustServerCertificate=True;";
         }
         public static SQL Instance
         {

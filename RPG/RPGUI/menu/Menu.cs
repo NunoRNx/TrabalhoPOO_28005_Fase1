@@ -1,5 +1,4 @@
 ﻿using Microsoft.IdentityModel.Tokens;
-using RPG;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,6 +10,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
 
+using BattleController;
+using RPG;
+
 namespace RPGUI
 {
     public partial class Menu : Form
@@ -20,6 +22,7 @@ namespace RPGUI
         private BattleTeams team1 { get; set; }
         private BattleTeams team2 { get; set; }
         private SQL connection = SQL.Instance;
+        private Controller Battle;
         public Menu()
         {
             InitializeComponent();
@@ -30,7 +33,9 @@ namespace RPGUI
             //edit teams
             buttonEdit1.Click += (sender, e) => Edit_Button(sender, e, 1);
             buttonEdit2.Click += (sender, e) => Edit_Button(sender, e, 2);
+            StartButton.Click += buttonStart_Click;
         }
+        #region login/out
         /// <summary>
         /// Loggin & SignUp / Verify user is already logged in
         /// Get user team pre-set from SQL Database and if there is not team preset force player to choose one and insert it
@@ -47,6 +52,7 @@ namespace RPGUI
                 {
 
                     Login login = new Login();
+                    login.StartPosition = FormStartPosition.CenterScreen;
                     login.ShowDialog();
                     //if login page is closed
                     if (login.user is null)
@@ -74,6 +80,7 @@ namespace RPGUI
                         if (!TeamLoad(login.user.username, out team))
                         {
                             Team chooseTeam = new Team();
+                            chooseTeam.StartPosition = FormStartPosition.CenterScreen;
                             chooseTeam.ShowDialog();
                             team1 = chooseTeam.SelectedTeam;
                             connection.InsertTeam(team1, user1.username);
@@ -95,6 +102,7 @@ namespace RPGUI
                 if (user2 == null || !user2.loggedIn) // Check if user2 is null or not logged in
                 {
                     Login login = new Login();
+                    login.StartPosition = FormStartPosition.CenterScreen;
                     login.ShowDialog();
                     if (user1 != null && user1.loggedIn && login.user.username == user1.username)
                     {
@@ -115,6 +123,7 @@ namespace RPGUI
                         if (!TeamLoad(login.user.username, out team))
                         {
                             Team chooseTeam = new Team();
+                            chooseTeam.StartPosition = FormStartPosition.CenterScreen;
                             chooseTeam.ShowDialog();
                             team2 = chooseTeam.SelectedTeam;
                             connection.InsertTeam(team2, user2.username);
@@ -135,6 +144,10 @@ namespace RPGUI
             // Check if both users are logged in before showing a start game button
             buttonStart();
         }
+        /// <summary>
+        /// After user login, show all boxes and team preset
+        /// </summary>
+        /// <param name="user"></param>
         private void logShow(int user)
         {
             switch (user)
@@ -181,6 +194,10 @@ namespace RPGUI
                     break;
             }
         }
+        /// <summary>
+        /// Hide things after user logout
+        /// </summary>
+        /// <param name="user"></param>
         private void hide(int user)
         {
             switch (user)
@@ -222,6 +239,8 @@ namespace RPGUI
                     break;
             }
         }
+        #endregion
+        #region picture loading
         /// <summary>
         /// Load  characther icons in the menu
         /// </summary>
@@ -262,7 +281,8 @@ namespace RPGUI
             }
             return pic;
         }
-
+        #endregion
+        #region Load team preset
         /// <summary>
         /// Load team from database
         /// </summary>
@@ -304,21 +324,53 @@ namespace RPGUI
             }
             return true;
         }
+        #endregion
+        #region Start
+        /// <summary>
+        /// Start button only shows once both players are logged in, this includes the team selection
+        /// </summary>
         private void buttonStart()
         {
             // Check if both users are logged in
             if (user1 != null && user2 != null)
             {
-                button5.Visible = true; // Show "Start Game" button
+                StartButton.Visible = true; // Show "Start Game" button
+                StartButton.Enabled = true; // Makes the button "usable"
             }
             else
             {
-                button5.Visible = false;
+                StartButton.Visible = false;
+                StartButton.Enabled = false;
             }
         }
+        /// <summary>
+        /// Start Game
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonStart_Click(object sender, EventArgs e)
+        {
+            //hide Menu
+            this.Hide();
+            // Create the BattleController and pass the necessary data
+            this.Battle = new Controller(this.team1, this.team2, user1.username, user2.username);
+            // Show the BattleView
+            this.Battle.StartBattle();
+            //show menu once battle is closed
+            this.Show();
+        }
+        #endregion
+        #region Edit team
+        /// <summary>
+        /// Edit current team + update SQL database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <param name="i"></param>
         private void Edit_Button(object sender, EventArgs e, int i)
         {
             Team chooseTeam = new Team();
+            chooseTeam.StartPosition = FormStartPosition.CenterScreen;
             chooseTeam.ShowDialog();
             if (chooseTeam.status)
             {
@@ -337,10 +389,14 @@ namespace RPGUI
                 }
             }
         }
+        #endregion
+        #region scoreboard
         private void buttonScoreboard_Click(object sender, EventArgs e)
         {
             Scoreboard scoreboard = new Scoreboard();
+            scoreboard.StartPosition = FormStartPosition.CenterScreen;
             scoreboard.ShowDialog();
         }
+        #endregion
     }
 }

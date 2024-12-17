@@ -1,5 +1,4 @@
-using RPG;
-namespace RPGUI
+namespace BattleView
 {
     internal static class Program
     {
@@ -9,11 +8,10 @@ namespace RPGUI
         [STAThread]
         static void Main()
         {
+            // To customize application configuration such as set high DPI settings or default font,
+            // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            SQL db_connection = SQL.Instance;
-            Menu menu = new Menu();
-            menu.StartPosition = FormStartPosition.CenterScreen;
-            Application.Run(menu);
+            Application.Run(new View());
         }
     }
 }
