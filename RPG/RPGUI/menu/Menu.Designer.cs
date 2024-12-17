@@ -21,7 +21,7 @@ namespace RPGUI
             textBoxUser1 = new TextBox();
             button1 = new Button();
             buttonEdit1 = new Button();
-            button5 = new Button();
+            StartButton = new Button();
             buttonScoreboard = new Button();
             button2 = new Button();
             pictureBox1 = new PictureBox();
@@ -86,15 +86,15 @@ namespace RPGUI
             buttonEdit1.UseVisualStyleBackColor = true;
             buttonEdit1.Visible = false;
             // 
-            // button5
+            // StartButton
             // 
-            button5.Location = new Point(429, 364);
-            button5.Name = "button5";
-            button5.Size = new Size(120, 60);
-            button5.TabIndex = 14;
-            button5.Text = "Start";
-            button5.UseVisualStyleBackColor = true;
-            button5.Visible = false;
+            StartButton.Location = new Point(429, 364);
+            StartButton.Name = "StartButton";
+            StartButton.Size = new Size(120, 60);
+            StartButton.TabIndex = 14;
+            StartButton.Text = "Start";
+            StartButton.UseVisualStyleBackColor = true;
+            StartButton.Visible = false;
             // 
             // buttonScoreboard
             // 
@@ -299,7 +299,7 @@ namespace RPGUI
             Controls.Add(pictureBox2);
             Controls.Add(textBox1);
             Controls.Add(pictureBox1);
-            Controls.Add(button5);
+            Controls.Add(StartButton);
             Controls.Add(buttonScoreboard);
             Controls.Add(buttonEdit1);
             Controls.Add(button2);
@@ -320,7 +320,7 @@ namespace RPGUI
 
         private TextBox textBoxUser1;
         private Button button1;
-        private Button button5;
+        private Button StartButton;
         private Button buttonScoreboard;
         private Button button2;
         private PictureBox pictureBox1;

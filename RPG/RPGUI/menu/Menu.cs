@@ -353,7 +353,7 @@ namespace RPGUI
             //hide Menu
             this.Hide();
             // Create the BattleController and pass the necessary data
-            this.Battle = new Controller(this.team1, this.team2, user1.username, user2.username);
+            this.Battle = new Controller(this.team1.team, this.team2.team, user1.username, user2.username);
             // Show the BattleView
             this.Battle.StartBattle();
             //show menu once battle is closed
@@ -377,12 +377,20 @@ namespace RPGUI
 
                 if (i == 1)
                 {
+                    if (team1 != null)
+                    {
+                        team1 = null;
+                    }
                     team1 = chooseTeam.SelectedTeam;
                     connection.UpdateTeam(team1, user1.username);
                     logShow(1);
                 }
                 if (i == 2)
                 {
+                    if (team2 != null)
+                    {
+                        team2 = null;
+                    }
                     team2 = chooseTeam.SelectedTeam;
                     connection.UpdateTeam(team2, user2.username);
                     logShow(2);
