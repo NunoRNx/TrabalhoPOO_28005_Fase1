@@ -92,11 +92,6 @@
             int critDamage = crit(damage);
             int finalDamage = resistence(critDamage);
             enemy.hp -= finalDamage;
-            if (enemy.alive == false)
-            {
-                Console.WriteLine(enemy.name + " as been slain");
-            }
-
         }
         public static void block(Class player)
         {

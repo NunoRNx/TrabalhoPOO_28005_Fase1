@@ -63,6 +63,8 @@
             arrow5 = new PictureBox();
             arrow6 = new PictureBox();
             arrow4 = new PictureBox();
+            textRound = new TextBox();
+            textPlayerTurn = new TextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -410,6 +412,24 @@
             arrow4.TabStop = false;
             arrow4.Visible = false;
             // 
+            // textRound
+            // 
+            textRound.Location = new Point(699, 434);
+            textRound.Name = "textRound";
+            textRound.Size = new Size(71, 27);
+            textRound.TabIndex = 57;
+            textRound.Text = "Round";
+            textRound.TextAlign = HorizontalAlignment.Center;
+            // 
+            // textPlayerTurn
+            // 
+            textPlayerTurn.Location = new Point(680, 467);
+            textPlayerTurn.Name = "textPlayerTurn";
+            textPlayerTurn.Size = new Size(109, 27);
+            textPlayerTurn.TabIndex = 58;
+            textPlayerTurn.Text = "Round";
+            textPlayerTurn.TextAlign = HorizontalAlignment.Center;
+            // 
             // View
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -417,6 +437,8 @@
             BackColor = SystemColors.ControlDarkDark;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1468, 784);
+            Controls.Add(textPlayerTurn);
+            Controls.Add(textRound);
             Controls.Add(arrow4);
             Controls.Add(arrow6);
             Controls.Add(arrow5);
@@ -508,5 +530,7 @@
         private PictureBox arrow5;
         private PictureBox arrow6;
         private PictureBox arrow4;
+        private TextBox textRound;
+        private TextBox textPlayerTurn;
     }
 }

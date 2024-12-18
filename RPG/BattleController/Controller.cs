@@ -9,6 +9,8 @@ namespace BattleController
     {
         private Model model;
         private BattleView.View view;
+        private Class selected {  get; set; }
+        private Class enemy { get; set; }
 
         public Controller(List<Class> player1Team, List<Class> player2Team, string user1, string user2)
         {
@@ -20,46 +22,107 @@ namespace BattleController
             this.view.SpecialButton += HandleSpecial;
             this.view.UltimateButton += HandleUltimate;
             this.view.BlockButton += HandleBlock;
-            this.view.Update += Start;
+            this.view.Update += Update;
         }
 
+        #region Start & Update View
+        /// <summary>
+        /// Start View & Load Names and Pictures
+        /// </summary>
         public void StartBattle()
         {
             this.view.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            Start();
-            this.view.ShowDialog();
-        }
-        #region updateUI
-        /// <summary>
-        /// Start UI load
-        /// </summary>
-        private void Start()
-        {
             this.view.UpdatePic(this.model.Team1, this.model.Team2);
             this.view.UpdateText(this.model.username1, this.model.username2, this.model.Team1, this.model.Team2);
-            this.view.UpdateHP(this.model.Team1, this.model.Team2);
+            this.view.roundCount = 0;
+            this.model.DefenderTeam = this.model.username1;
+            Update();
+            this.view.ShowDialog();
+        }
+        
+        /// <summary>
+        /// Update UI
+        /// </summary>
+        private void Update()
+        {
+            this.view.UpdateHP(this.model.Team1, this.model.Team2, this.model.DefenderTeam);
+            this.view.team1 = this.model.Team1;
+            this.view.team2 = this.model.Team2;
         }
         #endregion
         #region Model Actions
         private void HandleAttack()
         {
-            //int damage=model.PerformAttack();
-            this.view.battleLog.Add("Attack performed!");
+            int damage=model.PerformAttack(this.view.player1, this.view.player2);
+            this.view.battleLog.Add(this.model.dice);
+            this.view.battleLog.Add(this.model.log);
+            //reset selected
+            this.view.player1=0;
+            this.view.player2=0;
+            if (this.model.EndTurn())
+            {
+                Winner();
+            }
+            else
+            {
+                Update();
+            }
         }
         private void HandleSpecial()
         {
             //model.PerformAttack();
             Console.WriteLine("Attack performed!");
+            this.view.player1 = 0; this.view.player2 = 0; //reset selected
+            this.model.EndTurn();
+            if (this.model.EndTurn())
+            {
+                Winner();
+            }
+            else
+            {
+                this.view.roundCount++;
+                Update();
+                
+            }
         }
         private void HandleUltimate()
         {
             //model.PerformAttack();
             Console.WriteLine("Attack performed!");
+            this.view.player1 = 0; this.view.player2 = 0; //reset selected
+            this.model.EndTurn();
+            if (this.model.EndTurn())
+            {
+                Winner();
+            }
+            else
+            {
+                Update();
+                this.view.roundCount++;
+            }
         }
         private void HandleBlock()
         {
-            //model.PerformAttack();
+            //model.();
             Console.WriteLine("Attack performed!");
+            this.view.player1 = 0; this.view.player2 = 0; //reset selected
+            this.model.EndTurn();
+            if (this.model.EndTurn())
+            {
+                Winner();
+            }
+            else
+            {
+                Update();
+                this.view.roundCount++;
+            }
+        }
+        #endregion
+        #region End Game
+        private void Winner()
+        {
+            this.view.EndGame(this.model.Victor);
+            //sql
         }
         #endregion
     }

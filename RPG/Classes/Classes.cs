@@ -37,7 +37,7 @@
         public override void Block()
         {
             this.Rage = RechargeGauge(8); // Recharge rage when blocking
-            this.defense += 5; // Buffs defense temporarily for blocking stance
+            this.defense += 30; // Buffs defense temporarily for blocking stance
         }
 
         public override int GetGauge()
@@ -58,26 +58,27 @@
 
         public override int Attack()
         {
+            this.Holy = RechargeGauge(10); // Recharge 10 points for basic attack
             return (int)(this.strength * 1.1); // Less attack power but more balanced
         }
 
         public override int Special()
         {
             int damage = (int)(this.strength * 1.3 + Holy * 0.3); // Holy power influences special attack
-            Holy -= 10; // Consumes some holy power
+            this.Holy -= 20; // Consumes some holy power
             return damage;
         }
 
         public override int Ultimate()
         {
             int damage = (int)(this.strength * 2 + Holy * 0.5);
-            Holy = 0; // Consumes all holy power
+            this.Holy = 0; // Consumes all holy power
             return damage;
         }
 
         public override void Block()
         {
-            this.defense += 7;
+            this.defense += 30;
         }
 
         public override int GetGauge()
@@ -120,7 +121,7 @@
 
         public override void Block()
         {
-            this.defense += 4;
+            this.defense += 15;
         }
 
         public override int GetGauge()
@@ -163,7 +164,7 @@
 
         public override void Block()
         {
-            this.defense += 3;
+            this.defense += 10;
         }
 
         public override int GetGauge()
@@ -208,7 +209,7 @@
 
         public override void Block()
         {
-            this.defense += 4;
+            this.defense += 5;
         }
 
         public override int GetGauge()
