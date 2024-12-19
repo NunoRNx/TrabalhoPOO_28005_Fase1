@@ -45,7 +45,7 @@ namespace BattleController
         /// </summary>
         private void Update()
         {
-            this.view.UpdateHP(this.model.Team1, this.model.Team2, this.model.DefenderTeam);
+            this.view.UpdateValues(this.model.Team1, this.model.Team2, this.model.DefenderTeam);
             this.view.team1 = this.model.Team1;
             this.view.team2 = this.model.Team2;
         }
@@ -70,43 +70,60 @@ namespace BattleController
         }
         private void HandleSpecial()
         {
-            //model.PerformAttack();
-            Console.WriteLine("Attack performed!");
-            this.view.player1 = 0; this.view.player2 = 0; //reset selected
-            this.model.EndTurn();
-            if (this.model.EndTurn())
+            if (this.model.CanUse(this.view.player1, this.view.player2, 20))
             {
-                Winner();
+                int damage = model.PerformSpecial(this.view.player1, this.view.player2);
+                this.view.battleLog.Add(this.model.dice);
+                this.view.battleLog.Add(this.model.log);
+                //reset selected
+                this.view.player1 = 0;
+                this.view.player2 = 0;
+                if (this.model.EndTurn())
+                {
+                    Winner();
+                }
+                else
+                {
+                    Update();
+                }
             }
             else
             {
-                this.view.roundCount++;
-                Update();
-                
+                throw new Exception("Not enough power to use this ability!");
             }
         }
         private void HandleUltimate()
         {
-            //model.PerformAttack();
-            Console.WriteLine("Attack performed!");
-            this.view.player1 = 0; this.view.player2 = 0; //reset selected
-            this.model.EndTurn();
-            if (this.model.EndTurn())
+            if (this.model.CanUse(this.view.player1, this.view.player2, 50))
             {
-                Winner();
+                int damage = model.PerformUltimate(this.view.player1, this.view.player2);
+                this.view.battleLog.Add(this.model.dice);
+                this.view.battleLog.Add(this.model.log);
+                //reset selected
+                this.view.player1 = 0;
+                this.view.player2 = 0;
+                if (this.model.EndTurn())
+                {
+                    Winner();
+                }
+                else
+                {
+                    Update();
+                }
             }
             else
             {
-                Update();
-                this.view.roundCount++;
+                throw new Exception("To use the Ultimate ability you need a full gauge!");
             }
         }
         private void HandleBlock()
         {
-            //model.();
-            Console.WriteLine("Attack performed!");
-            this.view.player1 = 0; this.view.player2 = 0; //reset selected
-            this.model.EndTurn();
+            this.model.PerformBlock(this.view.player1, this.view.player2);
+            this.view.battleLog.Add(this.model.dice);
+            this.view.battleLog.Add(this.model.log);
+            //reset selected
+            this.view.player1 = 0;
+            this.view.player2 = 0;
             if (this.model.EndTurn())
             {
                 Winner();
@@ -114,7 +131,6 @@ namespace BattleController
             else
             {
                 Update();
-                this.view.roundCount++;
             }
         }
         #endregion

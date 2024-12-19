@@ -99,12 +99,15 @@ namespace BattleView
         #region Event Action Buttons
         private void EnabledActions()
         {
+            if (this.player1 != -1 || this.player2 != -1)
+            {
+                Block.Enabled = true;
+            }
             if(this.player1 != -1 && this.player2 != -1)
             {
                 Attack.Enabled = true;
                 Special.Enabled = true;
                 Ultimate.Enabled = true;
-                Block.Enabled = true;
             }
         }
         private void DisableActions()
@@ -120,15 +123,29 @@ namespace BattleView
         }
         private void SpecialButton_Click(object sender, EventArgs e)
         {
-            SpecialButton?.Invoke();
+            try
+            {
+                SpecialButton?.Invoke();
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message, "No Power", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
         private void UltimateButton_Click(object sender, EventArgs e)
         {
-            UltimateButton?.Invoke();
+            try
+            {
+                UltimateButton?.Invoke();
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message, "No Power", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
         private void BlockButton_Click(object sender, EventArgs e)
         {
-            UltimateButton?.Invoke();
+            BlockButton?.Invoke();
         }
         #endregion
         #region Start Loading
@@ -194,18 +211,28 @@ namespace BattleView
                 text[i].Text = team[i].name;
             }
         }
-        public void UpdateHP(List<Class> team1, List<Class> team2, string playerTurn)
+        public void UpdateValues(List<Class> team1, List<Class> team2, string playerTurn)
         {
             TextBox[] HPTeam1 = { textBoxHP1, textBoxHP2, textBoxHP3 };
             TextBox[] HPTeam2 = { textBoxHP4, textBoxHP5, textBoxHP6 };
+            TextBox[] Gauge1 = { gauge1, gauge2, gauge3 };
+            TextBox[] Gauge2 = { gauge4, gauge5, gauge6 };
             CharacterHP(team1, HPTeam1);
+            UpdateGauge(team1, Gauge1);
             CharacterHP(team2, HPTeam2);
+            UpdateGauge(team2, Gauge2);
             textRound.Text = $"Round: {roundCount}";
             if (roundCount > 1)
             {
                 textPlayerTurn.Text = playerTurn + "'s turn";
             }
-            LogBox.DataSource = battleLog;
+            if (battleLog.Any())
+            {
+                int i = battleLog.Count();
+                LogBox.Items.Add(battleLog[i-2]);
+                LogBox.Items.Add(battleLog[i-1]);
+                LogBox.TopIndex = LogBox.Items.Count - 1;
+            }
             ClearSelection(1);
             ClearSelection(2);
             this.roundCount++;
@@ -222,6 +249,20 @@ namespace BattleView
                 {
                     text[i].BackColor = Color.Red;
                     text[i].Text = "Dead";
+                }
+            }
+        }
+        private void UpdateGauge(List<Class> team, TextBox[] text)
+        {
+            for (int i = 0; i < team.Count; i++)
+            {
+                if (team[i].alive)
+                {
+                    text[i].Text = "Ult: " + team[i].GetGauge() + "/100";
+                }
+                else
+                {
+                    text[i].Visible = false;
                 }
             }
         }

@@ -13,7 +13,7 @@
         {
             this.Rage = rage;
         }
-
+        #region Actions
         public override int Attack()
         {
             this.Rage = RechargeGauge(10); // Recharge 10 points for basic attack
@@ -36,7 +36,7 @@
 
         public override void Block()
         {
-            this.Rage = RechargeGauge(8); // Recharge rage when blocking
+            this.Rage = RechargeGauge(15); // Recharge rage when blocking
             this.defense += 30; // Buffs defense temporarily for blocking stance
         }
 
@@ -44,6 +44,7 @@
         {
             return this.Rage; // Return the current rage gauge value
         }
+        #endregion
     }
 
     public class Paladin : Class
@@ -55,7 +56,7 @@
         {
             this.Holy = holy;
         }
-
+        #region Actions
         public override int Attack()
         {
             this.Holy = RechargeGauge(10); // Recharge 10 points for basic attack
@@ -78,6 +79,7 @@
 
         public override void Block()
         {
+            this.Holy = RechargeGauge(15);
             this.defense += 30;
         }
 
@@ -85,6 +87,7 @@
         {
             return this.Holy; // Return the current holy power value
         }
+        #endregion
     }
     #endregion
 
@@ -98,7 +101,7 @@
         {
             this.Focus = focus;
         }
-
+        #region Actions
         public override int Attack()
         {
             this.Focus = RechargeGauge(10); // Recharge 10 points for basic attack
@@ -121,6 +124,7 @@
 
         public override void Block()
         {
+            this.Focus = RechargeGauge(15);
             this.defense += 15;
         }
 
@@ -128,6 +132,7 @@
         {
             return this.Focus; // Return the current focus value
         }
+        #endregion
     }
 
     public class Assassin : Class
@@ -141,7 +146,7 @@
             this.Stealth = stealth;
             this.Dexterity = dexterity; // Only initialize dexterity here
         }
-
+        #region Actions
         public override int Attack()
         {
             this.Stealth = RechargeGauge(10); // Recharge 10 points for basic attack
@@ -164,6 +169,7 @@
 
         public override void Block()
         {
+            this.Stealth = RechargeGauge(15);
             this.defense += 10;
         }
 
@@ -171,6 +177,7 @@
         {
             return this.Stealth; // Return the current stealth power value
         }
+        #endregion
     }
     #endregion
 
@@ -186,7 +193,7 @@
             this.Arrows = arrows;
             this.Dexterity = dexterity; // Only initialize dexterity here
         }
-
+        #region Actions
         public override int Attack()
         {
             this.Arrows = RechargeGauge(10); // Recharge 10 points for basic attack
@@ -209,6 +216,7 @@
 
         public override void Block()
         {
+            this.Arrows = RechargeGauge(15);
             this.defense += 5;
         }
 
@@ -216,6 +224,7 @@
         {
             return this.Arrows; // Return the current arrows value
         }
+        #endregion
     }
 
     public class Mage : Class
@@ -229,7 +238,7 @@
             this.Mana = mana;
             this.Magic = magic; // Only initialize magic here
         }
-
+        #region Actions
         public override int Attack()
         {
             this.Mana = RechargeGauge(10); // Recharge 10 points for basic attack
@@ -252,6 +261,7 @@
 
         public override void Block()
         {
+            this.Mana = RechargeGauge(15);
             this.defense += 5;
         }
 
@@ -259,6 +269,7 @@
         {
             return this.Mana; // Return the current mana value
         }
+        #endregion
     }
     #endregion
 }

@@ -73,15 +73,23 @@ namespace BattleModel
             {
                 this.attacker = currentTeam[team1Index];
                 this.attackerTeam = user1;
-                this.defender = enemyTeam[team2Index];
-                this.defenderTeam = user2;
+                //block action can be perfomed with only the attacker selected
+                if (team2Index != -1)
+                {
+                    this.defender = enemyTeam[team2Index];
+                    this.defenderTeam = user2;
+                }
             }
             else
             {
                 this.attacker = currentTeam[team2Index];
                 this.attackerTeam = user2;
-                this.defender = enemyTeam[team1Index];
-                this.defenderTeam = user1;
+                //block action can be perfomed with only the attacker selected
+                if (team1Index != -1)
+                {
+                    this.defender = enemyTeam[team1Index];
+                    this.defenderTeam = user1;
+                }
             }
             
         }
@@ -103,6 +111,17 @@ namespace BattleModel
             this.defender = null;
         }
         #endregion
+        #region Check Action
+        public bool CanUse(int team1Index, int team2Index, int cost)
+        {
+            GetSelected(team1Index, team2Index);
+            if (this.attacker.GetGauge() >= cost)
+            {
+                return true;
+            }
+            return false;
+        }
+        #endregion
         #region Actions
 
         /// <summary>
@@ -118,10 +137,50 @@ namespace BattleModel
             this.defender.hp -= damage; //inflict damage
 
             //log making
-            this.dice = this.attackerTeam + " rolled a: " + roll;
+            this.dice = this.attackerTeam + " rolled: " + roll;
             this.log = this.attackerTeam + "'s " + this.attacker.name + " performed Basic Attack on " + this.defenderTeam + "'s " + this.defender.name + " and did " + damage + " damage!";
 
             return damage;
+        }
+        public int PerformSpecial(int attackerIndex, int defenderIndex)
+        {
+            GetSelected(attackerIndex, defenderIndex);
+
+            int damage = this.attacker.Special(); // Call the Attack method from Class
+            double defense = this.defender.defense / 100.0; //take into account the character defense stat
+            damage = (int)(inflict(damage, out int roll) * defense); //calculate damage
+            this.defender.hp -= damage; //inflict damage
+
+            //log making
+            this.dice = this.attackerTeam + " rolled: " + roll;
+            this.log = this.attackerTeam + "'s " + this.attacker.name + " performed his Special Attack on " + this.defenderTeam + "'s " + this.defender.name + " and did " + damage + " damage!";
+
+            return damage;
+        }
+        public int PerformUltimate(int attackerIndex, int defenderIndex)
+        {
+            GetSelected(attackerIndex, defenderIndex);
+
+            int damage = this.attacker.Ultimate(); // Call the Attack method from Class
+            double defense = this.defender.defense / 100.0; //take into account the character defense stat
+            damage = (int)(inflict(damage, out int roll) * defense); //calculate damage
+            this.defender.hp -= damage; //inflict damage
+
+            //log making
+            this.dice = this.attackerTeam + " rolled: " + roll;
+            this.log = this.attackerTeam + "'s " + this.attacker.name + " performed his Ultimate Attack on " + this.defenderTeam + "'s " + this.defender.name + " and did " + damage + " damage!";
+
+            return damage;
+        }
+        public void PerformBlock(int attackerIndex, int defenderIndex)
+        {
+            GetSelected(attackerIndex, defenderIndex);
+
+            this.attacker.Block(); // Call the Attack method from Class
+
+            //log making
+            this.dice = this.attackerTeam + " rolled: no roll for blocks";
+            this.log = this.attackerTeam + "'s " + this.attacker.name + " performed Block and increased his defense from " + this.attacker.originalDefense + " to " + this.attacker.defense + "!";
         }
         #endregion
         #region base methods
@@ -137,6 +196,7 @@ namespace BattleModel
             int roll = rand.Next(min, max);
             return roll;
         }
+        #region old calc
         public static int crit(int damage, int roll)
         {
             if (roll > 15)
@@ -149,23 +209,31 @@ namespace BattleModel
         {
             if (roll < 5)
             {
-                return damage / 4;
+                return damage / 2;
             }
-            return damage/2;
+            return damage - damage/4;
+        }
+        #endregion
+        public static int CritResistence(int damage, int roll)
+        {
+            double mult = roll / 10.0;
+            return (int)(damage * mult);
         }
 
         public static int inflict(int damage, out int roll)
         {
-            roll = diceRoll(1,21);
+            roll = diceRoll(1, 21);
+            //old system
+            /*
             if (roll > 10)
             {
                 damage = crit(damage, roll);
             }
-            else
+            else if(roll < 10)
             {
                 damage = resistence(damage, roll);
-            }
-            return damage;
+            }*/
+            return CritResistence(damage, roll);
         }
         #endregion
         #region End Game
