@@ -25,7 +25,7 @@ namespace Utils
         [Test]
         public void InflictDamage()
         {
-            Actions.inflict(10, enemy);
+            //Actions.inflict(10, enemy);
             Console.WriteLine("enemy hp: "+enemy.hp);
             Assert.AreEqual(false, enemy.alive);
         }

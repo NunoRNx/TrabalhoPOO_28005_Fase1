@@ -179,10 +179,10 @@ namespace RPG
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception error)
             {
                 // Handle the exception or log it
-                //will be shown in the windows forms
+                throw error;
             }
 
             return dataTable;
