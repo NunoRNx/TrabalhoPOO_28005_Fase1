@@ -137,8 +137,24 @@ namespace BattleController
         #region End Game
         private void Winner()
         {
-            this.view.EndGame(this.model.Victor);
             //sql
+            IncreaseMatches(this.model.username1, this.model.username2);
+            IncreaseWin(this.model.Victor);
+            //end game pop up
+            this.view.EndGame(this.model.Victor);
+        }
+        private void IncreaseWin(string winner)
+        {
+            SQL db = SQL.Instance;
+            //Increase Wins counter for the winner
+            db.IncreaseWin(winner);
+        }
+        private void IncreaseMatches(string username1, string username2)
+        {
+            SQL db = SQL.Instance;
+            //Increase Match counter for both players
+            db.IncreaseMatches(username1);
+            db.IncreaseMatches(username2);
         }
         #endregion
     }

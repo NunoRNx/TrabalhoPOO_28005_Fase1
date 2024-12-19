@@ -258,7 +258,7 @@ namespace BattleView
             {
                 if (team[i].alive)
                 {
-                    text[i].Text = "Ult: " + team[i].GetGauge() + "/100";
+                    text[i].Text = "Ult: " + team[i].GetGauge() + "/50";
                 }
                 else
                 {
@@ -270,7 +270,7 @@ namespace BattleView
         #region End Game
         public void EndGame(string winner)
         {
-            MessageBox.Show(winner + " won!!");
+            MessageBox.Show(winner + " won!!", "Game Ended", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             this.Close();
         }
         #endregion

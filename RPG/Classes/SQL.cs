@@ -38,7 +38,8 @@ namespace RPG
             }
         }
 
-        #region methods
+        
+        #region login
         /// <summary>
         /// Verify if user is in the database
         /// </summary>
@@ -80,7 +81,26 @@ namespace RPG
                 }
             }
         }
-        
+        #endregion
+        #region User/Scoreboard info
+        /// <summary>
+        /// Retrive user_id from database
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        private int GetUserId(string username)
+        {
+            using (SqlConnection connection = new SqlConnection(this.connection))
+            {
+                connection.Open();
+                string query = "SELECT user_id FROM user_info WHERE username = @username";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@username", username);
+                    return (int)command.ExecuteScalar();
+                }
+            }
+        }
         /// <summary>
         /// Method that retrieves Game related information about the user, amout of wins and amount of matchs played
         /// </summary>
@@ -121,7 +141,37 @@ namespace RPG
             }
             return scoreboard;
         }
+        /// <summary>
+        /// Load the scoreboard from SQL and return it to the windows forms to be displayed
+        /// </summary>
+        /// <returns></returns>
+        public DataTable GetScoreboard()
+        {
 
+            string query = "SELECT username, wins, matches FROM user_info ORDER BY wins DESC";
+            DataTable dataTable = new DataTable();
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(this.connection))
+                {
+                    connection.Open();
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection))
+                    {
+                        adapter.Fill(dataTable);
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                // Handle the exception or log it
+                throw error;
+            }
+
+            return dataTable;
+        }
+        #endregion
+        #region Load/Insert Team preset
         public bool GetTeamData(string username, out int[] characters)
         {
             characters = new int[3];
@@ -158,35 +208,12 @@ namespace RPG
             }
             return true;
         }
+        
         /// <summary>
-        /// Load the scoreboard from SQL and return it to the windows forms to be displayed
+        /// For a new user without a team, insert into database the new team
         /// </summary>
-        /// <returns></returns>
-        public DataTable GetScoreboard()
-        {
-
-            string query = "SELECT username, wins, matches FROM user_info ORDER BY wins DESC";
-            DataTable dataTable = new DataTable();
-
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(this.connection))
-                {
-                    connection.Open();
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection))
-                    {
-                        adapter.Fill(dataTable);
-                    }
-                }
-            }
-            catch (Exception error)
-            {
-                // Handle the exception or log it
-                throw error;
-            }
-
-            return dataTable;
-        }
+        /// <param name="team"></param>
+        /// <param name="username"></param>
         public void InsertTeam(BattleTeams team, string username)
         {
             int userId = GetUserId(username);
@@ -206,7 +233,11 @@ namespace RPG
                 }
             }
         }
-       
+        /// <summary>
+        /// Update team in SQL database
+        /// </summary>
+        /// <param name="team"></param>
+        /// <param name="username"></param>
         public void UpdateTeam(BattleTeams team, string username)
         {
             int userId = GetUserId(username);
@@ -225,21 +256,63 @@ namespace RPG
                 }
             }
         }
+        #endregion
+        #region Update User info
         /// <summary>
-        /// Retrive user_id from database
+        /// Increase the won matches counter of a user by 1
         /// </summary>
-        /// <param name="username"></param>
-        /// <returns></returns>
-        private int GetUserId(string username)
+        /// <param name="username"> Username of player that won a match</param>
+        public void IncreaseWin(string username)
         {
             using (SqlConnection connection = new SqlConnection(this.connection))
             {
                 connection.Open();
-                string query = "SELECT user_id FROM user_info WHERE username = @username";
+                int wins;
+
+                // Fetch the current wins count
+                string query = "SELECT wins FROM user_info WHERE username = @username";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@username", username);
-                    return (int)command.ExecuteScalar();
+                    wins = (int)command.ExecuteScalar();
+                }
+
+                // Update the wins count
+                query = "UPDATE user_info SET wins = @wins WHERE username = @username";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@username", username);
+                    command.Parameters.AddWithValue("@wins", wins + 1);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+        /// <summary>
+        /// Increase the match counter of a user by 1
+        /// </summary>
+        /// <param name="username"> Username of player that finished a match</param>
+        public void IncreaseMatches(string username)
+        {
+            using (SqlConnection connection = new SqlConnection(this.connection))
+            {
+                connection.Open();
+                int matches;
+
+                // Fetch the current wins count
+                string query = "SELECT wins FROM user_info WHERE username = @username";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@username", username);
+                    matches = (int)command.ExecuteScalar();
+                }
+
+                // Update the wins count
+                query = "UPDATE user_info SET matches = @matches WHERE username = @username";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@username", username);
+                    command.Parameters.AddWithValue("@matches", matches + 1);
+                    command.ExecuteNonQuery();
                 }
             }
         }

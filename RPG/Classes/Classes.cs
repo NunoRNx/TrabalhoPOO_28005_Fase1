@@ -29,7 +29,7 @@
 
         public override int Ultimate()
         {
-            int damage = (int)(this.strength * 2.5);
+            int damage = (int)(this.strength * 3.5);
             this.Rage = 0; // Consumes all rage
             return damage;
         }
@@ -72,7 +72,7 @@
 
         public override int Ultimate()
         {
-            int damage = (int)(this.strength * 2 + Holy * 0.5);
+            int damage = (int)(this.strength * 3 + Holy * 0.5);
             this.Holy = 0; // Consumes all holy power
             return damage;
         }
@@ -117,7 +117,7 @@
 
         public override int Ultimate()
         {
-            int damage = (int)(this.strength * 3.0);
+            int damage = (int)(this.strength * 2.5);
             this.Focus = 0; // Consumes all focus points
             return damage;
         }
@@ -162,7 +162,7 @@
 
         public override int Ultimate()
         {
-            int damage = (int)(this.strength * 2.5 + this.Dexterity * 0.8); // Dexterity used in ultimate
+            int damage = (int)(this.strength * 2.0 + this.Dexterity * 0.8); // Dexterity used in ultimate
             this.Stealth = 0; // Consumes all stealth power
             return damage;
         }
@@ -203,7 +203,7 @@
         public override int Special()
         {
             int damage = (int)(this.Dexterity * 2.0);
-            this.Arrows -= 2; // Consumes some arrows for special
+            this.Arrows -= 20; // Consumes some arrows for special
             return damage;
         }
 
