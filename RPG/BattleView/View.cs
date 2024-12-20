@@ -4,8 +4,8 @@ namespace BattleView
 {
     public partial class View : Form
     {
-        public int player1=-1;
-        public int player2=-1;
+        public int player1 = -1;
+        public int player2 = -1;
         public List<string> battleLog = new List<string>();
         public int roundCount;
         public event Action Update;
@@ -13,6 +13,7 @@ namespace BattleView
         public event Action SpecialButton;
         public event Action UltimateButton;
         public event Action BlockButton;
+        public event Action CloseGame;
 
         public List<Class> team1;
         public List<Class> team2;
@@ -25,6 +26,7 @@ namespace BattleView
             Special.Click += SpecialButton_Click;
             Ultimate.Click += UltimateButton_Click;
             Block.Click += BlockButton_Click;
+            CloseButton.Click += CloseButton_Click;
             //charcter selection
             pictureBox1.Click += (s, e) => Select(s, e, pictureBox1, 1);
             pictureBox2.Click += (s, e) => Select(s, e, pictureBox2, 1);
@@ -38,19 +40,19 @@ namespace BattleView
         {
             //clear current selection
             ClearSelection(team);
-            
-            PictureBox[] teamPic=null;
-            PictureBox[] selected=null;
-            
+
+            PictureBox[] teamPic = null;
+            PictureBox[] selected = null;
+
             if (team == 1)
             {
                 teamPic = new PictureBox[] { pictureBox1, pictureBox2, pictureBox3 };
-                selected = new PictureBox[]{ arrow1, arrow2, arrow3 };
+                selected = new PictureBox[] { arrow1, arrow2, arrow3 };
             }
             else if (team == 2)
             {
-                teamPic = new PictureBox[]{ pictureBox4, pictureBox5, pictureBox6 };
-                selected = new PictureBox[]{ arrow4, arrow5, arrow6 };
+                teamPic = new PictureBox[] { pictureBox4, pictureBox5, pictureBox6 };
+                selected = new PictureBox[] { arrow4, arrow5, arrow6 };
             }
             for (int i = 0; i < 3; i++)
             {
@@ -78,22 +80,22 @@ namespace BattleView
         }
         public void ClearSelection(int team)
         {
-           PictureBox[] pics = null;
-           if (team == 1)
-           {
-               pics = new PictureBox[] { arrow1, arrow2, arrow3 };
-               this.player1 = -1;
-           }
-           else if (team == 2)
-           {
-               pics = new PictureBox[] { arrow4, arrow5, arrow6 };
-               this.player2 = -1;
-           }
-           foreach(PictureBox p in pics)
-           {
-               p.Visible = false;
-           }
-           DisableActions();
+            PictureBox[] pics = null;
+            if (team == 1)
+            {
+                pics = new PictureBox[] { arrow1, arrow2, arrow3 };
+                this.player1 = -1;
+            }
+            else if (team == 2)
+            {
+                pics = new PictureBox[] { arrow4, arrow5, arrow6 };
+                this.player2 = -1;
+            }
+            foreach (PictureBox p in pics)
+            {
+                p.Visible = false;
+            }
+            DisableActions();
         }
         #endregion
         #region Event Action Buttons
@@ -102,20 +104,28 @@ namespace BattleView
             if (this.player1 != -1 || this.player2 != -1)
             {
                 Block.Enabled = true;
+                Block.Cursor = Cursors.Hand;
             }
-            if(this.player1 != -1 && this.player2 != -1)
+            if (this.player1 != -1 && this.player2 != -1)
             {
                 Attack.Enabled = true;
+                Attack.Cursor = Cursors.Hand;
                 Special.Enabled = true;
+                Special.Cursor = Cursors.Hand;
                 Ultimate.Enabled = true;
+                Ultimate.Cursor = Cursors.Hand;
             }
         }
         private void DisableActions()
         {
             Attack.Enabled = false;
+            Attack.Cursor = Cursors.No;
             Special.Enabled = false;
+            Special.Cursor = Cursors.No;
             Ultimate.Enabled = false;
+            Ultimate.Cursor = Cursors.No;
             Block.Enabled = false;
+            Block.Cursor = Cursors.No;
         }
         private void AttackButton_Click(object sender, EventArgs e)
         {
@@ -146,6 +156,10 @@ namespace BattleView
         private void BlockButton_Click(object sender, EventArgs e)
         {
             BlockButton?.Invoke();
+        }
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            CloseGame?.Invoke();
         }
         #endregion
         #region Start Loading
@@ -229,8 +243,8 @@ namespace BattleView
             if (battleLog.Any())
             {
                 int i = battleLog.Count();
-                LogBox.Items.Add(battleLog[i-2]);
-                LogBox.Items.Add(battleLog[i-1]);
+                LogBox.Items.Add(battleLog[i - 2]);
+                LogBox.Items.Add(battleLog[i - 1]);
                 LogBox.TopIndex = LogBox.Items.Count - 1;
             }
             ClearSelection(1);

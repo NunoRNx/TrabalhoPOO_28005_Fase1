@@ -23,6 +23,7 @@ namespace BattleController
             this.view.UltimateButton += HandleUltimate;
             this.view.BlockButton += HandleBlock;
             this.view.Update += Update;
+            this.view.CloseGame += Close;
         }
 
         #region Start & Update View
@@ -135,6 +136,13 @@ namespace BattleController
         }
         #endregion
         #region End Game
+        private void Close()
+        {
+            this.view.Close();
+            this.view = null;
+            this.model = null;
+            GC.Collect();
+        }
         private void Winner()
         {
             //sql
@@ -142,6 +150,7 @@ namespace BattleController
             IncreaseWin(this.model.Victor);
             //end game pop up
             this.view.EndGame(this.model.Victor);
+            Close();
         }
         private void IncreaseWin(string winner)
         {

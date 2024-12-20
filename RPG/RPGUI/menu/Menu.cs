@@ -344,7 +344,7 @@ namespace RPGUI
             }
         }
         /// <summary>
-        /// Start Game
+        /// Start Game and Garbage Collection at the end
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -358,6 +358,8 @@ namespace RPGUI
             this.Battle.StartBattle();
             //show menu once battle is closed
             this.Show();
+            this.Battle = null;
+            GC.Collect();
         }
         #endregion
         #region Edit team

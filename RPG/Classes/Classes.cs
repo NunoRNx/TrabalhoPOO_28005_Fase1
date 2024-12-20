@@ -156,7 +156,7 @@
         public override int Special()
         {
             int damage = (int)(this.strength * 1.2 + this.Dexterity * 0.5); // Dexterity influences damage
-            this.Stealth -= 15; // Consumes stealth power
+            this.Stealth -= 20; // Consumes stealth power
             return damage;
         }
 
