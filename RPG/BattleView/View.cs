@@ -8,7 +8,7 @@ namespace BattleView
         public int player2 = -1;
         public List<string> battleLog = new List<string>();
         public int roundCount;
-        public event Action Update;
+        public event Action UpdateUI;
         public event Action AttackButton;
         public event Action SpecialButton;
         public event Action UltimateButton;
@@ -165,7 +165,7 @@ namespace BattleView
         #region Start Loading
         private void Start(object sender, EventArgs e)
         {
-            Update?.Invoke();
+            UpdateUI?.Invoke();
         }
         #endregion
         #region Update
@@ -212,13 +212,13 @@ namespace BattleView
         {
             textBoxUser1.Text = username1;
             textBoxUser2.Text = username2;
-            TextBox[] NamesTeam1 = { textBox1, textBox2, textBox3 };
-            TextBox[] NamesTeam2 = { textBox4, textBox5, textBox6 };
+            Label[] NamesTeam1 = { textBox1, textBox2, textBox3 };
+            Label[] NamesTeam2 = { textBox4, textBox5, textBox6 };
             CharacterName(team1, NamesTeam1);
             CharacterName(team2, NamesTeam2);
             textPlayerTurn.Text = username1 + "'s turn";
         }
-        private void CharacterName(List<Class> team, TextBox[] text)
+        private void CharacterName(List<Class> team, Label[] text)
         {
             for (int i = 0; i < team.Count; i++)
             {
@@ -227,10 +227,10 @@ namespace BattleView
         }
         public void UpdateValues(List<Class> team1, List<Class> team2, string playerTurn)
         {
-            TextBox[] HPTeam1 = { textBoxHP1, textBoxHP2, textBoxHP3 };
-            TextBox[] HPTeam2 = { textBoxHP4, textBoxHP5, textBoxHP6 };
-            TextBox[] Gauge1 = { gauge1, gauge2, gauge3 };
-            TextBox[] Gauge2 = { gauge4, gauge5, gauge6 };
+            Label[] HPTeam1 = { textBoxHP1, textBoxHP2, textBoxHP3 };
+            Label[] HPTeam2 = { textBoxHP4, textBoxHP5, textBoxHP6 };
+            Label[] Gauge1 = { gauge1, gauge2, gauge3 };
+            Label[] Gauge2 = { gauge4, gauge5, gauge6 };
             CharacterHP(team1, HPTeam1);
             UpdateGauge(team1, Gauge1);
             CharacterHP(team2, HPTeam2);
@@ -238,7 +238,7 @@ namespace BattleView
             textRound.Text = $"Round: {roundCount}";
             if (roundCount > 1)
             {
-                textPlayerTurn.Text = playerTurn + "'s turn";
+                textPlayerTurn.Text =  $"{playerTurn}'s turn";
             }
             if (battleLog.Any())
             {
@@ -251,7 +251,7 @@ namespace BattleView
             ClearSelection(2);
             this.roundCount++;
         }
-        private void CharacterHP(List<Class> team, TextBox[] text)
+        private void CharacterHP(List<Class> team, Label[] text)
         {
             for (int i = 0; i < team.Count; i++)
             {
@@ -266,7 +266,7 @@ namespace BattleView
                 }
             }
         }
-        private void UpdateGauge(List<Class> team, TextBox[] text)
+        private void UpdateGauge(List<Class> team, Label[] text)
         {
             for (int i = 0; i < team.Count; i++)
             {

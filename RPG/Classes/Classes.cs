@@ -210,7 +210,7 @@
         public override int Ultimate()
         {
             int damage = (int)(this.Dexterity * 2.5);
-            this.Arrows -= 5; // Drains significant arrows
+            this.Arrows = 0; // Consumes all arrows for Ultimate
             return damage;
         }
 

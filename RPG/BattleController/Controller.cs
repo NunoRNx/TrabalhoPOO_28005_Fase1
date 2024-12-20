@@ -22,7 +22,7 @@ namespace BattleController
             this.view.SpecialButton += HandleSpecial;
             this.view.UltimateButton += HandleUltimate;
             this.view.BlockButton += HandleBlock;
-            this.view.Update += Update;
+            this.view.UpdateUI += Update;
             this.view.CloseGame += Close;
         }
 
@@ -62,6 +62,7 @@ namespace BattleController
             this.view.player2=0;
             if (this.model.EndTurn())
             {
+                Update();
                 Winner();
             }
             else
