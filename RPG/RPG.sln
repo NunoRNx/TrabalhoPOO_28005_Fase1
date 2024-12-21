@@ -11,11 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RPGUI", "RPGUI\RPGUI.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "User", "User\User.csproj", "{2C7DDAB8-BD6C-49EB-B426-2A0EC2AE9A57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleController", "BattleController\BattleController.csproj", "{0C6345D3-5205-43D5-9C5D-34C9C25FCD8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BattleController", "BattleController\BattleController.csproj", "{0C6345D3-5205-43D5-9C5D-34C9C25FCD8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleModel", "BattleModel\BattleModel.csproj", "{69E30B9C-46E5-426D-9342-E0F93E733C33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BattleModel", "BattleModel\BattleModel.csproj", "{69E30B9C-46E5-426D-9342-E0F93E733C33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleView", "BattleView\BattleView.csproj", "{F3C5281B-9948-485A-9A19-5D9E505437AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BattleView", "BattleView\BattleView.csproj", "{F3C5281B-9948-485A-9A19-5D9E505437AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
