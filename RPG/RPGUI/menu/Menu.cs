@@ -52,7 +52,6 @@ namespace RPGUI
                 {
 
                     Login login = new Login();
-                    login.StartPosition = FormStartPosition.CenterScreen;
                     login.ShowDialog();
                     //if login page is closed
                     if (login.user is null)
@@ -80,7 +79,6 @@ namespace RPGUI
                         if (!TeamLoad(login.user.username, out team))
                         {
                             Team chooseTeam = new Team();
-                            chooseTeam.StartPosition = FormStartPosition.CenterScreen;
                             chooseTeam.ShowDialog();
                             team1 = chooseTeam.SelectedTeam;
                             connection.InsertTeam(team1, user1.username);
@@ -102,7 +100,6 @@ namespace RPGUI
                 if (user2 == null || !user2.loggedIn) // Check if user2 is null or not logged in
                 {
                     Login login = new Login();
-                    login.StartPosition = FormStartPosition.CenterScreen;
                     login.ShowDialog();
                     if (user1 != null && user1.loggedIn && login.user.username == user1.username)
                     {
@@ -123,7 +120,6 @@ namespace RPGUI
                         if (!TeamLoad(login.user.username, out team))
                         {
                             Team chooseTeam = new Team();
-                            chooseTeam.StartPosition = FormStartPosition.CenterScreen;
                             chooseTeam.ShowDialog();
                             team2 = chooseTeam.SelectedTeam;
                             connection.InsertTeam(team2, user2.username);
@@ -372,7 +368,6 @@ namespace RPGUI
         private void Edit_Button(object sender, EventArgs e, int i)
         {
             Team chooseTeam = new Team();
-            chooseTeam.StartPosition = FormStartPosition.CenterScreen;
             chooseTeam.ShowDialog();
             if (chooseTeam.status)
             {
@@ -404,7 +399,6 @@ namespace RPGUI
         private void buttonScoreboard_Click(object sender, EventArgs e)
         {
             Scoreboard scoreboard = new Scoreboard();
-            scoreboard.StartPosition = FormStartPosition.CenterScreen;
             scoreboard.ShowDialog();
         }
         #endregion

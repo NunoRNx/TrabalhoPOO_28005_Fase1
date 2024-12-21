@@ -11,9 +11,7 @@ namespace RPGUI
         {
             ApplicationConfiguration.Initialize();
             SQL db_connection = SQL.Instance;
-            Menu menu = new Menu();
-            menu.StartPosition = FormStartPosition.CenterScreen;
-            Application.Run(menu);
+            Application.Run(new Menu());
         }
     }
 }

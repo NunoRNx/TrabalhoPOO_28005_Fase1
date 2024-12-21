@@ -394,7 +394,7 @@ Recharge:15
     <value>False</value>
   </data>
   <data name="pictureBox7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>722, 7</value>
+    <value>722, 25</value>
   </data>
   <data name="pictureBox7.Size" type="System.Drawing.Size, System.Drawing">
     <value>209, 48</value>
@@ -421,7 +421,7 @@ Recharge:15
     <value>False</value>
   </data>
   <data name="pictureBox8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>750, 35</value>
+    <value>750, 53</value>
   </data>
   <data name="pictureBox8.Size" type="System.Drawing.Size, System.Drawing">
     <value>150, 150</value>
@@ -3432,6 +3432,9 @@ Recharge:15
   <data name="&gt;&gt;textBox2.ZOrder" xml:space="preserve">
     <value>15</value>
   </data>
+  <data name="textBoxUser1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
   <data name="textBoxUser1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -3442,7 +3445,7 @@ Recharge:15
     <value>NoControl</value>
   </data>
   <data name="textBoxUser1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>477, 96</value>
+    <value>496, 96</value>
   </data>
   <data name="textBoxUser1.Size" type="System.Drawing.Size, System.Drawing">
     <value>73, 23</value>
@@ -3478,7 +3481,7 @@ Recharge:15
     <value>NoControl</value>
   </data>
   <data name="textBoxUser2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1027, 96</value>
+    <value>1082, 96</value>
   </data>
   <data name="textBoxUser2.Size" type="System.Drawing.Size, System.Drawing">
     <value>73, 23</value>
@@ -3883,7 +3886,7 @@ Recharge:15
     <value>8, 20</value>
   </data>
   <data name="$this.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>Zoom</value>
+    <value>Stretch</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>1652, 933</value>

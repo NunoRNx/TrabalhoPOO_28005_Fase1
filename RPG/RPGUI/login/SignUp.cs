@@ -85,52 +85,15 @@ namespace RPGUI
                 {
                     throw new Exception("Make sure the passwords match");
                 }
-
-                // Define your connection string (update with your server details)
-                string connectionString = "Server=DESKTOP-2J6JLCD\\SQLEXPRESS;Database=RPG;User Id=rpg_admin;Password=1234;Encrypt=True;TrustServerCertificate=True;";
-
-                // Query to fetch the password for the given username
-                string query = "SELECT username FROM user_info WHERE username = @username";
-
-                // Use a SQL connection
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                SQL db_conn = SQL.Instance;
+                if(db_conn.CreateAcc(textBoxUser.Text, textBoxConfirm.Text))
                 {
-                    connection.Open();
-
-                    // Use a command with parameterized query to prevent SQL injection
-                    using (SqlCommand command = new SqlCommand(query, connection))
-                    {
-                        // Define the parameter and add it to the command
-                        command.Parameters.AddWithValue("@username", textBoxUser.Text);
-
-                        // Execute the query and get the result
-                        object result = command.ExecuteScalar();
-
-                        // Check if a matching username was found
-                        if (result != null)
-                        {
-                            throw new ArgumentException("Username already exists");
-                        }
-                    }
-
-                    // If the username is not found, insert the new account
-                    string insertQuery = "INSERT INTO user_info (username, password) VALUES (@username, @passwd)";
-                    using (SqlCommand insertCommand = new SqlCommand(insertQuery, connection))
-                    {
-                        insertCommand.Parameters.AddWithValue("@username", textBoxUser.Text);
-                        insertCommand.Parameters.AddWithValue("@passwd", textBoxPass.Text);
-
-                        int rowsAffected = insertCommand.ExecuteNonQuery();
-                        if (rowsAffected > 0)
-                        {
-                            MessageBox.Show("Account created successfully.");
-                            this.Close();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Failed to create account.");
-                        }
-                    }
+                    MessageBox.Show("Account created successfully.");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Failed to create account.");
                 }
             }
             catch (ArgumentNullException ex)
@@ -146,7 +109,7 @@ namespace RPGUI
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        
+
         private bool Click = true;
         private void pictureBox2_Click(object sender, EventArgs e)
         {

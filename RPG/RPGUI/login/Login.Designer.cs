@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             textBox1 = new TextBox();
             textBox2 = new TextBox();
             button1 = new Button();
@@ -41,8 +42,8 @@
             panel3 = new Panel();
             textBox3 = new TextBox();
             pictureBox4 = new PictureBox();
-            textBox4 = new TextBox();
-            textBox5 = new TextBox();
+            label1 = new Label();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -71,13 +72,14 @@
             // button1
             // 
             button1.BackColor = Color.FromArgb(1, 235, 205);
+            button1.Cursor = Cursors.Hand;
             button1.FlatStyle = FlatStyle.Popup;
             button1.Font = new Font("Sitka Text", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.Black;
-            button1.Location = new Point(116, 404);
+            button1.Location = new Point(136, 442);
             button1.Name = "button1";
             button1.Size = new Size(150, 42);
-            button1.TabIndex = 5;
+            button1.TabIndex = 2;
             button1.Text = "Login";
             button1.TextAlign = ContentAlignment.TopCenter;
             button1.UseVisualStyleBackColor = false;
@@ -86,7 +88,7 @@
             // 
             pictureBox1.Enabled = false;
             pictureBox1.Image = Properties.Resources.game;
-            pictureBox1.Location = new Point(115, 53);
+            pictureBox1.Location = new Point(135, 78);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(150, 150);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -123,7 +125,7 @@
             panel1.BackColor = SystemColors.Window;
             panel1.Controls.Add(textBoxUser);
             panel1.Controls.Add(pictureBox3);
-            panel1.Location = new Point(67, 259);
+            panel1.Location = new Point(87, 284);
             panel1.Name = "panel1";
             panel1.Size = new Size(249, 36);
             panel1.TabIndex = 11;
@@ -135,7 +137,7 @@
             textBoxUser.Location = new Point(34, 5);
             textBoxUser.Name = "textBoxUser";
             textBoxUser.Size = new Size(214, 27);
-            textBoxUser.TabIndex = 14;
+            textBoxUser.TabIndex = 0;
             // 
             // textBoxPass
             // 
@@ -145,13 +147,13 @@
             textBoxPass.Name = "textBoxPass";
             textBoxPass.PasswordChar = '*';
             textBoxPass.Size = new Size(214, 27);
-            textBoxPass.TabIndex = 15;
+            textBoxPass.TabIndex = 1;
             // 
             // linkLabel1
             // 
             linkLabel1.AutoSize = true;
             linkLabel1.LinkColor = Color.White;
-            linkLabel1.Location = new Point(127, 497);
+            linkLabel1.Location = new Point(147, 555);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new Size(128, 20);
             linkLabel1.TabIndex = 15;
@@ -163,7 +165,7 @@
             panel3.BackColor = SystemColors.Window;
             panel3.Controls.Add(textBoxPass);
             panel3.Controls.Add(pictureBox2);
-            panel3.Location = new Point(67, 343);
+            panel3.Location = new Point(87, 368);
             panel3.Name = "panel3";
             panel3.Size = new Size(249, 36);
             panel3.TabIndex = 15;
@@ -174,7 +176,7 @@
             textBox3.BorderStyle = BorderStyle.None;
             textBox3.Enabled = false;
             textBox3.ForeColor = Color.White;
-            textBox3.Location = new Point(134, 474);
+            textBox3.Location = new Point(154, 532);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(115, 20);
             textBox3.TabIndex = 16;
@@ -186,30 +188,40 @@
             pictureBox4.BackColor = Color.Transparent;
             pictureBox4.Enabled = false;
             pictureBox4.Image = Properties.Resources.title;
-            pictureBox4.Location = new Point(87, 25);
+            pictureBox4.Location = new Point(107, 50);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(209, 48);
             pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox4.TabIndex = 17;
             pictureBox4.TabStop = false;
             // 
-            // textBox4
+            // label1
             // 
-            textBox4.Enabled = false;
-            textBox4.Location = new Point(67, 226);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(72, 27);
-            textBox4.TabIndex = 18;
-            textBox4.Text = "Username";
+            label1.AutoSize = true;
+            label1.FlatStyle = FlatStyle.Flat;
+            label1.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.White;
+            label1.ImageAlign = ContentAlignment.MiddleLeft;
+            label1.Location = new Point(87, 256);
+            label1.Name = "label1";
+            label1.Size = new Size(97, 25);
+            label1.TabIndex = 20;
+            label1.Text = "Username";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // textBox5
+            // label2
             // 
-            textBox5.Enabled = false;
-            textBox5.Location = new Point(67, 310);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(69, 27);
-            textBox5.TabIndex = 19;
-            textBox5.Text = "Password";
+            label2.AutoSize = true;
+            label2.FlatStyle = FlatStyle.Flat;
+            label2.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.White;
+            label2.ImageAlign = ContentAlignment.MiddleLeft;
+            label2.Location = new Point(87, 340);
+            label2.Name = "label2";
+            label2.Size = new Size(92, 25);
+            label2.TabIndex = 21;
+            label2.Text = "Password";
+            label2.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Login
             // 
@@ -217,10 +229,10 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
-            ClientSize = new Size(383, 540);
+            ClientSize = new Size(422, 613);
+            Controls.Add(label2);
+            Controls.Add(label1);
             Controls.Add(button1);
-            Controls.Add(textBox5);
-            Controls.Add(textBox4);
             Controls.Add(pictureBox4);
             Controls.Add(textBox3);
             Controls.Add(linkLabel1);
@@ -228,7 +240,11 @@
             Controls.Add(pictureBox1);
             Controls.Add(panel3);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "Login";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
@@ -245,7 +261,6 @@
         #endregion
         private TextBox textBox1;
         private TextBox textBox2;
-        private TextBox textBox4;
         private Button button1;
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
@@ -258,6 +273,7 @@
         private Panel panel3;
         private TextBox textBox3;
         private PictureBox pictureBox4;
-        private TextBox textBox5;
+        private Label label1;
+        private Label label2;
     }
 }

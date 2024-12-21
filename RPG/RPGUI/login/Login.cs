@@ -22,7 +22,8 @@ namespace RPGUI
             this.User = null;
             this.User = null;
             InitializeComponent();
-
+            //for some reason every time the program runs the TabStop becomes true, this works
+            linkLabel1.TabStop = false;
             // Wire up the button click event
             button1.Click += login;
             linkLabel1.LinkClicked += sign;
@@ -37,7 +38,6 @@ namespace RPGUI
             using (SignUp signUpForm = new SignUp())
             {
                 this.Hide();
-                signUpForm.StartPosition = FormStartPosition.CenterScreen;
                 // Show the SignUp form as a dialog
                 signUpForm.ShowDialog();
             }

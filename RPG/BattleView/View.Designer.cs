@@ -335,7 +335,7 @@
             // 
             // gauge1
             // 
-            gauge1.BackColor = Color.Crimson;
+            gauge1.BackColor = Color.DodgerBlue;
             gauge1.BorderStyle = BorderStyle.Fixed3D;
             resources.ApplyResources(gauge1, "gauge1");
             gauge1.ForeColor = Color.Black;
@@ -343,7 +343,7 @@
             // 
             // gauge3
             // 
-            gauge3.BackColor = Color.Crimson;
+            gauge3.BackColor = Color.DodgerBlue;
             gauge3.BorderStyle = BorderStyle.Fixed3D;
             resources.ApplyResources(gauge3, "gauge3");
             gauge3.ForeColor = Color.Black;
@@ -367,7 +367,7 @@
             // 
             // gauge2
             // 
-            gauge2.BackColor = Color.Crimson;
+            gauge2.BackColor = Color.DodgerBlue;
             gauge2.BorderStyle = BorderStyle.Fixed3D;
             resources.ApplyResources(gauge2, "gauge2");
             gauge2.ForeColor = Color.Black;
@@ -407,7 +407,7 @@
             // 
             // gauge4
             // 
-            gauge4.BackColor = Color.Crimson;
+            gauge4.BackColor = Color.DodgerBlue;
             gauge4.BorderStyle = BorderStyle.Fixed3D;
             resources.ApplyResources(gauge4, "gauge4");
             gauge4.ForeColor = Color.Black;
@@ -431,7 +431,7 @@
             // 
             // gauge5
             // 
-            gauge5.BackColor = Color.Crimson;
+            gauge5.BackColor = Color.DodgerBlue;
             gauge5.BorderStyle = BorderStyle.Fixed3D;
             resources.ApplyResources(gauge5, "gauge5");
             gauge5.ForeColor = Color.Black;
@@ -455,7 +455,7 @@
             // 
             // gauge6
             // 
-            gauge6.BackColor = Color.Crimson;
+            gauge6.BackColor = Color.DodgerBlue;
             gauge6.BorderStyle = BorderStyle.Fixed3D;
             resources.ApplyResources(gauge6, "gauge6");
             gauge6.ForeColor = Color.Black;
@@ -498,7 +498,7 @@
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            BackgroundImage = Properties.Resources.battleBackground;
+            BackgroundImage = Properties.Resources.background;
             ControlBox = false;
             Controls.Add(textPlayerTurn);
             Controls.Add(textRound);

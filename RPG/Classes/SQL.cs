@@ -82,6 +82,52 @@ namespace RPG
             }
         }
         #endregion
+        #region Sign Up
+        public bool CreateAcc(string username, string password)
+        {
+
+            // Query to fetch the password for the given username
+            string query = "SELECT username FROM user_info WHERE username = @username";
+
+            // Use a SQL connection
+            using (SqlConnection connection = new SqlConnection(this.connection))
+            {
+                connection.Open();
+
+                // Use a command with parameterized query to prevent SQL injection
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Define the parameter and add it to the command
+                    command.Parameters.AddWithValue("@username", username);
+
+                    // Execute the query and get the result
+                    object result = command.ExecuteScalar();
+
+                    // Check if a matching username was found
+                    if (result != null)
+                    {
+                        throw new ArgumentException("Username already exists");
+                    }
+                }
+
+                // If the username is not found, insert the new account
+                string insertQuery = "INSERT INTO user_info (username, password) VALUES (@username, @passwd)";
+                using (SqlCommand insertCommand = new SqlCommand(insertQuery, connection))
+                {
+                    insertCommand.Parameters.AddWithValue("@username", username);
+                    insertCommand.Parameters.AddWithValue("@passwd", password);
+
+                    int rowsAffected = insertCommand.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+            } 
+        }
+
+        #endregion
         #region User/Scoreboard info
         /// <summary>
         /// Retrive user_id from database
