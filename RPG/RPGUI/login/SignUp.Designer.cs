@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SignUp));
             button1 = new Button();
             pictureBox4 = new PictureBox();
             panel1 = new Panel();
@@ -57,11 +58,11 @@
             button1.FlatStyle = FlatStyle.Popup;
             button1.Font = new Font("Sitka Text", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.Black;
-            button1.Location = new Point(110, 375);
+            button1.Location = new Point(135, 394);
             button1.Name = "button1";
             button1.Size = new Size(150, 42);
-            button1.TabIndex = 5;
-            button1.Text = "SignUp";
+            button1.TabIndex = 3;
+            button1.Text = "Sign Up";
             button1.TextAlign = ContentAlignment.TopCenter;
             button1.UseVisualStyleBackColor = false;
             // 
@@ -70,7 +71,7 @@
             pictureBox4.BackColor = Color.Transparent;
             pictureBox4.Enabled = false;
             pictureBox4.Image = Properties.Resources.title;
-            pictureBox4.Location = new Point(82, 25);
+            pictureBox4.Location = new Point(107, 44);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(209, 48);
             pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
@@ -82,7 +83,7 @@
             panel1.BackColor = SystemColors.Window;
             panel1.Controls.Add(textBoxUser);
             panel1.Controls.Add(pictureBox3);
-            panel1.Location = new Point(62, 237);
+            panel1.Location = new Point(87, 256);
             panel1.Name = "panel1";
             panel1.Size = new Size(249, 36);
             panel1.TabIndex = 20;
@@ -95,7 +96,7 @@
             textBoxUser.Location = new Point(34, 5);
             textBoxUser.Name = "textBoxUser";
             textBoxUser.Size = new Size(214, 27);
-            textBoxUser.TabIndex = 14;
+            textBoxUser.TabIndex = 0;
             textBoxUser.Text = "username";
             // 
             // pictureBox3
@@ -114,7 +115,7 @@
             // 
             pictureBox1.Enabled = false;
             pictureBox1.Image = Properties.Resources.game;
-            pictureBox1.Location = new Point(110, 53);
+            pictureBox1.Location = new Point(135, 72);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(150, 150);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -126,7 +127,7 @@
             panel3.BackColor = SystemColors.Window;
             panel3.Controls.Add(textBoxPass);
             panel3.Controls.Add(pictureBox2);
-            panel3.Location = new Point(62, 279);
+            panel3.Location = new Point(87, 298);
             panel3.Name = "panel3";
             panel3.Size = new Size(249, 36);
             panel3.TabIndex = 22;
@@ -139,7 +140,7 @@
             textBoxPass.Location = new Point(32, 5);
             textBoxPass.Name = "textBoxPass";
             textBoxPass.Size = new Size(214, 27);
-            textBoxPass.TabIndex = 15;
+            textBoxPass.TabIndex = 1;
             textBoxPass.Text = "password";
             // 
             // pictureBox2
@@ -160,7 +161,7 @@
             panel2.BackColor = SystemColors.Window;
             panel2.Controls.Add(textBoxConfirm);
             panel2.Controls.Add(pictureBox5);
-            panel2.Location = new Point(61, 323);
+            panel2.Location = new Point(86, 342);
             panel2.Name = "panel2";
             panel2.Size = new Size(249, 36);
             panel2.TabIndex = 23;
@@ -173,7 +174,7 @@
             textBoxConfirm.Location = new Point(32, 5);
             textBoxConfirm.Name = "textBoxConfirm";
             textBoxConfirm.Size = new Size(214, 27);
-            textBoxConfirm.TabIndex = 15;
+            textBoxConfirm.TabIndex = 2;
             textBoxConfirm.Text = "confirm password";
             // 
             // pictureBox5
@@ -194,14 +195,18 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
-            ClientSize = new Size(372, 493);
+            ClientSize = new Size(422, 513);
             Controls.Add(panel2);
             Controls.Add(pictureBox4);
             Controls.Add(panel1);
             Controls.Add(pictureBox1);
             Controls.Add(panel3);
             Controls.Add(button1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "SignUp";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Sign Up";
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             panel1.ResumeLayout(false);

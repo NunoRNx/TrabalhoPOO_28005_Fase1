@@ -8,7 +8,7 @@ namespace RPGUI
     {
         private const int MaxTeamSize = 3; // Constant for maximum team size
         private BattleTeams team { get; set; }
-
+        public bool status = false;
         public BattleTeams SelectedTeam
         {
             get { return this.team; }
@@ -60,16 +60,18 @@ namespace RPGUI
         private void ButtonSelect_Click(object sender, EventArgs e)
         {
             buttonSelect(); // Get the team selection
-
             // Perform any further actions with the selected team
             if (this.team.team.Count == MaxTeamSize)
             {
                 MessageBox.Show("Team selected successfully!");
                 this.DialogResult = DialogResult.OK;
+                //maybe insert update database here
+                status = true;
                 this.Close();
             }
             else
             {
+                this.team = null;
                 MessageBox.Show("You must select 3 characters to start.");
             }
         }
@@ -77,7 +79,7 @@ namespace RPGUI
         private void buttonSelect()
         {
             int i = 0;
-            team=new BattleTeams();
+            team = new BattleTeams();
             // Check each checkbox and create objects accordingly
             if (checkBox1.Checked && i < MaxTeamSize)
             {

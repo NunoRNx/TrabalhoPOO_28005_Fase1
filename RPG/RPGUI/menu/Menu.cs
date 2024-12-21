@@ -1,5 +1,4 @@
 ﻿using Microsoft.IdentityModel.Tokens;
-using RPG;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,6 +10,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
 
+using BattleController;
+using RPG;
+
 namespace RPGUI
 {
     public partial class Menu : Form
@@ -19,6 +21,8 @@ namespace RPGUI
         private User user2 { get; set; }
         private BattleTeams team1 { get; set; }
         private BattleTeams team2 { get; set; }
+        private SQL connection = SQL.Instance;
+        private Controller Battle;
         public Menu()
         {
             InitializeComponent();
@@ -27,9 +31,11 @@ namespace RPGUI
             button1.Click += (sender, e) => LogInOut(sender, e, 1);
             button2.Click += (sender, e) => LogInOut(sender, e, 2);
             //edit teams
-            button3.Click += (sender, e) => Edit_Button(sender, e, 1);
-            button4.Click += (sender, e) => Edit_Button(sender, e, 2);
+            buttonEdit1.Click += (sender, e) => Edit_Button(sender, e, 1);
+            buttonEdit2.Click += (sender, e) => Edit_Button(sender, e, 2);
+            StartButton.Click += buttonStart_Click;
         }
+        #region login/out
         /// <summary>
         /// Loggin & SignUp / Verify user is already logged in
         /// Get user team pre-set from SQL Database and if there is not team preset force player to choose one and insert it
@@ -39,24 +45,28 @@ namespace RPGUI
         /// <param name="i"> Player 1 or Player 2</param>
         private void LogInOut(object sender, EventArgs e, int i)
         {
+            this.Hide();
             if (i == 1)
             {
                 if (user1 == null || !user1.loggedIn) // Check if user1 is null or not logged in
                 {
+
                     Login login = new Login();
                     login.ShowDialog();
                     //if login page is closed
-                    if(login.user is null)
+                    if (login.user is null)
                     {
+                        this.Show();
                         return;
                     }
                     // Check if user2 is logged in with the same username
                     if (user2 != null && user2.loggedIn && login.user.username == user2.username)
                     {
-                        MessageBox.Show("This user is already logged in as Player 2.");
+                        MessageBox.Show("This user is already logged in.");
+                        this.Show();
                         return;
                     }
-                    else if(!login.user.username.IsNullOrEmpty())
+                    else if (!login.user.username.IsNullOrEmpty())
                     {
                         user1 = new User(login.user.username, 0, 0);
                         user1.loggedIn = true; // Ensure loggedIn is set to true when logging in
@@ -65,33 +75,130 @@ namespace RPGUI
                         textBoxUser1.Text = login.user.username;
                         textBoxUser1.Visible = true;
                         //fetch team and display it
-                        if(!TeamLoad(login.user.username, i))
+                        BattleTeams team = new BattleTeams();
+                        if (!TeamLoad(login.user.username, out team))
                         {
                             Team chooseTeam = new Team();
                             chooseTeam.ShowDialog();
                             team1 = chooseTeam.SelectedTeam;
+                            connection.InsertTeam(team1, user1.username);
                         }
-
-                        //write in boxes the characters names
-                        textBox1.Text = this.team1.team[0].name;
-                        textBox2.Text = this.team1.team[1].name;
-                        textBox3.Text = this.team1.team[2].name;
-                        //insert characters img to the picturebox
-                        pictureBox1 = BoxImage(this.team1.team[0], pictureBox1);
-                        pictureBox2 = BoxImage(this.team1.team[1], pictureBox2);
-                        pictureBox3 = BoxImage(this.team1.team[2], pictureBox3);
-                        pictureBox1.Visible = true;
-                        pictureBox2.Visible = true;
-                        pictureBox3.Visible = true;
-                        //text visible
-                        textBox1.Visible = true;
-                        textBox2.Visible = true;
-                        textBox3.Visible = true;
-                        button1.Text = "Logout";
+                        else
+                        {
+                            team1 = team;
+                        }
+                        logShow(1);
                     }
                 }
                 else
                 {
+                    hide(1);
+                }
+            }
+            else if (i == 2)
+            {
+                if (user2 == null || !user2.loggedIn) // Check if user2 is null or not logged in
+                {
+                    Login login = new Login();
+                    login.ShowDialog();
+                    if (user1 != null && user1.loggedIn && login.user.username == user1.username)
+                    {
+                        MessageBox.Show("This user is already logged in.");
+                        this.Show();
+                        return;
+                    }
+                    else if (login.user != null && !login.user.username.IsNullOrEmpty())
+                    {
+                        user2 = new User(login.user.username, 0, 0);
+                        user2.loggedIn = true; // Ensure loggedIn is set to true when logging in
+
+                        // Show UI elements for player 1
+                        textBoxUser2.Text = login.user.username;
+                        textBoxUser2.Visible = true;
+                        //fetch team and display it
+                        BattleTeams team = new BattleTeams();
+                        if (!TeamLoad(login.user.username, out team))
+                        {
+                            Team chooseTeam = new Team();
+                            chooseTeam.ShowDialog();
+                            team2 = chooseTeam.SelectedTeam;
+                            connection.InsertTeam(team2, user2.username);
+                        }
+                        else
+                        {
+                            team2 = team;
+                        }
+                        logShow(2);
+                    }
+                }
+                else
+                {
+                    hide(2);
+                }
+            }
+            this.Show();
+            // Check if both users are logged in before showing a start game button
+            buttonStart();
+        }
+        /// <summary>
+        /// After user login, show all boxes and team preset
+        /// </summary>
+        /// <param name="user"></param>
+        private void logShow(int user)
+        {
+            switch (user)
+            {
+                case 1:
+                    //write in boxes the characters names
+                    textBox1.Text = this.team1.team[0].name;
+                    textBox2.Text = this.team1.team[1].name;
+                    textBox3.Text = this.team1.team[2].name;
+                    //insert characters img to the picturebox
+                    pictureBox1 = BoxImage(this.team1.team[0], pictureBox1);
+                    pictureBox2 = BoxImage(this.team1.team[1], pictureBox2);
+                    pictureBox3 = BoxImage(this.team1.team[2], pictureBox3);
+                    pictureBox1.Visible = true;
+                    pictureBox2.Visible = true;
+                    pictureBox3.Visible = true;
+                    //text visible
+                    textBox1.Visible = true;
+                    textBox2.Visible = true;
+                    textBox3.Visible = true;
+                    button1.Text = "Logout";
+                    //enable edit team button
+                    buttonEdit1.Visible = true;
+                    break;
+                case 2:
+                    //write in boxes the characters names
+                    textBox4.Text = this.team2.team[0].name;
+                    textBox5.Text = this.team2.team[1].name;
+                    textBox6.Text = this.team2.team[2].name;
+                    //insert characters img to the picturebox
+                    pictureBox4 = BoxImage(this.team2.team[0], pictureBox4);
+                    pictureBox5 = BoxImage(this.team2.team[1], pictureBox5);
+                    pictureBox6 = BoxImage(this.team2.team[2], pictureBox6);
+                    pictureBox4.Visible = true;
+                    pictureBox5.Visible = true;
+                    pictureBox6.Visible = true;
+                    //text visible
+                    textBox4.Visible = true;
+                    textBox5.Visible = true;
+                    textBox6.Visible = true;
+                    button2.Text = "Logout";
+                    //enable edit team button
+                    buttonEdit2.Visible = true;
+                    break;
+            }
+        }
+        /// <summary>
+        /// Hide things after user logout
+        /// </summary>
+        /// <param name="user"></param>
+        private void hide(int user)
+        {
+            switch (user)
+            {
+                case 1:
                     // Log out user1
                     user1 = null;
 
@@ -103,275 +210,197 @@ namespace RPGUI
                     pictureBox1.Visible = false;
                     pictureBox2.Visible = false;
                     pictureBox3.Visible = false;
-                    button3.Visible = false;
+                    buttonEdit1.Visible = false;
                     button1.Text = "Login";
-                }
-            }
-            else if (i == 2)
-            {
-                if (user2 == null || !user2.loggedIn) // Check if user2 is null or not logged in
-                {
-                    Login login = new Login();
-                    login.ShowDialog();
-                    if (user1 != null && user1.loggedIn && login.user.username == user1.username)
-                    {
-                        MessageBox.Show("This user is already logged in as Player 1.");
-                        return;
-                    }
-                    else if (login.user!=null && !login.user.username.IsNullOrEmpty())
-                    {
-                        user2 = new User(login.user.username, 0, 0);
-                        user2.loggedIn = true; // Ensure loggedIn is set to true when logging in
-
-                        // Show UI elements for player 1
-                        textBoxUser2.Text = login.user.username;
-                        textBoxUser2.Visible = true;
-                        //fetch team and display it
-                        if (!TeamLoad(login.user.username, i))
-                        {
-                            Team chooseTeam = new Team();
-                            chooseTeam.ShowDialog();
-                            team2 = chooseTeam.SelectedTeam;
-                        }
-
-                        //write in boxes the characters names
-                        textBox4.Text = this.team2.team[0].name;
-                        textBox5.Text = this.team2.team[1].name;
-                        textBox6.Text = this.team2.team[2].name;
-                        //insert characters img to the picturebox
-                        pictureBox4 = BoxImage(this.team2.team[0], pictureBox4);
-                        pictureBox5 = BoxImage(this.team2.team[1], pictureBox5);
-                        pictureBox6 = BoxImage(this.team2.team[2], pictureBox6);
-                        pictureBox4.Visible = true;
-                        pictureBox5.Visible = true;
-                        pictureBox6.Visible = true;
-                        //text visible
-                        textBox4.Visible = true;
-                        textBox5.Visible = true;
-                        textBox6.Visible = true;
-                        button2.Text = "Logout";
-                    }
-                }
-                else
-                {
+                    //hide edit team button
+                    buttonEdit1.Visible = false;
+                    break;
+                case 2:
                     // Log out user2
                     user2 = null;
 
                     // Hide UI elements for player 2
+                    textBoxUser2.Visible = false;
                     textBox2.Visible = false;
                     textBox4.Visible = false;
                     textBox5.Visible = false;
                     textBox6.Visible = false;
-                    button4.Visible = false;
+                    pictureBox4.Visible = false;
+                    pictureBox5.Visible = false;
+                    pictureBox6.Visible = false;
+                    buttonEdit2.Visible = false;
                     button2.Text = "Login";
-                }
+                    //hide edit team button
+                    buttonEdit2.Visible = false;
+                    break;
             }
-
-            // Check if both users are logged in before showing a start game button
-            buttonStart();
         }
+        #endregion
+        #region picture loading
+        /// <summary>
+        /// Load  characther icons in the menu
+        /// </summary>
+        /// <param name="character"></param>
+        /// <param name="pic"></param>
+        /// <returns></returns>
         public PictureBox BoxImage(Class character, PictureBox pic)
         {
-            if(character is Warrior)
+            if (character is Warrior)
             {
                 pic.Image = Properties.Resources.Warrior;
                 return pic;
             }
-            if(character is Paladin)
+            if (character is Paladin)
             {
                 pic.Image = Properties.Resources.paladin;
                 return pic;
             }
-            if(character is Swordsman)
+            if (character is Swordsman)
             {
                 pic.Image = Properties.Resources.sword;
                 return pic;
             }
-            if(character is Assassin)
+            if (character is Assassin)
             {
                 pic.Image = Properties.Resources.assassin;
                 return pic;
             }
-            if(character is Archer)
+            if (character is Archer)
             {
                 pic.Image = Properties.Resources.archer;
                 return pic;
             }
-            if(character is Mage)
+            if (character is Mage)
             {
                 pic.Image = Properties.Resources.sage;
                 return pic;
             }
             return pic;
         }
-        private bool TeamLoad(string username, int j)
+        #endregion
+        #region Load team preset
+        /// <summary>
+        /// Load team from database
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="j"></param>
+        /// <returns></returns>
+        public bool TeamLoad(string username, out BattleTeams team)
         {
-            int[] characters = new int[3]; // Array to store character IDs
-
-            string connectionString = "Server=DESKTOP-2J6JLCD\\SQLEXPRESS;Database=RPG;User Id=rpg_admin;Password=1234;Encrypt=True;TrustServerCertificate=True;";
-
-            // Query to fetch the user_id for the given username
-            string query = "SELECT user_id FROM user_info WHERE username = @username";
-
-            // Use a SQL connection
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            team = new BattleTeams();
+            int[] characters;
+            if (!connection.GetTeamData(username, out characters))
             {
-                connection.Open();
-
-                // Use a command with parameterized query to prevent SQL injection
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    // Define the parameter and add it to the command
-                    command.Parameters.AddWithValue("@username", username);
-
-                    // Execute the query and get the user ID
-                    int userId = Convert.ToInt32(command.ExecuteScalar());
-
-                    // Now fetch the team preset for this user ID
-                    string teamQuery = "SELECT character_id_1, character_id_2, character_id_3 FROM team_presets WHERE user_id = @userId";
-                    using (SqlCommand teamCommand = new SqlCommand(teamQuery, connection))
-                    {
-                        // Use parameterized query
-                        teamCommand.Parameters.AddWithValue("@userId", userId);
-
-                        // Execute reader to get the characters
-                        using (SqlDataReader reader = teamCommand.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                // Read each character column into the array
-                                characters[0] = reader.GetInt32(0); // character1
-                                characters[1] = reader.GetInt32(1); // character2
-                                characters[2] = reader.GetInt32(2); // character3
-                            }
-                            else
-                            {
-                                return false;
-                            }
-                        }
-                    }
-                }
+                return false;
             }
-            if (j == 1)
-            {
-                team1=new BattleTeams();
-            }
-            else if (j == 2)
-            {
-                team2=new BattleTeams();
-            }
+
             for (int i = 0; i < 3; i++)
             {
                 switch (characters[i])
                 {
                     case 1:
-                        //create warrior
-                        Warrior war = new Warrior(250, 50, 70, 50); // Health, Defense, Strength, Rage
-                        if (j == 1)
-                        {
-                            this.team1.add(war);
-                        }else if (j == 2)
-                        {
-                            this.team2.add(war);
-                        }
+                        team.add(new Warrior(250, 50, 70, 50));
                         break;
                     case 2:
-                        //create paladin
-                        Paladin paladin = new Paladin(220, 60, 50, 30); // Health, Defense, Strength, Holy
-                        if (j == 1)
-                        {
-                            this.team1.add(paladin);
-                        }
-                        else if (j == 2)
-                        {
-                            this.team2.add(paladin);
-                        }
+                        team.add(new Paladin(220, 60, 50, 30));
                         break;
                     case 3:
-                        //create swordsman
-                        Swordsman sword= new Swordsman(210, 40, 80, 40); // Health, Defense, Strength, Focus
-                        if (j == 1)
-                        {
-                            this.team1.add(sword);
-                        }
-                        else if (j == 2)
-                        {
-                            this.team2.add(sword);
-                        }
+                        team.add(new Swordsman(210, 40, 80, 40));
                         break;
                     case 4:
-                        //create Assassin
-                        Assassin assassin= new Assassin(180, 30, 60, 90, 40); // Health, Defense, Strength, Dexterity, Stealth
-                        if (j == 1)
-                        {
-                            this.team1.add(assassin);
-                        }
-                        else if (j == 2)
-                        {
-                            this.team2.add(assassin);
-                        }
+                        team.add(new Assassin(180, 30, 60, 90, 40));
                         break;
                     case 5:
-                        //create archer
-                        Archer archer = new Archer(190, 35, 50, 100, 30); // Health, Defense, Strength, Dexterity, Arrows
-                        if (j == 1)
-                        {
-                            this.team1.add(archer);
-                        }
-                        else if (j == 2)
-                        {
-                            this.team2.add(archer);
-                        }
+                        team.add(new Archer(190, 35, 50, 100, 30));
                         break;
                     case 6:
-                        //create mage
-                        Mage mage = new Mage(160, 20, 40, 90, 50); // Health, Defense, Strength, Magic, Mana
-                        if (j == 1)
-                        {
-                            this.team1.add(mage);
-                        }
-                        else if (j == 2)
-                        {
-                            this.team2.add(mage);
-                        }
+                        team.add(new Mage(160, 20, 40, 90, 50));
                         break;
                 }
             }
             return true;
         }
+        #endregion
+        #region Start
+        /// <summary>
+        /// Start button only shows once both players are logged in, this includes the team selection
+        /// </summary>
         private void buttonStart()
         {
             // Check if both users are logged in
-            if (user1?.loggedIn == true && user2?.loggedIn == true)
+            if (user1 != null && user2 != null)
             {
-                button5.Visible = true; // Show "Start Game" button
+                StartButton.Visible = true; // Show "Start Game" button
+                StartButton.Enabled = true; // Makes the button "usable"
             }
             else
             {
-                button5.Visible = false;
+                StartButton.Visible = false;
+                StartButton.Enabled = false;
             }
         }
+        /// <summary>
+        /// Start Game and Garbage Collection at the end
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonStart_Click(object sender, EventArgs e)
+        {
+            //hide Menu
+            this.Hide();
+            // Create the BattleController and pass the necessary data
+            this.Battle = new Controller(this.team1.team, this.team2.team, user1.username, user2.username);
+            // Show the BattleView
+            this.Battle.StartBattle();
+            //show menu once battle is closed
+            this.Show();
+            this.Battle = null;
+            GC.Collect();
+        }
+        #endregion
+        #region Edit team
+        /// <summary>
+        /// Edit current team + update SQL database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <param name="i"></param>
         private void Edit_Button(object sender, EventArgs e, int i)
         {
-            if (i == 1)
+            Team chooseTeam = new Team();
+            chooseTeam.ShowDialog();
+            if (chooseTeam.status)
             {
-                // Pass player1 data to the Edit form
-                Edit editForm = new Edit(team1);
-                editForm.ShowDialog(); // Or use Show() depending on your need
-                this.team1 = editForm.getTeam;
-            }
-            if (i == 2)
-            {
-                // Pass player1 data to the Edit form
-                Edit editForm = new Edit(team2);
-                editForm.ShowDialog(); // Or use Show() depending on your need
-                this.team2 = editForm.getTeam;
+
+                if (i == 1)
+                {
+                    if (team1 != null)
+                    {
+                        team1 = null;
+                    }
+                    team1 = chooseTeam.SelectedTeam;
+                    connection.UpdateTeam(team1, user1.username);
+                    logShow(1);
+                }
+                if (i == 2)
+                {
+                    if (team2 != null)
+                    {
+                        team2 = null;
+                    }
+                    team2 = chooseTeam.SelectedTeam;
+                    connection.UpdateTeam(team2, user2.username);
+                    logShow(2);
+                }
             }
         }
+        #endregion
+        #region scoreboard
         private void buttonScoreboard_Click(object sender, EventArgs e)
         {
             Scoreboard scoreboard = new Scoreboard();
             scoreboard.ShowDialog();
         }
+        #endregion
     }
 }

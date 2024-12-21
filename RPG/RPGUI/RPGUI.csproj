@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BattleController\BattleController.csproj" />
     <ProjectReference Include="..\Classes\Classes.csproj" />
     <ProjectReference Include="..\User\User.csproj" />
   </ItemGroup>

@@ -7,9 +7,11 @@ namespace RPG
     public abstract class Class
     {
         #region Properties
+        private int Id { get; set; }
         private string Name { get; set; }
-        private string Type { get; set; }
+        //private string Type { get; set; }
         private int HP { get; set; }
+        private int MaxHP { get; set; }
         private int OriginalDefense { get; set; }
         private int Defense { get; set; }
         private int Strength { get; set; }
@@ -18,11 +20,12 @@ namespace RPG
         #endregion
 
         #region Constructor
-        public Class(string name, string type, int hp, int defense, int strength, int stamina, int ultimateGaugeSize)
+        public Class(int id, string name, int hp, int defense, int strength, int stamina, int ultimateGaugeSize)
         {
+            this.Id = id;
             this.Name = name;
-            this.Type = type;
             this.HP = hp;
+            this.MaxHP = hp;
             this.Defense = defense;
             this.OriginalDefense = defense;
             this.Strength = strength;
@@ -32,15 +35,19 @@ namespace RPG
         #endregion
 
         #region Injectors
+        public int id
+        {
+            get { return Id; }
+        }
+
         public string name
         {
             get { return this.Name; }
             set { this.Name = value; }
         }
-        public string type
+        public int maxHP
         {
-            get { return this.Type; }
-            set { this.Type = value; }
+            get { return this.MaxHP; }
         }
         public int hp
         {

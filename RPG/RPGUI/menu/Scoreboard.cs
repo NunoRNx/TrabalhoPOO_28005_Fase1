@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
+using RPG;
 
 namespace RPGUI
 {
@@ -20,24 +21,16 @@ namespace RPGUI
         }
         private void LoadScoreboard()
         {
-            // Connection string to the SQL database (replace with your actual connection string)
-            string connectionString = "Server=DESKTOP-2J6JLCD\\SQLEXPRESS;Database=RPG;User Id=rpg_admin;Password=1234;Encrypt=True;TrustServerCertificate=True;";
-
-            // SQL query to fetch the scoreboard ordered by highest wins
-            string query = "SELECT username, wins, matches FROM user_info ORDER BY wins DESC";
-
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    connection.Open();
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection))
-                    {
-                        DataTable dataTable = new DataTable();
-                        adapter.Fill(dataTable);
-                        dataGridView1.DataSource = dataTable;
-                    }
-                }
+                SQL db_connection = SQL.Instance;
+                // Get the scoreboard data from the SQL class
+                DataTable scoreboardData = db_connection.GetScoreboard();
+
+                dataGridView1.DataSource = scoreboardData;
+                
+                // Optionally, add the DataGridView to the form's controls if it is not already
+                Controls.Add(dataGridView1);
             }
             catch (Exception ex)
             {
