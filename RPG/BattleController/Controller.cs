@@ -9,8 +9,6 @@ namespace BattleController
     {
         private Model model;
         private BattleView.View view;
-        private Class selected {  get; set; }
-        private Class enemy { get; set; }
 
         public Controller(List<Class> player1Team, List<Class> player2Team, string user1, string user2)
         {

@@ -59,6 +59,7 @@ namespace RPGUI
             // 
             // button1
             // 
+            button1.Cursor = Cursors.Hand;
             button1.Location = new Point(39, 297);
             button1.Name = "button1";
             button1.Size = new Size(127, 47);
@@ -68,6 +69,7 @@ namespace RPGUI
             // 
             // buttonEdit1
             // 
+            buttonEdit1.Cursor = Cursors.Hand;
             buttonEdit1.Location = new Point(201, 513);
             buttonEdit1.Name = "buttonEdit1";
             buttonEdit1.Size = new Size(132, 43);
@@ -78,6 +80,7 @@ namespace RPGUI
             // 
             // StartButton
             // 
+            StartButton.Cursor = Cursors.Hand;
             StartButton.Location = new Point(429, 364);
             StartButton.Name = "StartButton";
             StartButton.Size = new Size(120, 60);
@@ -88,6 +91,7 @@ namespace RPGUI
             // 
             // buttonScoreboard
             // 
+            buttonScoreboard.Cursor = Cursors.Hand;
             buttonScoreboard.Location = new Point(429, 451);
             buttonScoreboard.Name = "buttonScoreboard";
             buttonScoreboard.Size = new Size(120, 60);
@@ -98,6 +102,7 @@ namespace RPGUI
             // 
             // button2
             // 
+            button2.Cursor = Cursors.Hand;
             button2.Location = new Point(814, 296);
             button2.Name = "button2";
             button2.Size = new Size(127, 47);
@@ -173,6 +178,7 @@ namespace RPGUI
             // 
             // buttonEdit2
             // 
+            buttonEdit2.Cursor = Cursors.Hand;
             buttonEdit2.Location = new Point(652, 513);
             buttonEdit2.Name = "buttonEdit2";
             buttonEdit2.Size = new Size(132, 43);

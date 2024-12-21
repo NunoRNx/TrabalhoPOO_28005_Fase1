@@ -60,7 +60,6 @@ namespace RPGUI
         private void ButtonSelect_Click(object sender, EventArgs e)
         {
             buttonSelect(); // Get the team selection
-
             // Perform any further actions with the selected team
             if (this.team.team.Count == MaxTeamSize)
             {
@@ -72,6 +71,7 @@ namespace RPGUI
             }
             else
             {
+                this.team = null;
                 MessageBox.Show("You must select 3 characters to start.");
             }
         }

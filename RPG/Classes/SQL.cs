@@ -37,7 +37,7 @@ namespace RPG
                 return _instance;
             }
         }
-
+    
         
         #region login
         /// <summary>

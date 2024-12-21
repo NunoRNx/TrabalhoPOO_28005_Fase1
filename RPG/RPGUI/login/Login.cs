@@ -20,7 +20,6 @@ namespace RPGUI
         public Login()
         {
             this.User = null;
-            this.User = null;
             InitializeComponent();
             //for some reason every time the program runs the TabStop becomes true, this works
             linkLabel1.TabStop = false;

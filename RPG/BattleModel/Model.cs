@@ -91,7 +91,6 @@ namespace BattleModel
                     this.defenderTeam = user1;
                 }
             }
-            
         }
         /// <summary>
         /// Block Actions provides a defense buff but it only precists for 1 round
@@ -196,24 +195,6 @@ namespace BattleModel
             int roll = rand.Next(min, max);
             return roll;
         }
-        #region old calc
-        public static int crit(int damage, int roll)
-        {
-            if (roll > 15)
-            {
-                return damage * 2;
-            }
-            return damage + damage/2;
-        }
-        public static int resistence(int damage, int roll)
-        {
-            if (roll < 5)
-            {
-                return damage / 2;
-            }
-            return damage - damage/4;
-        }
-        #endregion
         public static int CritResistence(int damage, int roll)
         {
             double mult = roll / 10.0;
@@ -223,16 +204,6 @@ namespace BattleModel
         public static int inflict(int damage, out int roll)
         {
             roll = diceRoll(1, 21);
-            //old system
-            /*
-            if (roll > 10)
-            {
-                damage = crit(damage, roll);
-            }
-            else if(roll < 10)
-            {
-                damage = resistence(damage, roll);
-            }*/
             return CritResistence(damage, roll);
         }
         #endregion
